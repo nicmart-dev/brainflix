@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+#added
+*.map
+_config.yml
+*.md
+.github/
+.vscode/
+manifest
