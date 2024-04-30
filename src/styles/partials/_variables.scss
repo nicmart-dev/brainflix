@@ -1,0 +1,193 @@
+@use "typography" as *;
+
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1280px;
+
+/* -------------------------------------------------------------------------- */
+/*                                    Fonts                                   */
+/* -------------------------------------------------------------------------- */
+
+// Declare font families
+$font: "AvenirNext LT Pro";
+
+// Set your font weights as variables
+$regular: 400;
+$semi-bold: 600;
+$bold: 700;
+
+//Page Header
+$page-header-font-size: 24px;
+$page-header-tablet-font-size: 33px;
+$page-header-line-height: 32px;
+$page-header-line-height-tablet: 44px;
+$page-header-font-weight: $bold;
+
+// Section Header
+$section-header-font-size: 12px;
+$section-header-line-height: 20px;
+$section-header-font-weight: $bold;
+
+// Subheader
+$subheader-font-size: $body-copy-font-size;
+$subheader-font-size-tablet: $body-copy-font-size-tablet;
+$subheader-line-height: $body-copy-line-height;
+$subheader-line-height-tablet: $body-copy-line-height-tablet;
+$subheader-font-weight: $bold;
+
+// Body Copy
+$body-copy-font-size: 13px;
+$body-copy-font-size-tablet: 14px;
+$body-copy-line-height: 18px;
+$body-copy-line-height-tablet: 22px;
+$body-copy-font-weight: $regular;
+
+// Labels & Buttons
+$label-btn-font-size: 10px;
+$label-btn-font-size-tablet: $section-header-font-size;
+$label-btn-line-height: $section-header-line-height;
+$label-btn-font-weight: $bold;
+
+/* -------------------------------------------------------------------------- */
+/*                                   Colors                                  */
+/* -------------------------------------------------------------------------- */
+
+/* colors following Mike Street and Marcus Ortense naming conventions,*
+per https://css-tricks.com/what-do-you-name-color-variables/ */
+
+$color-primary-brainflix-black: #323232; // Primary text color.
+$color-primary-blue: #0095ff; //Primary CTA color. Active form field outline color.
+$color-primary-silver: #afafaf; // Seconday text color. Text Label color.
+$color-primary-white: #fff; // Background color. CTA text color.
+
+$color-secondary-brainflix-darkblack: #000; // Video player components.
+$color-secondary-brainflix-darkblue: #0065ad; // CTA hover state color.
+$color-secondary-mercury: #e1e1e1; // Divider line. Form field outline color.
+$color-secondary-alabaster: #fafafa; // Form field background color.
+
+$color-error: #d22d2d;
+
+/* -------------------------------------------------------------------------- */
+/*                                   Padding                                  */
+/* -------------------------------------------------------------------------- */
+
+/* Padding refers to the space between UI
+elements and are measured in increments of
+8px, unless otherwise specified. */
+$padding-unit: 8px;
+
+$padding-xxs: 4px;
+$padding-xs: $padding-unit;
+$padding-sm: calc($padding-unit * 2); // 16px
+$padding-md: calc($padding-unit * 3); // 24px
+$padding-lg: calc($padding-unit * 4); // 32px
+$padding-xl: calc($padding-unit * 5); // 40px
+$padding-xxl: calc($padding-unit * 6); // 48px
+$padding-3xl: calc($padding-unit * 7); // 56px
+$padding-4xl: calc($padding-unit * 8); // 64px
+$padding-5xl: calc($padding-unit * 10); // 80px
+
+//mobile sizes
+$padding-before-headlines: $padding-md; // 24px
+$padding-after-headlines: $padding-sm; // 16px
+$padding-between-components: $padding-sm; // 16px
+
+//tablet and desktop
+$padding-before-headlines-tablet: calc($padding-lg + $padding-xxs); // 36px
+$padding-after-headlines-tablet: $padding-md; // 24px
+$padding-between-components-tablet: $padding-md; // 24px
+
+/* -------------------------------------------------------------------------- */
+/*                        Iconography & Call To Actions                       */
+/* -------------------------------------------------------------------------- */
+
+/* The icons used in the designs of this site are pulled
+from google’s material design icon pack.
+The fill color for each icon will always match the
+color of the text that follows. */
+
+$icon-txt-views-color: $color-primary-silver;
+$icon-txt-likes-color: $color-primary-silver;
+$icon-txt-search-color: $color-primary-brainflix-black;
+$cta-icon-txt-color: $color-primary-white;
+$cta-default-background-color: $color-primary-blue;
+$cta-hover-background-color: $color-secondary-brainflix-darkblue;
+$cta-height: 40px;
+$cta-min-width-tablet: 150px;
+$cta-min-padding: 0 32px;
+$cta-width-mobile: 100%;
+$button-border-radius: 4px;
+
+/* -------------------------------------------------------------------------- */
+/*                                Video Player                                */
+/* -------------------------------------------------------------------------- */
+
+/* Video icon controls for the video player will always be a white fill
+color, and placed upon a background of BrainFlix-DarkBlack at
+50% opacity. */
+$video-control-icon-fill: $color-primary-white;
+$video-control-background-color: rgba(
+  $color-secondary-brainflix-darkblack,
+  0.5
+);
+
+/* If the video does not fill the width of the screen, the background
+of the video player container should have a fill color of BrainFlix-
+DarkBlack. The video player should have a 16:9 aspect ratio,
+regardless of the poster image applied. */
+$video-player-background: $color-secondary-brainflix-darkblack;
+$video-player-aspect-ratio: 16 / 9;
+
+/* The scrubbing icon will be 16px with a white fill color. The
+scrubber will have a fill color of BrainFlix-DarkBlack, buffer will
+have a fill color of Silver, and the played video will have a fill
+color of BrainFlix-Blue */
+$scrubbing-icon-size: 16px;
+$scrubbing-icon-color: $color-primary-white;
+$scrubber-bar-icon-color: $color-secondary-brainflix-darkblack;
+$buffer-bar-color: $color-primary-silver;
+$played-bar-color: $color-primary-blue;
+
+/* -------------------------------------------------------------------------- */
+/*                                 Form fields                                */
+/* -------------------------------------------------------------------------- */
+
+$form-field-height: 36px;
+$form-field-height-tablet: 40px;
+$form-field-minwidth: 240px;
+$form-field-maxwidth: 100%;
+
+$form-field-padding: 12px;
+$form-field-padding-tablet: 16px;
+
+$form-space-between-label-and-field: 4px;
+
+$form-field-border-radius: 4px;
+$form-field-default-filled-border: 1px solid $color-secondary-mercury;
+$form-field-active-border: 2px solid $color-primary-blue;
+$form-field-error-border: 1px solid $color-error;
+
+/* -------------------------------------------------------------------------- */
+/*                                   Divider                                  */
+/* -------------------------------------------------------------------------- */
+
+$divider-stroke-width: 1px;
+$divider-fill-color: $color-secondary-mercury;
+
+/* -------------------------------------------------------------------------- */
+/*                                   Images                                   */
+/* -------------------------------------------------------------------------- */
+
+$image-border-radius: 4px;
+$image-background-size: contain; // Images will fit within the bounds of their container
+$image-background-color: $color-secondary-mercury; // The image container should be given a background color of Mercury in the event that an image does not load properly.
+
+/* -------------------------------------------------------------------------- */
+/*                                   Avatars                                  */
+/* -------------------------------------------------------------------------- */
+$border-radius-avatar: 50%; // Avatar images will have a border radius of 50% applied.
+$avatar-placeholder-color: $color-secondary-mercury; // The avatar image should have a placeholder color of Mercury applied in the event that an image is not provided.
+
+/* Comments avatars in bio page.
+Applied consistent multiplier to style guide to match mockup */
+$avatar-size: 36px;
+$avatar-size-tablet: 40px;
