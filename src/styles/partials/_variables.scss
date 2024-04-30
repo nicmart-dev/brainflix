@@ -1,4 +1,4 @@
-@use "typography" as *;
+@use "./typography" as *;
 
 $tablet-breakpoint: 768px;
 $desktop-breakpoint: 1280px;
@@ -14,6 +14,13 @@ $font: "AvenirNext LT Pro";
 $regular: 400;
 $semi-bold: 600;
 $bold: 700;
+
+// Body Copy
+$body-copy-font-size: 13px;
+$body-copy-font-size-tablet: 14px;
+$body-copy-line-height: 18px;
+$body-copy-line-height-tablet: 22px;
+$body-copy-font-weight: $regular;
 
 //Page Header
 $page-header-font-size: 24px;
@@ -33,13 +40,6 @@ $subheader-font-size-tablet: $body-copy-font-size-tablet;
 $subheader-line-height: $body-copy-line-height;
 $subheader-line-height-tablet: $body-copy-line-height-tablet;
 $subheader-font-weight: $bold;
-
-// Body Copy
-$body-copy-font-size: 13px;
-$body-copy-font-size-tablet: 14px;
-$body-copy-line-height: 18px;
-$body-copy-line-height-tablet: 22px;
-$body-copy-font-weight: $regular;
 
 // Labels & Buttons
 $label-btn-font-size: 10px;
