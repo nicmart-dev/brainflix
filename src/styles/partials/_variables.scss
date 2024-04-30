@@ -70,6 +70,9 @@ $color-error: #d22d2d;
 /*                                   Padding                                  */
 /* -------------------------------------------------------------------------- */
 
+/* Set standard padding per styleguide,
+following this guide https://sterlingcobb.medium.com/using-css-variables-with-margin-padding-4fec2ceb24d0  */
+
 /* Padding refers to the space between UI
 elements and are measured in increments of
 8px, unless otherwise specified. */
@@ -86,7 +89,7 @@ $padding-3xl: calc($padding-unit * 7); // 56px
 $padding-4xl: calc($padding-unit * 8); // 64px
 $padding-5xl: calc($padding-unit * 10); // 80px
 
-//mobile sizes
+//default (mobile) sizes
 $padding-before-headlines: $padding-md; // 24px
 $padding-after-headlines: $padding-sm; // 16px
 $padding-between-components: $padding-sm; // 16px
