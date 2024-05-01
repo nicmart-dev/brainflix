@@ -30,3 +30,4 @@ _config.yml
 .github/
 .vscode/
 manifest
+yarn.lock
