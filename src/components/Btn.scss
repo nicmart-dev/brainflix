@@ -16,7 +16,8 @@
   border-radius: $button-border-radius;
 
   background-repeat: no-repeat;
-  background-position: left center;
+  background-position: $padding-xs center;
+  padding: $padding-xs;
 
   @include tablet {
     font-size: $label-btn-font-size-tablet;

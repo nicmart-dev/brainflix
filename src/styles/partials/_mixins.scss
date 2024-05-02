@@ -21,3 +21,71 @@
     @content;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                   General padding                          */
+/* -------------------------------------------------------------------------- */
+
+//use to insert padding for entire app
+@mixin spacing-app {
+  @include spacing(padding, sides, $padding-sm);
+
+  @include tablet {
+    @include spacing(padding, sides, $padding-xl);
+  }
+  @include desktop {
+    @include spacing(padding, sides, $padding-3xl);
+  }
+}
+
+//use to insert spacing between components
+@mixin spacing-between-components() {
+  @include spacing(padding, bottom, $padding-between-components);
+
+  @include tablet {
+    @include spacing(padding, bottom, $padding-between-components-tablet);
+  }
+}
+
+/* Utility to to add margin or padding, on which side, and how big
+Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
+
+@mixin spacing($type: margin, $direction: all, $amount: $padding-md) {
+  @if $type == padding {
+    @if $direction == all {
+      padding: $amount;
+    } @else if $direction == top {
+      padding-top: $amount;
+    } @else if $direction == topbottom {
+      padding-top: $amount;
+      padding-bottom: $amount;
+    } @else if $direction == sides {
+      padding-left: $amount;
+      padding-right: $amount;
+    } @else if $direction == left {
+      padding-left: $amount;
+    } @else if $direction == right {
+      padding-right: $amount;
+    } @else {
+      padding-bottom: $amount;
+    }
+  } @else {
+    @if $direction == all {
+      margin: $amount;
+    } @else if $direction == top {
+      margin-top: $amount;
+    } @else if $direction == topbottom {
+      margin-top: $amount;
+      margin-bottom: $amount;
+    } @else if $direction == sides {
+      margin-left: $amount;
+      margin-right: $amount;
+    } @else if $direction == left {
+      margin-left: $amount;
+    } @else if $direction == right {
+      margin-right: $amount;
+    } @else {
+      margin-bottom: $amount;
+    }
+  }
+}

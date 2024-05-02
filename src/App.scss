@@ -18,11 +18,13 @@
 
   background-color: $color-primary-white;
   color: $color-primary-brainflix-black;
+
+  //add left and right spacing across entire app
+  @include spacing-app;
 }
 
-.App-header {
-}
-
-.App-logo {
-  height: 10vmin;
+input,
+textarea,
+button {
+  font-family: inherit;
 }

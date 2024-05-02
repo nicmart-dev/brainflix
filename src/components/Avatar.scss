@@ -2,6 +2,7 @@
 @use "../styles/partials/mixins" as *;
 
 .avatar {
+  //size image container
   flex-basis: calc($avatar-size * 1.5);
   flex-grow: 0;
   flex-shrink: 0;

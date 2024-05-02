@@ -1,16 +1,67 @@
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 .site-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0.625rem;
-  margin-bottom: 1rem;
+
+  justify-content: space-between;
+  @include tablet {
+    flex-direction: row;
+  }
+
+  //add bottom spacing
+  @include spacing-between-components;
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    // wrap on mobile to enable search and avatar to be on same row
+    @include mobile {
+      flex-wrap: wrap;
+    }
+    align-items: center;
+    justify-content: space-between;
+  }
   &__logo {
-    max-width: 80px;
+    width: $logo-max-width;
+    height: $logo-max-height;
+    background-color: $logo-background;
+    padding: $padding-between-components 0;
+    margin: auto; //center logo only
+    @include tablet {
+      margin: initial;
+    }
+  }
+
+  &__form {
+    order: 2;
+  }
+  &__avatar-container {
+    order: 3;
+    padding-left: $padding-between-components;
+    @include tablet {
+      order: 4; // show flex item order differently on tablet per mockup
+      padding-left: $padding-between-components-tablet;
+    }
+    @include desktop {
+      padding-left: $padding-lg; // to match mockup
+    }
+  }
+  &__upload-container {
+    @include mobile {
+      flex-basis: 100%; // upload button on its own row on mobile
+      padding-top: $padding-between-components;
+    }
+    order: 4;
+    @include tablet {
+      order: 3; // show flex item order differently on tablet
+      padding-left: $padding-between-components;
+    }
   }
   &__search {
+    // width: auto;
+    width: $form-field-minwidth;
     color: $icon-txt-search-color;
     padding: $form-field-padding;
     padding-left: 30px;
@@ -20,11 +71,12 @@
 
     border: $form-field-default-filled-border;
     border-radius: $button-border-radius;
-  }
-  &__search:active {
-    border: $form-field-active-border;
-  }
-  &__search:hover {
-    border: $form-field-active-border;
+
+    &:active,
+    &:focus {
+      outline: transparent;
+      border: $form-field-active-border;
+      margin: -1px 0; // offset increased border size
+    }
   }
 }
