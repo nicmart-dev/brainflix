@@ -1,0 +1,36 @@
+@use "../styles/partials/variables" as *;
+@use "../styles/partials/mixins" as *;
+
+/* used for CTA throughout site */
+.cta {
+  text-transform: uppercase;
+  font-weight: $label-btn-font-weight;
+  line-height: $label-btn-line-height;
+  font-size: $label-btn-font-size;
+  width: $cta-width-mobile;
+  height: $cta-height;
+  color: $cta-icon-txt-color;
+  background-color: $cta-default-background-color;
+  padding: $cta-min-padding;
+  border: 0;
+  border-radius: $button-border-radius;
+
+  background-repeat: no-repeat;
+  background-position: left center;
+
+  @include tablet {
+    font-size: $label-btn-font-size-tablet;
+    width: unset;
+    min-width: $cta-min-width-tablet;
+  }
+  &:hover {
+    background-color: $cta-hover-background-color;
+  }
+
+  &--upload {
+    background-image: url(../assets/icons/upload.svg);
+  }
+  &--comment {
+    background-image: url(../assets/icons/add_comment.svg);
+  }
+}

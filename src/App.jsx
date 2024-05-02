@@ -1,12 +1,10 @@
-import logo from "./assets/logo/BrainFlix-logo.svg";
 import "./App.scss";
+import SiteHeader from "./components/SiteHeader/SiteHeader";
 
 function App() {
   return (
-    <div>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+    <div className="App">
+      <SiteHeader />
     </div>
   );
 }

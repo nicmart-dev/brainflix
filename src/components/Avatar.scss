@@ -1,0 +1,32 @@
+@use "../styles/partials/variables" as *;
+@use "../styles/partials/mixins" as *;
+
+.avatar {
+  flex-basis: calc($avatar-size * 1.5);
+  flex-grow: 0;
+  flex-shrink: 0;
+  @include tablet {
+    flex-basis: calc($avatar-size-tablet * 1.5);
+  }
+
+  &__image {
+    //use to size comments images
+    height: $avatar-size;
+    width: $avatar-size;
+    border-radius: $border-radius-avatar;
+    background-color: $avatar-placeholder-color;
+
+    @include tablet {
+      height: $avatar-size-tablet;
+      width: $avatar-size-tablet;
+    }
+
+    background-position: 15%;
+  }
+  &__image--current-user {
+    background-image: url(../assets/images/Mohan-muruge.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 15%;
+  }
+}

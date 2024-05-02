@@ -1,12 +1,11 @@
 @use "./styles/partials/variables" as *;
 @use "./styles/partials/mixins" as *;
-* {
+
+.App {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
 
-body {
   /* Set font defaults per style guide */
   font-family: $font;
   font-weight: $regular;
@@ -18,11 +17,12 @@ body {
   }
 
   background-color: $color-primary-white;
+  color: $color-primary-brainflix-black;
+}
+
+.App-header {
 }
 
 .App-logo {
   height: 10vmin;
-}
-
-.App-header {
 }

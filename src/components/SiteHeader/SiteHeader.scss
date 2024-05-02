@@ -1,0 +1,30 @@
+@use "../../styles/partials/variables" as *;
+
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem;
+  margin-bottom: 1rem;
+  &__logo {
+    max-width: 80px;
+  }
+  &__search {
+    color: $icon-txt-search-color;
+    padding: $form-field-padding;
+    padding-left: 30px;
+    background-image: url("../../assets/icons/search.svg");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+
+    border: $form-field-default-filled-border;
+    border-radius: $button-border-radius;
+  }
+  &__search:active {
+    border: $form-field-active-border;
+  }
+  &__search:hover {
+    border: $form-field-active-border;
+  }
+}
