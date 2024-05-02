@@ -3,7 +3,6 @@ import "./SiteHeader.scss";
 import Avatar from "../Avatar";
 import Btn from "../Btn";
 
-import searchIcon from "../../assets/icons/search.svg";
 import logo from "../../assets/logo/BrainFlix-logo.svg";
 
 function SiteHeader(props) {

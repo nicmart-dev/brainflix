@@ -1,8 +1,8 @@
 import "./Avatar.scss";
 
-function Avatar(props) {
+function Avatar({ isLoggedIn }) {
   let className = "avatar__image";
-  className += props.isLoggedIn ? " avatar__image--current-user" : "";
+  className += isLoggedIn ? " avatar__image--current-user" : "";
 
   return (
     <div className="avatar">

@@ -1,7 +1,6 @@
 import "./Btn.scss";
 
-function Btn(props) {
-  const label = props.label;
+function Btn({ label }) {
   let className = "cta";
   className +=
     label === "upload"
