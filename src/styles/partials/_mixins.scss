@@ -96,6 +96,7 @@ Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
 
 @mixin line-divider($direction: "") {
   border-bottom: $divider-style;
+  border-top: 0;
   @if $direction == topbottom {
     border-top: $divider-style;
   }

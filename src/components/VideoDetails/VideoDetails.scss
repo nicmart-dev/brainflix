@@ -7,13 +7,23 @@
     align-items: center;
     gap: $padding-between-components;
     @include line-divider(topbottom);
-    @include spacing-between-components(topbottom);
+    padding: $padding-between-components 0;
+
+    @include tablet {
+      justify-content: space-between;
+      @include line-divider(); //only add divider on bottom
+      padding: $padding-xs 0;
+    }
   }
   &__channel-container,
   &__stats-container {
     display: flex;
     flex-direction: column;
     gap: $padding-between-components;
+    flex-basis: 50%;
+    @include tablet {
+      flex-direction: row;
+    }
   }
 
   &__channel {

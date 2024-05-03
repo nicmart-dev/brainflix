@@ -45,9 +45,13 @@ h1 {
   font-weight: $page-header-font-weight;
   font-size: $page-header-font-size;
   line-height: $page-header-line-height;
+  margin-top: $padding-before-headlines;
+  margin-bottom: $padding-after-headlines;
   @include tablet {
     font-size: $page-header-tablet-font-size;
     line-height: $page-header-line-height-tablet;
+    margin-top: $padding-before-headlines-tablet;
+    margin-bottom: $padding-after-headlines-tablet;
   }
 }
 
