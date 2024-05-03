@@ -1,0 +1,34 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.video-details {
+  &__title {
+  }
+
+  &__metadata-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  &__metadata-container > * {
+    flex-basis: 50%; // Arrange 2 items per row
+  }
+
+  &__channel {
+    text-wrap: nowrap;
+  }
+  &__date {
+    color: $color-primary-silver;
+  }
+  &__likes,
+  &__views {
+    padding-left: $padding-xs;
+  }
+
+  &__likes {
+    color: $icon-txt-likes-color;
+  }
+  &__views {
+    color: $icon-txt-views-color;
+  }
+}

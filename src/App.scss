@@ -8,7 +8,7 @@
 
   /* Set font defaults per style guide */
   font-family: $font;
-  font-weight: $regular;
+  font-weight: $body-copy-font-weight;
   font-size: $body-copy-font-size;
   line-height: $body-copy-line-height;
   @include tablet {
@@ -23,6 +23,7 @@
   @include spacing-app;
 }
 
+// overwrite default browser font
 input,
 textarea,
 button {
