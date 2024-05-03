@@ -2,22 +2,23 @@
 @use "../../styles/partials/mixins" as *;
 
 .video-details {
-  &__title {
-  }
-
   &__metadata-container {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
+    gap: $padding-between-components;
     @include line-divider(topbottom);
     @include spacing-between-components(topbottom);
   }
-  &__metadata-container > * {
-    flex-basis: 50%; // Arrange 2 items per row
+  &__channel-container,
+  &__stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: $padding-between-components;
   }
 
   &__channel {
     text-wrap: nowrap;
+    font-weight: $bold;
   }
   &__date {
     color: $color-primary-silver;
