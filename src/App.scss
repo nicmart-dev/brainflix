@@ -1,10 +1,15 @@
 @use "./styles/partials/variables" as *;
 @use "./styles/partials/mixins" as *;
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 .App {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 
   /* Set font defaults per style guide */
   font-family: $font;
@@ -23,9 +28,43 @@
   @include spacing-app;
 }
 
-// overwrite default browser font
 input,
 textarea,
-button {
-  font-family: inherit;
+button,
+label {
+  font-family: inherit; // overwrite default browser font
+  font-size: $label-btn-font-size;
+  font-weight: $label-btn-font-weight;
+  @include tablet {
+    font-size: $label-btn-font-size-tablet;
+  }
+}
+
+//use as page header
+h1 {
+  font-weight: $page-header-font-weight;
+  font-size: $page-header-font-size;
+  line-height: $page-header-line-height;
+  @include tablet {
+    font-size: $page-header-tablet-font-size;
+    line-height: $page-header-line-height-tablet;
+  }
+}
+
+//use as section header
+h2 {
+  font-weight: $section-header-font-weight;
+  font-size: $section-header-font-size;
+  line-height: $section-header-line-height;
+}
+
+//use as sub header
+h2 {
+  font-weight: $subheader-font-weight;
+  font-size: $subheader-font-size;
+  line-height: $subheader-line-height;
+  @include tablet {
+    font-size: $subheader-font-size-tablet;
+    line-height: $subheader-line-height-tablet;
+  }
 }

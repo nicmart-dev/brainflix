@@ -23,7 +23,7 @@
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                   General padding                          */
+/*                                   Padding                                  */
 /* -------------------------------------------------------------------------- */
 
 //use to insert padding for entire app
@@ -39,11 +39,11 @@
 }
 
 //use to insert spacing between components
-@mixin spacing-between-components() {
-  @include spacing(padding, bottom, $padding-between-components);
+@mixin spacing-between-components($direction: bottom) {
+  @include spacing(padding, $direction, $padding-between-components);
 
   @include tablet {
-    @include spacing(padding, bottom, $padding-between-components-tablet);
+    @include spacing(padding, $direction, $padding-between-components-tablet);
   }
 }
 
@@ -87,5 +87,16 @@ Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
     } @else {
       margin-bottom: $amount;
     }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Divider                                  */
+/* -------------------------------------------------------------------------- */
+
+@mixin line-divider($direction: "") {
+  border-bottom: $divider-style;
+  @if $direction == topbottom {
+    border-top: $divider-style;
   }
 }

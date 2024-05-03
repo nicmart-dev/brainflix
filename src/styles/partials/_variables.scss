@@ -16,14 +16,14 @@ $semi-bold: 600;
 $bold: 700;
 
 // Body Copy
-$body-copy-font-size: 13px;
+$body-copy-font-size: 15px; // 13px in style guide but changed to better match mockup
 $body-copy-font-size-tablet: 14px;
 $body-copy-line-height: 18px;
 $body-copy-line-height-tablet: 22px;
 $body-copy-font-weight: $regular;
 
 //Page Header
-$page-header-font-size: 24px;
+$page-header-font-size: 26px; // 24px in style guide but changed to better match mockup
 $page-header-tablet-font-size: 33px;
 $page-header-line-height: 32px;
 $page-header-line-height-tablet: 44px;
@@ -180,8 +180,7 @@ $form-field-error-border: 1px solid $color-error;
 /*                                   Divider                                  */
 /* -------------------------------------------------------------------------- */
 
-$divider-stroke-width: 1px;
-$divider-fill-color: $color-secondary-mercury;
+$divider-style: 1px solid $color-secondary-mercury;
 
 /* -------------------------------------------------------------------------- */
 /*                                   Images                                   */

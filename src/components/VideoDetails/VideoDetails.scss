@@ -9,6 +9,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    @include line-divider(topbottom);
+    @include spacing-between-components(topbottom);
   }
   &__metadata-container > * {
     flex-basis: 50%; // Arrange 2 items per row
@@ -20,6 +22,9 @@
   &__date {
     color: $color-primary-silver;
   }
+  &__stats-container {
+    padding-left: $padding-xs;
+  }
   &__likes,
   &__views {
     padding-left: $padding-xs;
@@ -30,5 +35,9 @@
   }
   &__views {
     color: $icon-txt-views-color;
+  }
+
+  &__description {
+    @include spacing-between-components(topbottom);
   }
 }
