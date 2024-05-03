@@ -1,0 +1,8 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.video-player {
+  background-color: $video-control-background-color;
+  width: 100%;
+  aspect-ratio: $video-player-aspect-ratio;
+}
