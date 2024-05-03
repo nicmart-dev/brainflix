@@ -9,10 +9,14 @@ function App() {
       <SiteHeader />
       <main>
         <VideoPlayer />
-        <VideoDetails />
-        <section>{/* Insert Comments component */}</section>
+        <section className="App__post-video-container">
+          <div className="App__video-comments-container">
+            <VideoDetails />
+            <section>{/* Insert Comments component */}</section>
+          </div>
+          <aside>{/* Insert Next videos component */}</aside>
+        </section>
       </main>
-      <aside>{/* Insert Next videos component */}</aside>
     </div>
   );
 }

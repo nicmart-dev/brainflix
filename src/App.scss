@@ -7,27 +7,6 @@
   box-sizing: border-box;
 }
 
-.App {
-  margin: 0;
-  padding: 0;
-
-  /* Set font defaults per style guide */
-  font-family: $font;
-  font-weight: $body-copy-font-weight;
-  font-size: $body-copy-font-size;
-  line-height: $body-copy-line-height;
-  @include tablet {
-    font-size: $body-copy-font-size-tablet;
-    line-height: $body-copy-line-height-tablet;
-  }
-
-  background-color: $color-primary-white;
-  color: $color-primary-brainflix-black;
-
-  //add left and right spacing across entire app
-  @include spacing-app;
-}
-
 input,
 textarea,
 button,
@@ -70,5 +49,29 @@ h3 {
   @include tablet {
     font-size: $subheader-font-size-tablet;
     line-height: $subheader-line-height-tablet;
+  }
+}
+
+.App {
+  margin: 0;
+  padding: 0;
+
+  /* Set font defaults per style guide */
+  font-family: $font;
+  font-weight: $body-copy-font-weight;
+  font-size: $body-copy-font-size;
+  line-height: $body-copy-line-height;
+  @include tablet {
+    font-size: $body-copy-font-size-tablet;
+    line-height: $body-copy-line-height-tablet;
+  }
+
+  background-color: $color-primary-white;
+  color: $color-primary-brainflix-black;
+
+  &__post-video-container {
+    @include spacing-app; //add left and right spacing
+  }
+  &__video-comments-container {
   }
 }

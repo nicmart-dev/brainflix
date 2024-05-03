@@ -2,7 +2,14 @@
 @use "../../styles/partials/mixins" as *;
 
 .video-player {
-  background-color: $video-control-background-color;
+  background-color: $video-player-background;
   width: 100%;
   aspect-ratio: $video-player-aspect-ratio;
+
+  @include tablet {
+    height: 50vw;
+  }
+  @include desktop {
+    height: 40vw;
+  }
 }
