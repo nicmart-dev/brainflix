@@ -2,34 +2,52 @@
 @use "../../styles/partials/mixins" as *;
 
 .comments {
-  &__comment-list-form-container {
-    @include spacing-comments;
-  }
   &__new-comment-container {
     display: flex;
+    @include tablet {
+      align-items: center;
+    }
+  }
+  &__new-comment-container div div:first-child {
+    @include mobile {
+      margin-top: 1.4375rem;
+    }
+  }
+
+  &__title {
+    @include tablet {
+      padding-bottom: $padding-after-headlines;
+    }
   }
 
   &__form {
     /* use entire width */
     flex: 1;
-    flex-grow: 1;
-    flex-basis: 0;
-  }
-  &__form > div {
-    display: flex;
-    flex-direction: column;
-  }
 
-  &__form > div > label {
     @include tablet {
-      padding-bottom: 0.3125rem;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
     }
   }
+  &__new-comment-txt_container {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      width: 100%;
+    }
+    margin-right: $padding-between-components-tablet;
+  }
+
   &__new-comment-label {
     text-transform: uppercase;
     color: $color-primary-silver;
     font-weight: $semi-bold;
-    font-size: $body-copy-font-size;
+    // font-size: $body-copy-font-size;
+    @include tablet {
+      padding-bottom: 0.3125rem;
+      //   font-size: $body-copy-font-size-tablet;
+    }
   }
 
   &__list-container {

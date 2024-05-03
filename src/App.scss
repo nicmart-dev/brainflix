@@ -18,6 +18,7 @@ label {
 
 input,
 textarea {
+  background-color: $color-secondary-alabaster;
   border-radius: $form-field-border-radius;
   border-color: transparent;
   outline: $form-field-default-filled-border; // using outline instead of border to not alter height
@@ -31,6 +32,9 @@ textarea {
   &::placeholder {
     color: $color-primary-brainflix-black;
     font-size: $body-copy-font-size; // match typing font
+    @include tablet {
+      font-size: $body-copy-font-size-tablet;
+    }
   }
   /*   only show required field error state if empty on submit,
   and not browser load */
@@ -123,7 +127,5 @@ h3 {
 
   &__post-video-container {
     @include spacing-app; //add left and right spacing
-  }
-  &__video-comments-container {
   }
 }

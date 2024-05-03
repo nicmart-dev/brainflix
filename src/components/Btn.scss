@@ -21,7 +21,7 @@
 
   @include tablet {
     font-size: $label-btn-font-size-tablet;
-    width: unset;
+    width: 12.5rem;
     min-width: $cta-min-width-tablet;
   }
   &:hover {
