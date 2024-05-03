@@ -10,8 +10,8 @@
     flex-direction: row;
   }
 
-  //add bottom spacing
-  @include spacing-between-components;
+  //add spacing
+  @include spacing-between-components(topbottom);
 
   &__nav {
     display: flex;
@@ -25,10 +25,11 @@
   }
   &__logo {
     width: $logo-max-width;
-    height: $logo-max-height;
     background-color: $logo-background;
-    padding: $padding-between-components 0;
-    margin: auto; //center logo only
+    margin: auto;
+    margin-bottom: $padding-between-components;
+    vertical-align: middle;
+
     @include tablet {
       margin: initial;
     }
