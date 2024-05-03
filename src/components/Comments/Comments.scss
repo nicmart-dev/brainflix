@@ -1,0 +1,86 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.comments {
+  &__comment-list-form-container {
+    @include spacing-comments;
+  }
+  &__new-comment-container {
+    display: flex;
+  }
+
+  &__form {
+    /* use entire width */
+    flex: 1;
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+  &__form > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__form > div > label {
+    @include tablet {
+      padding-bottom: 0.3125rem;
+    }
+  }
+  &__button-submit {
+    @include tablet {
+      display: block;
+      margin-left: auto;
+      width: 14rem;
+    }
+  }
+  &__button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @include tablet {
+      flex-direction: row;
+    }
+  }
+
+  &__button-delete {
+    width: unset;
+  }
+  &__button-like {
+    width: unset;
+  }
+
+  &__list-container {
+    display: flex;
+    flex-direction: column;
+
+    /* add bottom margin to display last divider */
+    @include spacing-between-components();
+  }
+  &__comment-container {
+    display: flex;
+
+    /* add padding to top */
+    @include spacing-between-components(top);
+
+    /* add divider after each comment */
+    @include line-divider;
+
+    /* also add line divider in first comment */
+    &:first-child {
+      @include line-divider(topbottom);
+    }
+  }
+  &__comment-txt-container {
+    display: flex;
+    flex-direction: column;
+
+    /* use entire width */
+    flex: 1;
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+  &__user-name-date-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -101,3 +101,17 @@ Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
     border-top: $divider-style;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/*                              Forms and tables                              */
+/* -------------------------------------------------------------------------- */
+
+// use to insert side padding for comments
+@mixin spacing-comments {
+  @include tablet {
+    @include spacing(padding, sides, 9%);
+  }
+  @include desktop {
+    @include spacing(padding, sides, 25%);
+  }
+}
