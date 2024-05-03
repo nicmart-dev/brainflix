@@ -25,27 +25,11 @@
       padding-bottom: 0.3125rem;
     }
   }
-  &__button-submit {
-    @include tablet {
-      display: block;
-      margin-left: auto;
-      width: 14rem;
-    }
-  }
-  &__button-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    @include tablet {
-      flex-direction: row;
-    }
-  }
-
-  &__button-delete {
-    width: unset;
-  }
-  &__button-like {
-    width: unset;
+  &__new-comment-label {
+    text-transform: uppercase;
+    color: $color-primary-silver;
+    font-weight: $semi-bold;
+    font-size: $body-copy-font-size;
   }
 
   &__list-container {
@@ -82,5 +66,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  &__user-name {
+    text-wrap: nowrap;
+    font-weight: $bold;
+  }
+  &__date {
+    color: $color-primary-silver;
+  }
+
+  &__new-btn-container {
+    margin: $padding-between-components 0;
   }
 }

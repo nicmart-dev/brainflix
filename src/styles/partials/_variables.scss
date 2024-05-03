@@ -30,7 +30,7 @@ $page-header-line-height-tablet: 44px;
 $page-header-font-weight: $bold;
 
 // Section Header
-$section-header-font-size: 12px;
+$section-header-font-size: 17px; // 12px in style guide but changed to better match mockup
 $section-header-line-height: 20px;
 $section-header-font-weight: $bold;
 
@@ -42,10 +42,10 @@ $subheader-line-height-tablet: $body-copy-line-height-tablet;
 $subheader-font-weight: $bold;
 
 // Labels & Buttons
-$label-btn-font-size: 10px;
+$label-btn-font-size: $body-copy-font-size; // 10px on styleguide but changed to better reflect mockup
 $label-btn-font-size-tablet: $section-header-font-size;
 $label-btn-line-height: $section-header-line-height;
-$label-btn-font-weight: $bold;
+$label-btn-font-weight: $semi-bold; // bold in styleguide but changed to better reflect mockup.
 
 /* -------------------------------------------------------------------------- */
 /*                                   Colors                                  */
@@ -121,7 +121,7 @@ $logo-background: $color-primary-white;
 // Primary CTA: Default/Hover
 $cta-default-background-color: $color-primary-blue;
 $cta-hover-background-color: $color-secondary-brainflix-darkblue;
-$cta-height: 40px;
+$cta-height: 50px; // 40px on style guide but changed to better reflect mockup
 $cta-min-width-tablet: 150px;
 $cta-min-padding: 0 32px;
 $cta-width-mobile: 100%;
@@ -171,7 +171,7 @@ $form-field-padding-tablet: 16px;
 
 $form-space-between-label-and-field: 4px;
 
-$form-field-border-radius: 4px;
+$form-field-border-radius: $button-border-radius;
 $form-field-default-filled-border: 1px solid $color-secondary-mercury;
 $form-field-active-border: 2px solid $color-primary-blue;
 $form-field-error-border: 1px solid $color-error;

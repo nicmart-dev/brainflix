@@ -29,6 +29,7 @@
   &__channel {
     text-wrap: nowrap;
     font-weight: $bold;
+    font-size: $section-header-font-size;
   }
   &__date {
     color: $color-primary-silver;

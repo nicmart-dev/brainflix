@@ -12,10 +12,56 @@ textarea,
 button,
 label {
   font-family: inherit; // overwrite default browser font
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+input,
+textarea {
+  border-radius: $form-field-border-radius;
+  border-color: transparent;
+  outline: $form-field-default-filled-border; // using outline instead of border to not alter height
+  @include spacing-inside-fields;
+  &:active,
+  &:focus {
+    outline: $form-field-active-border;
+  }
+
+  /*  style placeholder text in fields */
+  &::placeholder {
+    color: $color-primary-brainflix-black;
+    font-size: $body-copy-font-size; // match typing font
+  }
+  /*   only show required field error state if empty on submit,
+  and not browser load */
+  &:user-invalid {
+    outline: $form-field-error-border;
+  }
+}
+
+label,
+button {
   font-size: $label-btn-font-size;
   font-weight: $label-btn-font-weight;
+  line-height: $label-btn-line-height;
+
   @include tablet {
     font-size: $label-btn-font-size-tablet;
+  }
+}
+
+button {
+  border-radius: $button-border-radius;
+}
+
+label {
+  padding-bottom: $form-space-between-label-and-field;
+}
+
+textarea {
+  height: calc($form-field-height * 3);
+  @include tablet {
+    height: $form-field-height;
   }
 }
 
@@ -39,6 +85,12 @@ h2 {
   font-weight: $section-header-font-weight;
   font-size: $section-header-font-size;
   line-height: $section-header-line-height;
+  margin-top: $padding-before-headlines;
+  margin-bottom: $padding-after-headlines;
+  @include tablet {
+    margin-top: $padding-before-headlines-tablet;
+    margin-bottom: $padding-after-headlines-tablet;
+  }
 }
 
 //use as sub header

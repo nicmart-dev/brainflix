@@ -1,28 +1,22 @@
 import Avatar from "../Avatar";
+import Btn from "../Btn";
 import "./Comments.scss";
 
 function Comments() {
   return (
     <section class="comments">
-      <h2 class="comments__title">Join the Conversation</h2>
+      <h2 class="comments__title">3 Comments</h2>
       <div class="comments__comment-list-form-container">
         <div class="comments__new-comment-container">
           <Avatar isLoggedIn={true} />
           <form class="comments__form" id="new-comment-form">
             <div>
-              <label for="new-comment-name">Name</label>
-              <input
-                type="text"
-                id="new-comment-name"
-                name="username"
-                class="comments__new-user-name"
-                required
-                size="10"
-                placeholder="Enter your name"
-              />
-            </div>
-            <div>
-              <label for="new-comment-txt">Comment</label>
+              <label
+                for="new-comment-txt"
+                className="comments__new-comment-label"
+              >
+                Join the conversation
+              </label>
               <textarea
                 id="new-comment-txt"
                 name="comment"
@@ -31,9 +25,9 @@ function Comments() {
                 placeholder="Add a new comment"
               ></textarea>
             </div>
-            <button id="submit" class="comments__button-submit" type="submit">
-              COMMENT
-            </button>
+            <div className="comments__new-btn-container">
+              <Btn label="comment" />
+            </div>
           </form>
         </div>
         <article class="comments__list-container">
@@ -42,8 +36,8 @@ function Comments() {
             <Avatar />
             <div class="comments__comment-txt-container">
               <div class="comments__user-name-date-container">
-                <h3 class="comments__user-name">Victor Pinto</h3>
-                <h4 class="comments__date">2/16/2021</h4>
+                <span class="comments__user-name">Victor Pinto</span>
+                <span class="comments__date">2/16/2021</span>
               </div>
               <p class="comments__comment-txt">
                 This is art. This is inexplicable magic expressed in the purest
@@ -57,8 +51,8 @@ function Comments() {
             <Avatar />
             <div class="comments__comment-txt-container">
               <div class="comments__user-name-date-container">
-                <h3 class="comments__user-name">Christina Cabrera</h3>
-                <h4 class="comments__date">1/8/2021</h4>
+                <span class="comments__user-name">Christina Cabrera</span>
+                <span class="comments__date">1/8/2021</span>
               </div>
               <p class="comments__comment-txt">
                 I feel blessed to have seen them in person. What a show! They
@@ -71,8 +65,8 @@ function Comments() {
             <Avatar />
             <div class="comments__comment-txt-container">
               <div class="comments__user-name-date-container">
-                <h3 class="comments__user-name">Isaac Tadesse</h3>
-                <h4 class="comments__date">12/19/2020</h4>
+                <span class="comments__user-name">Isaac Tadesse</span>
+                <span class="comments__date">12/19/2020</span>
               </div>
               <p class="comments__comment-txt">
                 I can't stop listening. Every time I hear one of their songs -

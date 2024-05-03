@@ -26,7 +26,7 @@ function SiteHeader() {
           <Avatar isLoggedIn={true} />
         </div>
         <div className="site-header__upload-container">
-          <Btn label="upload"></Btn>
+          <Btn label="upload" />
         </div>
       </nav>
     </header>

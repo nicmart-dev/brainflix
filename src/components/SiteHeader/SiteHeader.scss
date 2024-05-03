@@ -71,15 +71,5 @@
     background-image: url("../../assets/icons/search.svg");
     background-repeat: no-repeat;
     background-position: 10px center;
-
-    border: $form-field-default-filled-border;
-    border-radius: $button-border-radius;
-
-    &:active,
-    &:focus {
-      outline: transparent;
-      border: $form-field-active-border;
-      margin: -1px 0; // offset increased border size
-    }
   }
 }
