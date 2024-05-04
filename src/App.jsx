@@ -6,36 +6,38 @@ import SiteHeader from "./components/SiteHeader/SiteHeader";
 import VideoDetails from "./components/VideoDetails/VideoDetails";
 import VideoPlayer from "./components/VideoPlayer/VideoPlayer";
 
-import videoData from "./data/video-details.json";
+import videoData from "./data/videos.json"; // import small amount of data to display next videos
+import videoDetailsData from "./data/video-details.json"; // import all details for main video
 
 function App() {
-  const [videos, setVideo] = useState(videoData);
+  //set list of videos with small amount of data to display next videos
+  const [videos] = useState(videoData);
 
-  //set selected video to be the first one in the video state
-  const [selectedVideo, setSelectedVideo] = useState(videos[0]);
+  //display at page load first video to match mockup, pulling details
+  const [mainVideo, setMainVideo] = useState(videoDetailsData[0]);
 
   const handleVideoClick = (id) => {
-    //look for matching video
-    const foundVideo = videos.find((video) => video.id === id);
+    //pull relevant video object with full details
+    const foundVideo = videoDetailsData.find((video) => video.id === id);
 
     // set found video to currently selected in state
-    setSelectedVideo(foundVideo);
+    setMainVideo(foundVideo);
   };
 
   return (
     <div className="App">
       <SiteHeader />
       <main>
-        <VideoPlayer selectedVideo={selectedVideo} />
+        <VideoPlayer selectedVideo={mainVideo} />
         <section className="App__post-video-container">
           <div className="App__video-comments-container">
-            <VideoDetails selectedVideo={selectedVideo} />
-            <Comments selectedVideo={selectedVideo} />
+            <VideoDetails selectedVideo={mainVideo} />
+            <Comments selectedVideo={mainVideo} />
           </div>
           <aside className="App__next-videos-container">
             <NextVideos
               videoList={videos}
-              selectedVideoId={selectedVideo.id}
+              selectedVideo={mainVideo.id}
               handleVideoClick={handleVideoClick}
             />
           </aside>
