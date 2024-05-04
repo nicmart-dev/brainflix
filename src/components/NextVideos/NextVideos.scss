@@ -1,0 +1,33 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.next-videos {
+  &__header {
+    color: $color-primary-silver;
+    font-weight: $semi-bold;
+  }
+  &__video-list {
+    display: flex;
+    flex-direction: column;
+    gap: $padding-between-components;
+  }
+  &__video-list-item {
+    display: flex;
+    gap: $padding-between-components;
+  }
+  &__video-link {
+  }
+  &__video-thumbnail {
+    width: 30vw;
+  }
+  &__video-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__video-title {
+    font-weight: $section-header-font-weight;
+    font-size: $section-header-font-size;
+    line-height: $section-header-line-height;
+  }
+}

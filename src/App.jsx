@@ -1,5 +1,6 @@
 import "./App.scss";
 import Comments from "./components/Comments/Comments";
+import NextVideos from "./components/NextVideos/NextVideos";
 import SiteHeader from "./components/SiteHeader/SiteHeader";
 import VideoDetails from "./components/VideoDetails/VideoDetails";
 import VideoPlayer from "./components/VideoPlayer/VideoPlayer";
@@ -15,7 +16,9 @@ function App() {
             <VideoDetails />
             <Comments />
           </div>
-          <aside>{/* Insert Next videos component */}</aside>
+          <aside>
+            <NextVideos />
+          </aside>
         </section>
       </main>
     </div>
