@@ -13,13 +13,12 @@
   &__image {
     //use to size comments images
     height: $avatar-size;
-    width: $avatar-size;
+    aspect-ratio: 1;
     border-radius: $border-radius-avatar;
     background-color: $avatar-placeholder-color;
 
     @include tablet {
       height: $avatar-size-tablet;
-      width: $avatar-size-tablet;
     }
 
     background-position: 15%;

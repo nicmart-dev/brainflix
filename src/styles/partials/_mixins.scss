@@ -86,8 +86,4 @@ Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
 //use to insert padding in form fields, per style guide
 @mixin spacing-inside-fields {
   @include spacing(padding, all, $padding-sm);
-
-  @include tablet {
-    @include spacing(padding, all, $padding-xs);
-  }
 }

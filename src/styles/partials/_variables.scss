@@ -160,7 +160,7 @@ $played-bar-color: $color-primary-blue;
 /* -------------------------------------------------------------------------- */
 
 $form-field-height: 36px;
-$form-field-height-tablet: 40px;
+$form-field-height-tablet: 50px; //40px in styleguide but changed to match mockuo
 $form-field-minwidth: 240px;
 $form-field-maxwidth: 100%;
 
@@ -197,5 +197,5 @@ $avatar-placeholder-color: $color-secondary-mercury; // The avatar image should 
 
 /* Comments avatars in bio page.
 Applied consistent multiplier to style guide to match mockup */
-$avatar-size: 36px;
-$avatar-size-tablet: 40px;
+$avatar-size: 50px; //36px in styleguide but increased to match mockup
+$avatar-size-tablet: 55px; //40px in styleguide but increased to match mockup

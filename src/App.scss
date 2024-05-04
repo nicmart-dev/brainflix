@@ -27,6 +27,7 @@ textarea {
   border-radius: $form-field-border-radius;
   border-color: transparent;
   outline: $form-field-default-filled-border; // using outline instead of border to not alter height
+
   @include spacing-inside-fields;
   &:active,
   &:focus {
@@ -70,7 +71,7 @@ label {
 textarea {
   height: calc($form-field-height * 3);
   @include tablet {
-    height: $form-field-height;
+    height: $form-field-height-tablet;
     overflow: hidden; //hide scroll bar
   }
 }

@@ -40,14 +40,15 @@
 
   &__form {
     order: 2;
-    flex-basis: 100%; // use all available space
+    flex: 1; // use all available space
     @include tablet {
-      flex-basis: 40%;
+      flex: 0 40%;
     }
   }
   &__avatar-container {
     order: 3;
     padding-left: $padding-between-components;
+    height: 100%;
     @include tablet {
       order: 4; // show flex item order differently on tablet per mockup
       padding-left: $padding-between-components-tablet;
