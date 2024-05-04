@@ -40,7 +40,7 @@ function Comments({ selectedVideo }) {
         <article className="comments__list-container">
           {/* We will insert each comment inside using JavaScript. */}
 
-          {selectedVideo.comments.map((comment) => (
+          {selectedVideo.comments?.map((comment) => (
             <article key={comment.id} className="comments__comment-container">
               <Avatar />
               <div className="comments__comment-txt-container">
