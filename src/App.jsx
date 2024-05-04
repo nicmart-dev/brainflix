@@ -16,7 +16,7 @@ function App() {
             <VideoDetails />
             <Comments />
           </div>
-          <aside>
+          <aside className="App__next-videos-container">
             <NextVideos />
           </aside>
         </section>

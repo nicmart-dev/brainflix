@@ -147,4 +147,10 @@ img {
       flex: 0 0 70%; // leave only about 1/3 for next videos sidebar
     }
   }
+  &__next-videos-container {
+    @include desktop {
+      @include line-divider(left);
+      padding-left: $padding-between-components-tablet;
+    }
+  }
 }

@@ -47,13 +47,10 @@
   }
 }
 
-/* Utility to to add margin or padding, on which side, and how big
+/* Utility to to add margin padding, or border style, on which side, and how big
 Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
 
-/* Utility to to add margin or padding, on which side, and how big
-Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
-
-@mixin spacing($type: margin, $direction: all, $amount: $margin-md) {
+@mixin spacing($type: margin, $direction: all, $amount: $padding-md) {
   @if $direction == all {
     #{$type}: $amount;
   } @else if $direction == top {
@@ -77,12 +74,9 @@ Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
 /*                                   Divider                                  */
 /* -------------------------------------------------------------------------- */
 
-@mixin line-divider($direction: "") {
-  border-bottom: $divider-style;
-  border-top: 0;
-  @if $direction == topbottom {
-    border-top: $divider-style;
-  }
+@mixin line-divider($direction: bottom) {
+  border-width: 0; // reset before changing from mobile to tablet/desktop
+  @include spacing(border, $direction, $divider-style);
 }
 
 /* -------------------------------------------------------------------------- */
