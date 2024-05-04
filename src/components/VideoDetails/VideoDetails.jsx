@@ -1,7 +1,10 @@
 import "./VideoDetails.scss";
+import formatDate from "../../utils/helperFunctions";
 
+//Import video player icons to display
 import viewsIcon from "../../assets/icons/views.svg";
 import likesIcon from "../../assets/icons/likes.svg";
+
 function VideoDetails({ selectedVideo }) {
   return (
     <article className="video-details">
@@ -11,7 +14,9 @@ function VideoDetails({ selectedVideo }) {
           <span className="video-details__channel">
             {selectedVideo.channel}
           </span>
-          <span className="video-details__date">8/8/2023</span>
+          <span className="video-details__date">
+            {formatDate(selectedVideo.timestamp)}
+          </span>
         </div>
         <div className="video-details__stats-container">
           <div>
