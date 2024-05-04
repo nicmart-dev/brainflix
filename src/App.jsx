@@ -30,7 +30,7 @@ function App() {
         <section className="App__post-video-container">
           <div className="App__video-comments-container">
             <VideoDetails selectedVideo={selectedVideo} />
-            <Comments />
+            <Comments selectedVideo={selectedVideo} />
           </div>
           <aside className="App__next-videos-container">
             <NextVideos
