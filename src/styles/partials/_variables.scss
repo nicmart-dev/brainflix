@@ -84,10 +84,8 @@ $padding-sm: calc($padding-unit * 2); // 16px
 $padding-md: calc($padding-unit * 3); // 24px
 $padding-lg: calc($padding-unit * 4); // 32px
 $padding-xl: calc($padding-unit * 5); // 40px
-$padding-xxl: calc($padding-unit * 6); // 48px
-$padding-3xl: calc($padding-unit * 7); // 56px
-$padding-4xl: calc($padding-unit * 8); // 64px
-$padding-5xl: calc($padding-unit * 10); // 80px
+$padding-2xl: calc($padding-unit * 10); // 80px
+$padding-5xl: calc($padding-unit * 25); // 80px
 
 //default (mobile) sizes
 $padding-before-headlines: $padding-md; // 24px
@@ -181,6 +179,7 @@ $form-field-error-border: 1px solid $color-error;
 /* -------------------------------------------------------------------------- */
 
 $divider-style: 2px solid $color-secondary-mercury; //1px in styleguide but increased to match mockup
+$divider-style-desktop: 4px solid $color-secondary-mercury; //1px in styleguide but increased to match mockup
 
 /* -------------------------------------------------------------------------- */
 /*                                   Images                                   */

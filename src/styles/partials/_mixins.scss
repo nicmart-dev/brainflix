@@ -34,7 +34,7 @@
     @include spacing(padding, sides, $padding-xl);
   }
   @include desktop {
-    @include spacing(padding, sides, $padding-3xl);
+    @include spacing(padding, sides, $padding-5xl);
   }
 }
 

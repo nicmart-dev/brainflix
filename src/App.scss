@@ -138,5 +138,13 @@ img {
 
   &__post-video-container {
     @include spacing-app; //add left and right spacing
+    @include desktop {
+      display: flex;
+    }
+  }
+  &__video-comments-container {
+    @include desktop {
+      flex: 0 0 70%; // leave only about 1/3 for next videos sidebar
+    }
   }
 }
