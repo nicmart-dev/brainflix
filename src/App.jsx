@@ -10,15 +10,13 @@ import videoData from "./data/video-details.json";
 
 function App() {
   const [videos, setVideo] = useState(videoData);
-  const [selectedVideo, setSelectedVideo] = useState({});
+
+  //set selected video to be the first one in the video state
+  const [selectedVideo, setSelectedVideo] = useState(videos[0]);
 
   const handleVideoClick = (id) => {
-    console.log(id);
-    console.log("video clicked");
-
     //look for matching video
     const foundVideo = videos.find((video) => video.id === id);
-    console.log(foundVideo);
 
     // set found video to currently selected in state
     setSelectedVideo(foundVideo);
@@ -28,13 +26,10 @@ function App() {
     <div className="App">
       <SiteHeader />
       <main>
-        <VideoPlayer />
+        <VideoPlayer selectedVideo={selectedVideo} />
         <section className="App__post-video-container">
           <div className="App__video-comments-container">
-            <VideoDetails
-              videoList={videos}
-              selectedVideoId={selectedVideo.id}
-            />
+            <VideoDetails selectedVideo={selectedVideo} />
             <Comments />
           </div>
           <aside className="App__next-videos-container">

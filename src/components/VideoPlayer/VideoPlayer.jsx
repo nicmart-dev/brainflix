@@ -1,11 +1,11 @@
 import "./VideoPlayer.scss";
 
-function VideoPlayer() {
+function VideoPlayer({ selectedVideo }) {
   return (
     <video
       className="video-player"
-      src="https://unit-3-project-api-0a5620414506.herokuapp.com/stream"
-      poster="https://unit-3-project-api-0a5620414506.herokuapp.com/images/image0.jpg"
+      src={selectedVideo.video}
+      poster={selectedVideo.image}
       controls
     >
       Your browser does not support the video tag.
