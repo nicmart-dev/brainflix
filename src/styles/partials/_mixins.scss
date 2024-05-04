@@ -50,43 +50,26 @@
 /* Utility to to add margin or padding, on which side, and how big
 Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
 
-@mixin spacing($type: margin, $direction: all, $amount: $padding-md) {
-  @if $type == padding {
-    @if $direction == all {
-      padding: $amount;
-    } @else if $direction == top {
-      padding-top: $amount;
-    } @else if $direction == topbottom {
-      padding-top: $amount;
-      padding-bottom: $amount;
-    } @else if $direction == sides {
-      padding-left: $amount;
-      padding-right: $amount;
-    } @else if $direction == left {
-      padding-left: $amount;
-    } @else if $direction == right {
-      padding-right: $amount;
-    } @else {
-      padding-bottom: $amount;
-    }
+/* Utility to to add margin or padding, on which side, and how big
+Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
+
+@mixin spacing($type: margin, $direction: all, $amount: $margin-md) {
+  @if $direction == all {
+    #{$type}: $amount;
+  } @else if $direction == top {
+    #{$type}-top: $amount;
+  } @else if $direction == topbottom {
+    #{$type}-top: $amount;
+    #{$type}-bottom: $amount;
+  } @else if $direction == sides {
+    #{$type}-left: $amount;
+    #{$type}-right: $amount;
+  } @else if $direction == left {
+    #{$type}-left: $amount;
+  } @else if $direction == right {
+    #{$type}-right: $amount;
   } @else {
-    @if $direction == all {
-      margin: $amount;
-    } @else if $direction == top {
-      margin-top: $amount;
-    } @else if $direction == topbottom {
-      margin-top: $amount;
-      margin-bottom: $amount;
-    } @else if $direction == sides {
-      margin-left: $amount;
-      margin-right: $amount;
-    } @else if $direction == left {
-      margin-left: $amount;
-    } @else if $direction == right {
-      margin-right: $amount;
-    } @else {
-      margin-bottom: $amount;
-    }
+    #{$type}-bottom: $amount;
   }
 }
 
