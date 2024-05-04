@@ -113,13 +113,13 @@ $cta-icon-txt-color: $color-primary-white;
 
 // BrainFlix logo
 $logo-max-height: 25px;
-$logo-max-width: 120px;
+$logo-max-width: 170px; //120px in style guide but changed to better reflect mockup
 $logo-background: $color-primary-white;
 
 // Primary CTA: Default/Hover
 $cta-default-background-color: $color-primary-blue;
 $cta-hover-background-color: $color-secondary-brainflix-darkblue;
-$cta-height: 50px; // 40px on style guide but changed to better reflect mockup
+$cta-height: 50px; // 40px in style guide but changed to better reflect mockup
 $cta-min-width-tablet: 150px;
 $cta-min-padding: 0 32px;
 $cta-width-mobile: 100%;

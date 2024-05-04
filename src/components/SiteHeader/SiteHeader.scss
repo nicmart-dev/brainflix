@@ -17,13 +17,14 @@
 
   &__nav {
     display: flex;
+    flex: 1;
     flex-direction: row;
     // wrap on mobile to enable search and avatar to be on same row
     @include mobile {
       flex-wrap: wrap;
     }
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
   &__logo {
     width: $logo-max-width;
@@ -39,6 +40,10 @@
 
   &__form {
     order: 2;
+    flex-basis: 100%; // use all available space
+    @include tablet {
+      flex-basis: 40%;
+    }
   }
   &__avatar-container {
     order: 3;
@@ -52,6 +57,7 @@
     }
   }
   &__upload-container {
+    height: 100%;
     @include mobile {
       flex-basis: 100%; // upload button on its own row on mobile
       padding-top: $padding-between-components;
@@ -63,7 +69,6 @@
     }
   }
   &__search {
-    // width: auto;
     width: $form-field-minwidth;
     color: $icon-txt-search-color;
     padding: $form-field-padding;
@@ -71,5 +76,6 @@
     background-image: url("../../assets/icons/search.svg");
     background-repeat: no-repeat;
     background-position: 10px center;
+    width: 100%;
   }
 }

@@ -31,7 +31,7 @@
   @include spacing(padding, sides, $padding-sm);
 
   @include tablet {
-    @include spacing(padding, sides, $padding-xl);
+    @include spacing(padding, sides, $padding-2xl);
   }
   @include desktop {
     @include spacing(padding, sides, $padding-5xl);
