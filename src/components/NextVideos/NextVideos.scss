@@ -10,17 +10,24 @@
     display: flex;
     flex-direction: column;
     gap: $padding-between-components;
+    @include tablet {
+      width: 45%;
+    }
   }
   &__video-list-item {
     display: flex;
     gap: $padding-between-components;
   }
   &__video-link {
+    width: 40%;
   }
   &__video-thumbnail {
-    width: 30vw;
+    width: 100%;
+    @include tablet {
+    }
   }
   &__video-info {
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

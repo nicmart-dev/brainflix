@@ -16,25 +16,25 @@ $semi-bold: 600;
 $bold: 700;
 
 // Body Copy
-$body-copy-font-size: 15px; // 13px in style guide but changed to better match mockup
+$body-copy-font-size: 20px; // 13px in style guide but changed to better match mockup
 $body-copy-font-size-tablet: 16px; // 14px in style guide but changed to better match mockup
-$body-copy-line-height: 20px; //18px in style guide but changed to better match mockup
+$body-copy-line-height: 25px; //18px in style guide but changed to better match mockup
 $body-copy-line-height-tablet: 22px;
 $body-copy-font-weight: $regular;
 
-//Page Header
-$page-header-font-size: 26px; // 24px in style guide but changed to better match mockup
+//Page Header: h1
+$page-header-font-size: 38px; // 24px in style guide but changed to better match mockup
 $page-header-tablet-font-size: 33px;
-$page-header-line-height: 32px;
+$page-header-line-height: 50px; // 32px in style guide but changed to better match mockup
 $page-header-line-height-tablet: 44px;
 $page-header-font-weight: $bold;
 
-// Section Header
-$section-header-font-size: 17px; // 12px in style guide but changed to better match mockup
-$section-header-line-height: 20px;
+// Section Header: h2
+$section-header-font-size: 20px; // 12px in style guide but changed to better match mockup
+$section-header-line-height: 25px; // 25px in style guide but changed to better match mockup
 $section-header-font-weight: $bold;
 
-// Subheader
+// Subheader: h3
 $subheader-font-size: $body-copy-font-size;
 $subheader-font-size-tablet: $body-copy-font-size-tablet;
 $subheader-line-height: $body-copy-line-height;
@@ -42,7 +42,7 @@ $subheader-line-height-tablet: $body-copy-line-height-tablet;
 $subheader-font-weight: $bold;
 
 // Labels & Buttons
-$label-btn-font-size: $body-copy-font-size; // 10px on styleguide but changed to better reflect mockup
+$label-btn-font-size: 18px; // 10px on styleguide but changed to better reflect mockup
 $label-btn-font-size-tablet: 14px; // 12px in style guide but changed to better match mockup
 $label-btn-line-height: $section-header-line-height;
 $label-btn-font-weight: $semi-bold; // bold in styleguide but changed to better reflect mockup.
