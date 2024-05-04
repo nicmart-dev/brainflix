@@ -5,6 +5,9 @@
   &__header {
     color: $color-primary-silver;
     font-weight: $semi-bold;
+    @include tablet {
+      padding-bottom: $padding-between-components-tablet;
+    }
   }
   &__video-list {
     display: flex;
