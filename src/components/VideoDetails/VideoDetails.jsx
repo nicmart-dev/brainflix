@@ -20,11 +20,19 @@ function VideoDetails({ selectedVideo }) {
         </div>
         <div className="video-details__stats-container">
           <div>
-            <img src={viewsIcon} alt="views icon" />
+            <img
+              src={viewsIcon}
+              alt="views icon"
+              className="video-details__views-img"
+            />
             <span className="video-details__views">{selectedVideo.views}</span>
           </div>
           <div>
-            <img src={likesIcon} alt="likes icon" />
+            <img
+              src={likesIcon}
+              alt="likes icon"
+              className="video-details__likes-img"
+            />
             <span className="video-details__likes">{selectedVideo.likes}</span>
           </div>
         </div>

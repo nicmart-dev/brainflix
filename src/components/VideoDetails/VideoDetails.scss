@@ -19,23 +19,42 @@
   &__stats-container {
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     gap: $padding-between-components;
     flex-basis: 50%;
     @include tablet {
       flex-direction: row;
     }
   }
-
+  &__stats-container {
+    padding-left: $padding-xs;
+  }
+  &__stats-container > div {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
   &__channel {
     text-wrap: nowrap;
     font-weight: $bold;
     font-size: $section-header-font-size;
   }
+  &__date,
+  &__likes,
+  &__views {
+    @include tablet {
+      font-size: 1.125rem;
+    }
+  }
   &__date {
     color: $color-primary-silver;
   }
-  &__stats-container {
-    padding-left: $padding-xs;
+
+  &__views-img {
+    height: 23px;
+  }
+  &__likes-img {
+    height: 25px;
   }
   &__likes,
   &__views {
