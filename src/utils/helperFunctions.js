@@ -3,12 +3,15 @@
 /* -------------------------------------------------------------------------- */
 
 
-// keeping function to display per mockup for reference
+/* keeping function to display per mockup for reference */
 export function formatDateMDDYYYY(timestamp) {
     const date = new Date(timestamp);
     return date.toLocaleDateString('en-us', { month: 'numeric', day: '2-digit', year: 'numeric', timeZone: 'UTC' }).split(",").join("");
 }
 
+
+/* display dynamic date format in the comments section and video details 
+to reflect when it was posted in a more human-readable format */
 export function formatDate(timestamp) {
     const date = new Date(timestamp);
     const now = new Date();
