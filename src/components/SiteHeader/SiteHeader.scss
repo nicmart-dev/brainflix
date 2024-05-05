@@ -73,11 +73,11 @@
     width: $form-field-minwidth;
     color: $icon-txt-search-color;
     padding: $form-field-padding;
-    padding-left: 45px;
+    padding-left: $padding-xl;
     background-image: url("../../assets/icons/search.svg");
     background-repeat: no-repeat;
-    background-size: 25px;
-    background-position: 10px center;
+    background-size: 1.5625rem;
+    background-position: 0.625rem center;
     width: 100%;
   }
 }

@@ -16,22 +16,22 @@ $semi-bold: 600;
 $bold: 700;
 
 // Body Copy
-$body-copy-font-size: 20px; // 13px in style guide but changed to better match mockup
-$body-copy-font-size-tablet: 21px; // 14px in style guide but changed to better match mockup
-$body-copy-line-height: 25px; //18px in style guide but changed to better match mockup
-$body-copy-line-height-tablet: 30px;
+$body-copy-font-size: 1.25rem; // 13px in style guide but changed to better match mockup
+$body-copy-font-size-tablet: 1.3125rem; // 14px in style guide but changed to better match mockup
+$body-copy-line-height: 1.5625rem; //18px in style guide but changed to better match mockup
+$body-copy-line-height-tablet: 1.875rem;
 $body-copy-font-weight: $regular;
 
 //Page Header: h1
-$page-header-font-size: 38px; // 24px in style guide but changed to better match mockup
-$page-header-tablet-font-size: 33px;
-$page-header-line-height: 50px; // 32px in style guide but changed to better match mockup
-$page-header-line-height-tablet: 44px;
+$page-header-font-size: 2.375rem; // 24px in style guide but changed to better match mockup
+$page-header-tablet-font-size: 2.0625rem;
+$page-header-line-height: 3.125rem; // 32px in style guide but changed to better match mockup
+$page-header-line-height-tablet: 2.75rem;
 $page-header-font-weight: $bold;
 
 // Section Header: h2
-$section-header-font-size: 20px; // 12px in style guide but changed to better match mockup
-$section-header-line-height: 25px; // 25px in style guide but changed to better match mockup
+$section-header-font-size: 1.25rem; // 12px in style guide but changed to better match mockup
+$section-header-line-height: 1.5625rem; // 25px in style guide but changed to better match mockup
 $section-header-font-weight: $bold;
 
 // Subheader: h3
@@ -42,8 +42,8 @@ $subheader-line-height-tablet: $body-copy-line-height-tablet;
 $subheader-font-weight: $bold;
 
 // Labels & Buttons
-$label-btn-font-size: 18px; // 10px on styleguide but changed to better reflect mockup
-$label-btn-font-size-tablet: 19px; // 12px in style guide but changed to better match mockup
+$label-btn-font-size: 1.125rem; // 10px on styleguide but changed to better reflect mockup
+$label-btn-font-size-tablet: 1.1875rem; // 12px in style guide but changed to better match mockup
 $label-btn-line-height: $section-header-line-height;
 $label-btn-font-weight: $semi-bold; // bold in styleguide but changed to better reflect mockup.
 
@@ -76,9 +76,9 @@ following this guide https://sterlingcobb.medium.com/using-css-variables-with-ma
 /* Padding refers to the space between UI
 elements and are measured in increments of
 8px, unless otherwise specified. */
-$padding-unit: 8px;
+$padding-unit: 0.5rem;
 
-$padding-xxs: 4px;
+$padding-xxs: 0.25rem;
 $padding-xs: $padding-unit;
 $padding-sm: calc($padding-unit * 2); // 16px
 $padding-md: calc($padding-unit * 3); // 24px
@@ -113,18 +113,18 @@ $icon-txt-search-color: $color-primary-brainflix-black;
 $cta-icon-txt-color: $color-primary-white;
 
 // BrainFlix logo
-$logo-max-height: 25px;
-$logo-max-width: 170px; //120px in style guide but changed to better reflect mockup
+$logo-max-height: 1.5625rem;
+$logo-max-width: 10.625rem; //120px in style guide but changed to better reflect mockup
 $logo-background: $color-primary-white;
 
 // Primary CTA: Default/Hover
 $cta-default-background-color: $color-primary-blue;
 $cta-hover-background-color: $color-secondary-brainflix-darkblue;
-$cta-height: 50px; // 40px in style guide but changed to better reflect mockup
-$cta-min-width-tablet: 150px;
-$cta-min-padding: 0 32px;
+$cta-height: 3.125rem; // 40px in style guide but changed to better reflect mockup
+$cta-min-width-tablet: 9.375rem;
+$cta-min-padding: 0 2rem;
 $cta-width-mobile: 100%;
-$button-border-radius: 4px;
+$button-border-radius: 0.25rem;
 
 /* -------------------------------------------------------------------------- */
 /*                                Video Player                                */
@@ -150,7 +150,7 @@ $video-player-aspect-ratio: 16 / 9;
 scrubber will have a fill color of BrainFlix-DarkBlack, buffer will
 have a fill color of Silver, and the played video will have a fill
 color of BrainFlix-Blue */
-$scrubbing-icon-size: 16px;
+$scrubbing-icon-size: 1rem;
 $scrubbing-icon-color: $color-primary-white;
 $scrubber-bar-icon-color: $color-secondary-brainflix-darkblack;
 $buffer-bar-color: $color-primary-silver;
@@ -160,15 +160,15 @@ $played-bar-color: $color-primary-blue;
 /*                                 Form fields                                */
 /* -------------------------------------------------------------------------- */
 
-$form-field-height: 36px;
-$form-field-height-tablet: 50px; //40px in styleguide but changed to match mockuo
-$form-field-minwidth: 240px;
+$form-field-height: 2.25rem;
+$form-field-height-tablet: 3.125rem; //40px in styleguide but changed to match mockuo
+$form-field-minwidth: 15rem;
 $form-field-maxwidth: 100%;
 
-$form-field-padding: 12px;
-$form-field-padding-tablet: 16px;
+$form-field-padding: 0.75rem;
+$form-field-padding-tablet: 1rem;
 
-$form-space-between-label-and-field: 4px;
+$form-space-between-label-and-field: 0.25rem;
 
 $form-field-border-radius: $button-border-radius;
 $form-field-default-filled-border: 1px solid $color-secondary-mercury;
@@ -198,5 +198,5 @@ $avatar-placeholder-color: $color-secondary-mercury; // The avatar image should 
 
 /* Comments avatars in bio page.
 Applied consistent multiplier to style guide to match mockup */
-$avatar-size: 50px; //36px in styleguide but increased to match mockup
-$avatar-size-tablet: 55px; //40px in styleguide but increased to match mockup
+$avatar-size: 3.125rem; //36px in styleguide but increased to match mockup
+$avatar-size-tablet: 3.4375rem; //40px in styleguide but increased to match mockup
