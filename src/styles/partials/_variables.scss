@@ -85,8 +85,8 @@ $padding-md: calc($padding-unit * 3); // 24px
 $padding-lg: calc($padding-unit * 4); // 32px
 $padding-xl: calc($padding-unit * 5); // 40px
 $padding-2xl: calc($padding-unit * 10); // 80px
-$padding-5xl: calc($padding-unit * 25);
-$padding-8xl: calc($padding-unit * 40);
+$padding-5xl: calc($padding-unit * 25); // 200px
+$padding-8xl: calc($padding-unit * 40); // 320px
 
 //default (mobile) sizes
 $padding-before-headlines: $padding-md; // 24px

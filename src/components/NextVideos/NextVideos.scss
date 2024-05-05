@@ -2,6 +2,10 @@
 @use "../../styles/partials/mixins" as *;
 
 .next-videos {
+  padding-bottom: $padding-xl;
+  @include desktop {
+    padding-bottom: $padding-2xl;
+  }
   &__header {
     color: $color-primary-silver;
     font-weight: $semi-bold;
