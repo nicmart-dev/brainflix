@@ -12,7 +12,7 @@ function VideoDetails({ selectedVideo }) {
       <div className="video-details__metadata-container">
         <div className="video-details__channel-container">
           <span className="video-details__channel">
-            {selectedVideo.channel}
+            By {selectedVideo.channel}
           </span>
           <span className="video-details__date">
             {formatDate(selectedVideo.timestamp)}
