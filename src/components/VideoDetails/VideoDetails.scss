@@ -14,6 +14,9 @@
       @include line-divider(); //only add divider on bottom
       padding: $padding-xs 0;
     }
+    @include desktop {
+      padding-right: $padding-between-components-tablet;
+    }
   }
   &__channel-container,
   &__stats-container {
@@ -23,7 +26,9 @@
     gap: $padding-between-components;
     flex-basis: 50%;
     @include tablet {
+      gap: $padding-between-components-tablet;
       flex-direction: row;
+      flex-basis: unset;
     }
   }
   &__stats-container {

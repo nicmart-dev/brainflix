@@ -6,7 +6,10 @@
     display: flex;
     @include spacing-between-components;
     @include tablet {
-      align-items: center;
+      align-items: flex-end;
+    }
+    @include desktop {
+      padding-right: $padding-between-components-tablet;
     }
   }
   &__new-comment-container div div:first-child {
@@ -80,6 +83,9 @@
     /* also add line divider in first comment */
     &:first-child {
       @include line-divider(topbottom);
+    }
+    @include desktop {
+      padding-right: $padding-between-components-tablet;
     }
   }
   &__comment-txt-container {
