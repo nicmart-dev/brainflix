@@ -4,12 +4,7 @@
 .video-player {
   background-color: $video-player-background;
   width: 100%;
-  aspect-ratio: $video-player-aspect-ratio;
-
-  @include tablet {
-    height: 50vw;
-  }
-  @include desktop {
-    height: 40vw;
-  }
+  @include spacing-app(
+    video-player
+  ); //add left and right spacing on tablet/desktop only
 }

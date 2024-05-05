@@ -27,14 +27,22 @@
 /* -------------------------------------------------------------------------- */
 
 //use to insert padding for entire app
-@mixin spacing-app {
-  @include spacing(padding, sides, $padding-sm);
+@mixin spacing-app($component: "") {
+  // don't add spacing on mobile if video player
+  @if $component != video-player {
+    @include spacing(padding, sides, $padding-sm);
+  }
 
   @include tablet {
     @include spacing(padding, sides, $padding-2xl);
   }
   @include desktop {
     @include spacing(padding, sides, $padding-5xl);
+
+    //add additional spacing for video player on desktop only
+    @if $component == video-player {
+      @include spacing(padding, sides, $padding-8xl);
+    }
   }
 }
 
