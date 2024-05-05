@@ -37,7 +37,7 @@ function App() {
           <aside className="App__next-videos-container">
             <NextVideos
               videoList={videos}
-              selectedVideo={mainVideo.id}
+              selectedVideoId={mainVideo.id}
               handleVideoClick={handleVideoClick}
             />
           </aside>
