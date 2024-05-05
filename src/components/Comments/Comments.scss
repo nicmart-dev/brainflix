@@ -44,7 +44,9 @@
     @include tablet {
       width: 100%;
     }
-    margin-right: $padding-between-components-tablet;
+    @include tablet {
+      margin-right: $padding-between-components-tablet;
+    }
   }
 
   &__new-comment-label {
