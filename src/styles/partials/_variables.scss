@@ -16,22 +16,22 @@ $semi-bold: 600;
 $bold: 700;
 
 // Body Copy
-$body-copy-font-size: 1.25rem; // 13px in style guide but changed to better match mockup
-$body-copy-font-size-tablet: 1.3125rem; // 14px in style guide but changed to better match mockup
-$body-copy-line-height: 1.5625rem; //18px in style guide but changed to better match mockup
+$body-copy-font-size: 1.25rem;
+$body-copy-font-size-tablet: 1.3125rem;
+$body-copy-line-height: 1.5625rem;
 $body-copy-line-height-tablet: 1.875rem;
 $body-copy-font-weight: $regular;
 
 //Page Header: h1
-$page-header-font-size: 2.375rem; // 24px in style guide but changed to better match mockup
+$page-header-font-size: 2.375rem;
 $page-header-tablet-font-size: 2.0625rem;
-$page-header-line-height: 3.125rem; // 32px in style guide but changed to better match mockup
+$page-header-line-height: 3.125rem;
 $page-header-line-height-tablet: 2.75rem;
 $page-header-font-weight: $bold;
 
 // Section Header: h2
-$section-header-font-size: 1.25rem; // 12px in style guide but changed to better match mockup
-$section-header-line-height: 1.5625rem; // 25px in style guide but changed to better match mockup
+$section-header-font-size: 1.25rem;
+$section-header-line-height: 1.5625rem;
 $section-header-font-weight: $bold;
 
 // Subheader: h3
@@ -42,10 +42,10 @@ $subheader-line-height-tablet: $body-copy-line-height-tablet;
 $subheader-font-weight: $bold;
 
 // Labels & Buttons
-$label-btn-font-size: 1.125rem; // 10px on styleguide but changed to better reflect mockup
-$label-btn-font-size-tablet: 1.1875rem; // 12px in style guide but changed to better match mockup
+$label-btn-font-size: 1.125rem;
+$label-btn-font-size-tablet: 1.1875rem;
 $label-btn-line-height: $section-header-line-height;
-$label-btn-font-weight: $semi-bold; // bold in styleguide but changed to better reflect mockup.
+$label-btn-font-weight: $semi-bold;
 
 /* -------------------------------------------------------------------------- */
 /*                                   Colors                                  */
@@ -89,14 +89,14 @@ $padding-5xl: calc($padding-unit * 25); // 200px
 $padding-8xl: calc($padding-unit * 40); // 320px
 
 //default (mobile) sizes
-$padding-before-headlines: $padding-md; // 24px
-$padding-after-headlines: $padding-md; // 16px per style guide but changed to match mockup
-$padding-between-components: $padding-sm; // 16px
+$padding-before-headlines: $padding-md;
+$padding-after-headlines: $padding-md;
+$padding-between-components: $padding-sm;
 
 //tablet and desktop
-$padding-before-headlines-tablet: $padding-lg; // 36px per style guide but changed to match mockup
-$padding-after-headlines-tablet: $padding-xs; // 24px per style guide but changed to match mockup
-$padding-between-components-tablet: $padding-md; // 24px
+$padding-before-headlines-tablet: $padding-lg;
+$padding-after-headlines-tablet: $padding-xs;
+$padding-between-components-tablet: $padding-md;
 
 /* -------------------------------------------------------------------------- */
 /*                        Iconography & Call To Actions                       */
@@ -114,13 +114,13 @@ $cta-icon-txt-color: $color-primary-white;
 
 // BrainFlix logo
 $logo-max-height: 1.5625rem;
-$logo-max-width: 10.625rem; //120px in style guide but changed to better reflect mockup
+$logo-max-width: 10.625rem;
 $logo-background: $color-primary-white;
 
 // Primary CTA: Default/Hover
 $cta-default-background-color: $color-primary-blue;
 $cta-hover-background-color: $color-secondary-brainflix-darkblue;
-$cta-height: 3.125rem; // 40px in style guide but changed to better reflect mockup
+$cta-height: 3.125rem;
 $cta-min-width-tablet: 9.375rem;
 $cta-min-padding: 0 2rem;
 $cta-width-mobile: 100%;
@@ -161,7 +161,7 @@ $played-bar-color: $color-primary-blue;
 /* -------------------------------------------------------------------------- */
 
 $form-field-height: 2.25rem;
-$form-field-height-tablet: 3.125rem; //40px in styleguide but changed to match mockuo
+$form-field-height-tablet: 3.125rem;
 $form-field-minwidth: 15rem;
 $form-field-maxwidth: 100%;
 
@@ -179,8 +179,8 @@ $form-field-error-border: 1px solid $color-error;
 /*                                   Divider                                  */
 /* -------------------------------------------------------------------------- */
 
-$divider-style: 2px solid $color-secondary-mercury; //1px in styleguide but increased to match mockup
-$divider-style-desktop: 4px solid $color-secondary-mercury; //1px in styleguide but increased to match mockup
+$divider-style: 2px solid $color-secondary-mercury;
+$divider-style-desktop: 4px solid $color-secondary-mercury;
 
 /* -------------------------------------------------------------------------- */
 /*                                   Images                                   */
@@ -193,10 +193,10 @@ $image-background-color: $color-secondary-mercury; // The image container should
 /* -------------------------------------------------------------------------- */
 /*                                   Avatars                                  */
 /* -------------------------------------------------------------------------- */
-$border-radius-avatar: 50%; // Avatar images will have a border radius of 50% applied.
-$avatar-placeholder-color: $color-secondary-mercury; // The avatar image should have a placeholder color of Mercury applied in the event that an image is not provided.
+$border-radius-avatar: 50%;
+$avatar-placeholder-color: $color-secondary-mercury;
 
 /* Comments avatars in bio page.
 Applied consistent multiplier to style guide to match mockup */
-$avatar-size: 3.125rem; //36px in styleguide but increased to match mockup
-$avatar-size-tablet: 3.4375rem; //40px in styleguide but increased to match mockup
+$avatar-size: 3.125rem;
+$avatar-size-tablet: 3.4375rem;

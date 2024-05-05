@@ -53,10 +53,8 @@
     text-transform: uppercase;
     color: $color-primary-silver;
     font-weight: $semi-bold;
-    // font-size: $body-copy-font-size;
     @include tablet {
       padding-bottom: 0.3125rem;
-      //   font-size: $body-copy-font-size-tablet;
     }
   }
 
