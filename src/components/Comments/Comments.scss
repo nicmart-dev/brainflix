@@ -84,6 +84,12 @@
     &:first-child {
       @include line-divider(topbottom);
     }
+    /* Remove bottom line divider for last comment on desktop */
+    &:last-child {
+      @include desktop {
+        border-bottom: 0;
+      }
+    }
     @include desktop {
       padding-right: $padding-between-components-tablet;
     }

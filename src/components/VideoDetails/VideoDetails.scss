@@ -75,5 +75,8 @@
 
   &__description {
     @include spacing-between-components(topbottom);
+    @include desktop {
+      padding-right: $padding-between-components-tablet;
+    }
   }
 }
