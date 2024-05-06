@@ -1,9 +1,13 @@
 import "./SiteHeader.scss";
 
+// Import avatar and cta button components
 import Avatar from "../Avatar";
 import Btn from "../Btn";
 
+// import logo image to display
 import logo from "../../assets/logo/BrainFlix-logo.svg";
+
+import { Link } from "react-router-dom";
 
 function SiteHeader() {
   function search(formData) {
@@ -12,7 +16,9 @@ function SiteHeader() {
 
   return (
     <header className="site-header">
-      <img src={logo} alt="site logo" className="site-header__logo" />
+      <Link to="/">
+        <img src={logo} alt="site logo" className="site-header__logo" />
+      </Link>
       <nav className="site-header__nav">
         <form onSubmit={search} className="site-header__form">
           <input
@@ -26,7 +32,9 @@ function SiteHeader() {
           <Avatar isLoggedIn={true} />
         </div>
         <div className="site-header__upload-container">
-          <Btn label="upload" />
+          <Link to="/upload">
+            <Btn label="upload" />
+          </Link>
         </div>
       </nav>
     </header>
