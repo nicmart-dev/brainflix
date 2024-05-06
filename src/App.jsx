@@ -9,6 +9,8 @@ import VideoPlayer from "./components/VideoPlayer/VideoPlayer";
 import videoData from "./data/videos.json"; // import small amount of data to display next videos
 import videoDetailsData from "./data/video-details.json"; // import all details for main video
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
   //set list of videos with small amount of data to display next videos
   const [videos] = useState(videoData);
