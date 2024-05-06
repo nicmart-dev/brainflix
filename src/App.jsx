@@ -3,8 +3,9 @@ import "./App.scss";
 import SiteHeader from "./components/SiteHeader/SiteHeader";
 import VideoPage from "./pages/VideoPage/VideoPage";
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
+import UploadPage from "./pages/UploadPage/UploadPage";
 
 function App() {
   return (
@@ -12,8 +13,10 @@ function App() {
       <BrowserRouter>
         <SiteHeader />
         <Routes>
-          <Route path="/videos"></Route>
           <Route path="/" element={<VideoPage />} />
+          <Route path="/videos/:videoId" element={<VideoPage />} />
+          <Route path="/upload" element={UploadPage} />
+
           {/* The 404 error page displays paths that don’t exist on the website. 
         So, instead of specifying the path, use an asterisk (*) to match anything. */}
           <Route path="*" element={<NotFound />} />
