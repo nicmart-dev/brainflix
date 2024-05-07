@@ -21,6 +21,13 @@ const VideoPage = () => {
   based on the condition, using useEffect hook */
   const [mainVideo, setMainVideo] = useState(null);
 
+  /*  set main video on first load */
+  useEffect(() => {
+    // If videoId not provided, set main video to the first video in the list
+    setMainVideo(videoDetailsData[0]);
+  }, []);
+
+  /*  update main video each time videoId changes */
   useEffect(() => {
     // Set main video if videoId is provided
     if (videoId) {
@@ -31,9 +38,6 @@ const VideoPage = () => {
         // If video not found, navigate to NotFound page
         return <Navigate to="/404" />;
       }
-    } else {
-      // If videoId not provided, set main video to the first video in the list
-      setMainVideo(videoDetailsData[0]);
     }
   }, [videoId]);
 
