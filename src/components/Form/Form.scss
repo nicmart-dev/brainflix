@@ -5,13 +5,6 @@
   /* use entire width */
   flex: 1;
 
-  @include tablet {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-
   &__label-field-container {
     display: flex;
     flex-direction: column;
@@ -20,15 +13,46 @@
     @include tablet {
       width: 100%;
     }
+  }
+  &__label-field-container--upload {
     @include tablet {
+      @include line-divider;
+    }
+  }
+
+  &__label-field-container--comment {
+    @include desktop {
       margin-right: $padding-between-components-tablet;
+    }
+  }
+
+  &__textarea--comment {
+  }
+
+  &__cta-btn-nav {
+    @include tablet {
+      display: flex;
+      justify-content: flex-end;
+      gap: $padding-between-components-tablet;
     }
   }
 
   &__cta-btn-container {
     @include spacing-between-components(topbottom);
+  }
+  //reorder publish button to appear after cancel on tablet
+  &__cta-btn-container:nth-of-type(1) {
     @include tablet {
-      height: 3.125rem;
+      order: 1;
     }
+  }
+}
+
+.form--comment {
+  @include tablet {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
   }
 }

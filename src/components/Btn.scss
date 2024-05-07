@@ -11,19 +11,16 @@
   height: $cta-height;
   color: $cta-icon-txt-color;
   background-color: $cta-default-background-color;
-  padding: $cta-min-padding;
   border: 0;
   border-radius: $button-border-radius;
-
   background-repeat: no-repeat;
   background-position: $padding-xs center;
-  padding: $padding-xs;
 
   @include tablet {
     font-size: $label-btn-font-size-tablet;
     width: 12.5rem;
     min-width: $cta-min-width-tablet;
-    height: 100%;
+    height: $cta-height-tablet;
   }
   &:hover {
     background-color: $cta-hover-background-color;

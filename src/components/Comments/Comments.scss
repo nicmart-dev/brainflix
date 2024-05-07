@@ -51,6 +51,13 @@
     }
   }
 
+  &__new-comment-txt {
+    @include tablet {
+      height: $form-field-height-tablet;
+      overflow: hidden; //hide scroll bar
+    }
+  }
+
   &__new-comment-label {
     text-transform: uppercase;
     color: $color-primary-silver;

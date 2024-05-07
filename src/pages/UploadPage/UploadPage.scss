@@ -9,7 +9,13 @@
       @include line-divider;
     }
   }
+  &__subtitle {
+    padding-bottom: 0;
+  }
   &__img {
     width: 100%;
+    @include tablet {
+      width: 50%;
+    }
   }
 }

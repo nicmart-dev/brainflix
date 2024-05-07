@@ -89,10 +89,6 @@ label {
 
 textarea {
   height: calc($form-field-height * 3);
-  @include tablet {
-    height: $form-field-height-tablet;
-    overflow: hidden; //hide scroll bar
-  }
 }
 
 h1,

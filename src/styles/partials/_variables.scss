@@ -121,6 +121,7 @@ $logo-background: $color-primary-white;
 $cta-default-background-color: $color-primary-blue;
 $cta-hover-background-color: $color-secondary-brainflix-darkblue;
 $cta-height: 3.125rem;
+$cta-height-tablet: 3.4375rem;
 $cta-min-width-tablet: 9.375rem;
 $cta-min-padding: 0 2rem;
 $cta-width-mobile: 100%;
@@ -198,5 +199,5 @@ $avatar-placeholder-color: $color-secondary-mercury;
 
 /* Comments avatars in bio page.
 Applied consistent multiplier to style guide to match mockup */
-$avatar-size: 3.125rem;
-$avatar-size-tablet: 3.4375rem;
+$avatar-size: $cta-height;
+$avatar-size-tablet: $cta-height-tablet;
