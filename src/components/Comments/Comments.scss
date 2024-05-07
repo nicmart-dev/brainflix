@@ -19,6 +19,8 @@
   }
 
   &__title {
+    text-transform: capitalize;
+    color: $color-primary-brainflix-black;
     @include tablet {
       padding-bottom: $padding-after-headlines;
     }
