@@ -10,6 +10,19 @@
 body {
   margin: 0;
   padding: 0;
+
+  /* Set font defaults per style guide */
+  font-family: $font;
+  font-weight: $body-copy-font-weight;
+  font-size: $body-copy-font-size;
+  line-height: $body-copy-line-height;
+  @include tablet {
+    font-size: $body-copy-font-size-tablet;
+    line-height: $body-copy-line-height-tablet;
+  }
+
+  background-color: $color-primary-white;
+  color: $color-primary-brainflix-black;
 }
 
 input,
@@ -122,37 +135,4 @@ ul {
 
 img {
   border-radius: $image-border-radius;
-}
-
-.App {
-  /* Set font defaults per style guide */
-  font-family: $font;
-  font-weight: $body-copy-font-weight;
-  font-size: $body-copy-font-size;
-  line-height: $body-copy-line-height;
-  @include tablet {
-    font-size: $body-copy-font-size-tablet;
-    line-height: $body-copy-line-height-tablet;
-  }
-
-  background-color: $color-primary-white;
-  color: $color-primary-brainflix-black;
-
-  &__post-video-container {
-    @include spacing-app; //add left and right spacing
-    @include desktop {
-      display: flex;
-    }
-  }
-  &__video-comments-container {
-    @include desktop {
-      flex: 0 0 70%; // leave only about 1/3 for next videos sidebar
-    }
-  }
-  &__next-videos-container {
-    @include desktop {
-      @include line-divider(left);
-      padding-left: $padding-between-components-tablet;
-    }
-  }
 }

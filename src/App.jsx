@@ -9,7 +9,7 @@ import UploadPage from "./pages/UploadPage/UploadPage";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <BrowserRouter>
         <SiteHeader />
         <Routes>
@@ -22,7 +22,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

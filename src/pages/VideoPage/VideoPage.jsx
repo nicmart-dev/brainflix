@@ -43,12 +43,12 @@ const VideoPage = () => {
       {mainVideo && (
         <>
           <VideoPlayer selectedVideo={mainVideo} />
-          <section className="App__post-video-container">
-            <div className="App__video-comments-container">
+          <section className="video-page__post-video-container">
+            <div className="video-page__video-comments-container">
               <VideoDetails selectedVideo={mainVideo} />
               <Comments selectedVideo={mainVideo} />
             </div>
-            <aside className="App__next-videos-container">
+            <aside className="video-page__next-videos-container">
               <NextVideos videoList={videos} selectedVideoId={mainVideo.id} />
             </aside>
           </section>
