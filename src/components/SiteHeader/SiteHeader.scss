@@ -26,16 +26,17 @@
     align-items: center;
     justify-content: flex-end;
   }
-  &__logo {
-    width: $logo-max-width;
-    background-color: $logo-background;
+  &__logo-container {
     margin: auto;
-    margin-bottom: $padding-between-components;
-    vertical-align: middle;
-
     @include tablet {
       margin: initial;
     }
+  }
+  &__logo {
+    width: $logo-max-width;
+    background-color: $logo-background;
+
+    margin-bottom: $padding-between-components;
   }
 
   &__form {

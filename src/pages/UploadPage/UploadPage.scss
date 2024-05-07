@@ -4,6 +4,11 @@
 .upload-page {
   @include spacing-app; //add left and right spacing
 
+  &__title {
+    @include tablet {
+      @include line-divider;
+    }
+  }
   &__img {
     width: 100%;
   }
