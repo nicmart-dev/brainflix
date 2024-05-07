@@ -6,19 +6,18 @@ import NextVideos from "../../components/NextVideos/NextVideos";
 import VideoDetails from "../../components/VideoDetails/VideoDetails";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
-// Import video data
-import videoData from "../../data/videos.json"; // import small amount of data to display next videos
-import videoDetailsData from "../../data/video-details.json"; // import all details for main video
-
 import { useState, useEffect } from "react"; // Import to then store video in state
 import { useParams, Navigate } from "react-router-dom";
 
+import getVideos from "../../utils/brainflix-api";
+import videoDetailsData from "../../data/video-details.json"; // import all details for main video
+
 const VideoPage = () => {
-  const [videos] = useState(videoData);
   const { videoId } = useParams();
 
-  /* initialize the video state unconditionally, and then update it as needed 
+  /* initialize the main video and list of video states unconditionally, and then update it as needed 
   based on the condition, using useEffect hook */
+  const [videos, setVideos] = useState([]);
   const [mainVideo, setMainVideo] = useState(null);
 
   /* using state to navigate to notfound page with useEffect hook */
@@ -26,6 +25,10 @@ const VideoPage = () => {
 
   /*  set main video on first load */
   useEffect(() => {
+    (async () => {
+      setVideos(await getVideos()); // get list of videos to then display in side videos
+    })();
+
     // set main video state to the first video in the list
     setMainVideo(videoDetailsData[0]);
   }, []);
