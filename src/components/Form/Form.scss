@@ -1,0 +1,34 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.form {
+  /* use entire width */
+  flex: 1;
+
+  @include tablet {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__label-field-container {
+    display: flex;
+    flex-direction: column;
+    @include spacing-between-components(topbottom);
+
+    @include tablet {
+      width: 100%;
+    }
+    @include tablet {
+      margin-right: $padding-between-components-tablet;
+    }
+  }
+
+  &__cta-btn-container {
+    @include spacing-between-components(topbottom);
+    @include tablet {
+      height: 3.125rem;
+    }
+  }
+}

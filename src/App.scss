@@ -79,6 +79,12 @@ button {
 
 label {
   padding-bottom: $form-space-between-label-and-field;
+  text-transform: uppercase;
+  color: $color-primary-silver;
+  font-weight: $semi-bold;
+  @include tablet {
+    padding-bottom: 0.3125rem;
+  }
 }
 
 textarea {
@@ -106,9 +112,11 @@ h1 {
 
 //use as section header
 h2 {
+  text-transform: uppercase;
   font-weight: $section-header-font-weight;
   font-size: $section-header-font-size;
   line-height: $section-header-line-height;
+  color: $color-primary-silver;
   margin-top: $padding-before-headlines;
   margin-bottom: $padding-after-headlines;
   @include tablet {

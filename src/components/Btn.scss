@@ -27,6 +27,7 @@
   }
   &:hover {
     background-color: $cta-hover-background-color;
+    color: $cta-icon-txt-color;
   }
 
   &--upload {
@@ -34,5 +35,12 @@
   }
   &--comment {
     background-image: url(../assets/icons/add_comment.svg);
+  }
+  &--publish {
+    background-image: url(../assets/icons/publish.svg);
+  }
+  &--cancel {
+    background-color: $color-secondary-alabaster;
+    color: $color-primary-blue;
   }
 }

@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<VideoPage />} />
           <Route path="/videos/:videoId" element={<VideoPage />} />
-          <Route path="/upload" element={UploadPage} />
+          <Route path="/upload" element={<UploadPage />} />
 
           {/* The 404 error page displays paths that don’t exist on the website. 
         So, instead of specifying the path, use an asterisk (*) to match anything. */}

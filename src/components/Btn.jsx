@@ -2,12 +2,7 @@ import "./Btn.scss";
 
 function Btn({ label }) {
   let className = "cta";
-  className +=
-    label === "upload"
-      ? " cta--upload"
-      : label === "comment"
-      ? " cta--comment"
-      : "";
+  className += ` cta--${label}`;
 
   return <button className={className}>{label}</button>;
 }
