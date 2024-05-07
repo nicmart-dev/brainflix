@@ -12,21 +12,13 @@ function Form({ cta }) {
           placeholder="Add a title to your video"
         ></input>
       </div>
-      <div className="form__label-field-container form__label-field-container--upload">
+      <div className="form__label-field-container">
         <label htmlFor={`${cta}-textarea`}>Add a video description</label>
         <textarea
           id={`${cta}-textarea`}
           required
           placeholder="Add a description to your video"
         ></textarea>
-      </div>
-      <div className="form__cta-btn-nav">
-        <div className="form__cta-btn-container">
-          <Btn label={cta} />
-        </div>
-        <div className="form__cta-btn-container">
-          <Btn label="cancel" />
-        </div>
       </div>
     </form>
   );
