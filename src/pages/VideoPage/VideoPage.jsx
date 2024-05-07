@@ -23,13 +23,13 @@ const VideoPage = () => {
 
   /*  set main video on first load */
   useEffect(() => {
-    // If videoId not provided, set main video to the first video in the list
+    // set main video state to the first video in the list
     setMainVideo(videoDetailsData[0]);
   }, []);
 
   /*  update main video each time videoId changes */
   useEffect(() => {
-    // Set main video if videoId is provided
+    // Set main video if videoId is set
     if (videoId) {
       const foundVideo = videoDetailsData.find((video) => video.id === videoId);
       if (foundVideo) {
@@ -38,7 +38,7 @@ const VideoPage = () => {
         // If video not found, navigate to NotFound page
         return <Navigate to="/404" />;
       }
-    }
+    } else setMainVideo(videoDetailsData[0]); // reset video when clicking on logo while on video page
   }, [videoId]);
 
   return (
