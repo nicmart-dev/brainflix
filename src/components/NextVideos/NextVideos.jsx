@@ -1,6 +1,7 @@
 import "./NextVideos.scss";
+import { Link } from "react-router-dom";
 
-function NextVideos({ videoList, selectedVideoId, handleVideoClick }) {
+function NextVideos({ videoList, selectedVideoId }) {
   return (
     <section className="next-videos">
       <h2 className="next-videos__header">NEXT VIDEOS</h2>
@@ -9,9 +10,10 @@ function NextVideos({ videoList, selectedVideoId, handleVideoClick }) {
           .filter((video) => video.id !== selectedVideoId)
           .map((video) => (
             <li key={video.id} className="next-videos__video-list-item">
-              <a
-                href="#top"
-                onClick={() => handleVideoClick(video.id)}
+              {/* Go to top of page after navigating to new video */}
+              <Link
+                to={`/videos/${video.id}`}
+                onClick={() => window.scrollTo(0, 0)}
                 className="next-videos__video-link"
               >
                 <img
@@ -19,7 +21,8 @@ function NextVideos({ videoList, selectedVideoId, handleVideoClick }) {
                   src={video.image}
                   alt={video.title}
                 />
-              </a>
+              </Link>
+
               <div className="next-videos__video-info">
                 <span className="next-videos__video-title">{video.title}</span>
                 <span>{video.channel}</span>

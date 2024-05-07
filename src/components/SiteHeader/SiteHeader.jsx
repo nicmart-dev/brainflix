@@ -16,7 +16,7 @@ function SiteHeader() {
 
   return (
     <header className="site-header">
-      <Link to="/">
+      <Link to="/videos/84e96018-4022-434e-80bf-000ce4cd12b8">
         <img src={logo} alt="site logo" className="site-header__logo" />
       </Link>
       <nav className="site-header__nav">

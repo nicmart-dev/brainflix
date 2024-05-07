@@ -10,40 +10,50 @@ import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import videoData from "../../data/videos.json"; // import small amount of data to display next videos
 import videoDetailsData from "../../data/video-details.json"; // import all details for main video
 
-// Import to then store video in state
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Import to then store video in state
+import { useParams, Navigate } from "react-router-dom";
 
 const VideoPage = () => {
-  //set list of videos with small amount of data to display next videos
   const [videos] = useState(videoData);
+  const { videoId } = useParams();
 
-  //display at page load first video to match mockup, pulling details
-  const [mainVideo, setMainVideo] = useState(videoDetailsData[0]);
+  /* initialize the video state unconditionally, and then update it as needed 
+  based on the condition, using useEffect hook */
+  const [mainVideo, setMainVideo] = useState(null);
 
-  const handleVideoClick = (id) => {
-    //pull relevant video object with full details
-    const foundVideo = videoDetailsData.find((video) => video.id === id);
-
-    // set found video to currently selected in state
-    setMainVideo(foundVideo);
-  };
+  useEffect(() => {
+    // Set main video if videoId is provided
+    if (videoId) {
+      const foundVideo = videoDetailsData.find((video) => video.id === videoId);
+      if (foundVideo) {
+        setMainVideo(foundVideo);
+      } else {
+        // If video not found, navigate to NotFound page
+        return <Navigate to="/404" />;
+      }
+    } else {
+      // If videoId not provided, set main video to the first video in the list
+      setMainVideo(videoDetailsData[0]);
+    }
+  }, [videoId]);
 
   return (
     <main>
-      <VideoPlayer selectedVideo={mainVideo} />
-      <section className="App__post-video-container">
-        <div className="App__video-comments-container">
-          <VideoDetails selectedVideo={mainVideo} />
-          <Comments selectedVideo={mainVideo} />
-        </div>
-        <aside className="App__next-videos-container">
-          <NextVideos
-            videoList={videos}
-            selectedVideoId={mainVideo.id}
-            handleVideoClick={handleVideoClick}
-          />
-        </aside>
-      </section>
+      {/* only render components if mainVideo is set to avoid errors */}
+      {mainVideo && (
+        <>
+          <VideoPlayer selectedVideo={mainVideo} />
+          <section className="App__post-video-container">
+            <div className="App__video-comments-container">
+              <VideoDetails selectedVideo={mainVideo} />
+              <Comments selectedVideo={mainVideo} />
+            </div>
+            <aside className="App__next-videos-container">
+              <NextVideos videoList={videos} selectedVideoId={mainVideo.id} />
+            </aside>
+          </section>
+        </>
+      )}
     </main>
   );
 };
