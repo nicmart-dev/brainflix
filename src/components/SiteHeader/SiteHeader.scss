@@ -81,3 +81,8 @@
     width: 100%;
   }
 }
+
+//show line divider but only if header is on upload page
+.site-header--upload {
+  @include line-divider;
+}

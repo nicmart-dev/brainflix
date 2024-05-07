@@ -7,15 +7,21 @@ import Btn from "../Btn";
 // import logo image to display
 import logo from "../../assets/logo/BrainFlix-logo.svg";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function SiteHeader() {
   function search(formData) {
     formData.preventDefault();
   }
 
+  // check current location to only display line divider in upload page
+  const location = useLocation();
+  const currentPath = location.pathname;
+  let className = "site-header";
+  if (currentPath === "/upload") className += ` site-header--upload`;
+
   return (
-    <header className="site-header">
+    <header className={className}>
       <Link to="/videos/84e96018-4022-434e-80bf-000ce4cd12b8">
         <img src={logo} alt="site logo" className="site-header__logo" />
       </Link>
