@@ -21,6 +21,9 @@ const VideoPage = () => {
   based on the condition, using useEffect hook */
   const [mainVideo, setMainVideo] = useState(null);
 
+  /* using state to navigate to notfound page with useEffect hook */
+  const [notFound, setNotFound] = useState(false);
+
   /*  set main video on first load */
   useEffect(() => {
     // set main video state to the first video in the list
@@ -35,11 +38,16 @@ const VideoPage = () => {
       if (foundVideo) {
         setMainVideo(foundVideo);
       } else {
-        // If video not found, navigate to NotFound page
-        return <Navigate to="/404" />;
+        // If video not found, set notFound state to true
+        setNotFound(true);
       }
     } else setMainVideo(videoDetailsData[0]); // reset video when clicking on logo while on video page
   }, [videoId]);
+
+  // Render the main video or redirect to NotFound page if not found
+  if (notFound) {
+    return <Navigate to="/video-not-found" />;
+  }
 
   return (
     <main>
