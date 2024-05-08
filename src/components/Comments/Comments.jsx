@@ -1,6 +1,6 @@
 import formatDate from "../../utils/helperFunctions";
-import Avatar from "../Avatar";
-import Btn from "../Btn";
+import Avatar from "../Avatar/Avatar";
+import Btn from "../Btn/Btn";
 import "./Comments.scss";
 
 function Comments({ selectedVideo }) {

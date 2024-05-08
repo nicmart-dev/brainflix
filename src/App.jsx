@@ -4,7 +4,7 @@ import SiteHeader from "./components/SiteHeader/SiteHeader";
 import VideoPage from "./pages/VideoPage/VideoPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/NotFound/NotFound";
 import UploadPage from "./pages/UploadPage/UploadPage";
 
 function App() {

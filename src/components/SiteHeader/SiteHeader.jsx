@@ -1,8 +1,8 @@
 import "./SiteHeader.scss";
 
 // Import avatar and cta button components
-import Avatar from "../Avatar";
-import Btn from "../Btn";
+import Avatar from "../Avatar/Avatar";
+import Btn from "../Btn/Btn";
 
 // import logo image to display
 import logo from "../../assets/logo/BrainFlix-logo.svg";

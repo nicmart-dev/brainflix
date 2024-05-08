@@ -1,5 +1,5 @@
-@use "../styles/partials/variables" as *;
-@use "../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 /* used for CTA throughout site */
 .cta {
@@ -28,13 +28,13 @@
   }
 
   &--upload {
-    background-image: url(../assets/icons/upload.svg);
+    background-image: url(../../assets/icons/upload.svg);
   }
   &--comment {
-    background-image: url(../assets/icons/add_comment.svg);
+    background-image: url(../../assets/icons/add_comment.svg);
   }
   &--publish {
-    background-image: url(../assets/icons/publish.svg);
+    background-image: url(../../assets/icons/publish.svg);
   }
   &--cancel {
     background-color: $color-secondary-alabaster;

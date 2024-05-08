@@ -1,7 +1,7 @@
 import "./UploadPage.scss";
 import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
 import Form from "../../components/Form/Form";
-import Btn from "../../components/Btn";
+import Btn from "../../components/Btn/Btn";
 
 function UploadPage() {
   return (

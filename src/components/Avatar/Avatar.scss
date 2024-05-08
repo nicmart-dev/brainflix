@@ -1,5 +1,5 @@
-@use "../styles/partials/variables" as *;
-@use "../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 .avatar {
   //size image container
@@ -24,7 +24,7 @@
     background-position: 15%;
   }
   &__image--current-user {
-    background-image: url(../assets/images/Mohan-muruge.jpg);
+    background-image: url(../../assets/images/Mohan-muruge.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 15%;
