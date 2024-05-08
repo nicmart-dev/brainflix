@@ -45,7 +45,7 @@ const VideoPage = () => {
         } else {
           setNotFound(true); // If video not found, set notFound state to true
         }
-      } else if (videos.length > 0) {
+      } else if (videos && videos.length > 0) {
         // set main video to first video, but only when videos have been loaded
         const firstVideoDetails = await getVideoDetails(videos[0].id);
         setMainVideo(firstVideoDetails); // reset video when clicking on logo while on video page
