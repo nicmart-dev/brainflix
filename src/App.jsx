@@ -1,5 +1,3 @@
-import "./App.scss";
-
 import SiteHeader from "./components/SiteHeader/SiteHeader";
 import VideoPage from "./pages/VideoPage/VideoPage";
 
