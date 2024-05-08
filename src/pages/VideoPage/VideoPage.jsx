@@ -9,8 +9,7 @@ import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import { useState, useEffect } from "react"; // Import to then store video in state
 import { useParams, Navigate } from "react-router-dom";
 
-import getVideos from "../../utils/brainflix-api";
-import videoDetailsData from "../../data/video-details.json"; // import all details for main video
+import { getVideos, getVideoDetails } from "../../utils/brainflix-api";
 
 const VideoPage = () => {
   const { videoId } = useParams();
@@ -23,29 +22,37 @@ const VideoPage = () => {
   /* using state to navigate to notfound page with useEffect hook */
   const [notFound, setNotFound] = useState(false);
 
-  /*  set main video on first load */
+  /*  show video list on initial page load */
   useEffect(() => {
-    (async () => {
-      setVideos(await getVideos()); // get list of videos to then display in side videos
-    })();
+    async function fetchVideos() {
+      const videosData = await getVideos(); // get list of videos to then display in side videos
+      setVideos(videosData);
+    }
 
-    // set main video state to the first video in the list
-    setMainVideo(videoDetailsData[0]);
+    fetchVideos();
   }, []);
 
-  /*  update main video each time videoId changes */
+  /*  update main video each time videoId changes or set to first video 
+  as soon as video list is loaded or when clicking on header logo */
   useEffect(() => {
-    // Set main video if videoId is set
-    if (videoId) {
-      const foundVideo = videoDetailsData.find((video) => video.id === videoId);
-      if (foundVideo) {
-        setMainVideo(foundVideo);
-      } else {
-        // If video not found, set notFound state to true
-        setNotFound(true);
+    async function fetchVideoDetails() {
+      // Set main video if videoId is set
+      if (videoId) {
+        const videoDetails = await getVideoDetails(videoId);
+
+        if (videoDetails) {
+          setMainVideo(videoDetails);
+        } else {
+          setNotFound(true); // If video not found, set notFound state to true
+        }
+      } else if (videos.length > 0) {
+        // set main video to first video, but only when videos have been loaded
+        const firstVideoDetails = await getVideoDetails(videos[0].id);
+        setMainVideo(firstVideoDetails); // reset video when clicking on logo while on video page
       }
-    } else setMainVideo(videoDetailsData[0]); // reset video when clicking on logo while on video page
-  }, [videoId]);
+    }
+    fetchVideoDetails();
+  }, [videoId, videos]);
 
   // Render the main video or redirect to NotFound page if not found
   if (notFound) {
