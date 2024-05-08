@@ -34,24 +34,29 @@ async function getStaticData() {
     return videoData.default;
 }
 
-
+/* get details of a specific video from api and fallback to using static data 
+if api error or if useAPI flag set to false */
 export async function getVideoDetails(id) {
-    let videoDetails = "";
+    if (useAPI) {
+        try {
+            const response = await axios.get(
+                `${base_url}/videos/${id}?api_key=${api_key}`
+            );
+            // return details for specified video
+            return response.data;
+        } catch (error) {
+            console.log(
+                "Could not get video details from BrainFlix API, importing static data instead."
+            );
+            return getStaticDetailsData(id);
+        }
+    } else return getStaticDetailsData(id);
+}
 
-    try {
-        const response = await axios.get(
-            `${base_url}/videos/${id}?api_key=${api_key}`
-        );
-        // return details for specified video
-        videoDetails = response.data;
-    } catch (error) {
-        console.log(
-            "Could not get video details from BrainFlix API, importing static data instead."
-        );
-        const videoDetailsData = await import("../data/video-details.json"); // import small amount of data to display next videos
-        videoDetails = videoDetailsData.default.find((video) => video.id === id);
-
-    }
+/* Utility function to import detailed video data from json file. */
+async function getStaticDetailsData(id) {
+    const videoDetailsData = await import("../data/video-details.json"); // import small amount of data to display next videos
+    const videoDetails = videoDetailsData.default.find((video) => video.id === id);
     return videoDetails;
 }
 
