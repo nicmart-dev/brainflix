@@ -2,7 +2,7 @@ import axios from "axios";
 
 /* used to connect to BrainFlix api */
 const api_key = "08e96fed-b453-49f7-b10e-6342cdd61c6a";
-const base_url = "BROKENhttps://unit-3-project-api-0a5620414506.herokuapp.com";
+const base_url = "https://unit-3-project-api-0a5620414506.herokuapp.com";
 
 /* get videos from api and fallback to using static data */
 export async function getVideos() {
