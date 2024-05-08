@@ -4,7 +4,11 @@ import axios from "axios";
 const api_key = "08e96fed-b453-49f7-b10e-6342cdd61c6a";
 const base_url = "https://unit-3-project-api-0a5620414506.herokuapp.com";
 
-let useAPI = true; // get videos using api by default, otherwise use static json data
+/* get videos using api by default, otherwise use static json data.
+If failure getting video list from api, this flag is also programmatically set to false 
+Besides used for testing api, it is used to disable api-only features 
+(eg. posting/deleting comments) */
+let useAPI = true;
 
 /* get videos from api and fallback to using static data 
 if api error or if useAPI flag set to false */
@@ -22,7 +26,7 @@ export async function getVideos() {
             );
             // If api failure, fallback to importing from json files.
             getStaticData()
-            useAPI = false; // flag that later be used if data not retrieved by api but from static json eg. to disable posting/deleting comments
+            useAPI = false;
         }
     } else return getStaticData();
 }
