@@ -1,19 +1,20 @@
 import "./Btn.scss";
 
-function Btn({ label, onClick }) {
+function Btn({ label, onClick, type }) {
+  // Ensure label is provided
+  if (!label) {
+    throw new Error('Button component requires a "label" prop.');
+  }
   let className = "cta";
   className += ` cta--${label}`;
 
-  // Do nothing if no onclick prop passed (ie. button is not part of a form)
-  const handleClick = () => {
-    if (onClick) {
-      onClick(label);
-    }
-  };
-
   //Pass label to onclick function to handle different behavior
   return (
-    <button className={className} onClick={handleClick}>
+    <button
+      type={type === "submit" ? "submit" : null}
+      className={className}
+      onClick={onClick} // if prop not provided, no onclick behavior
+    >
       {label}
     </button>
   );
