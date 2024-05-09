@@ -37,7 +37,9 @@ function Form({ cta }) {
     }
     /* display toast but navigate to route only if closing toast manually,
     or auto close after default 8 sec timer, per https://fkhadra.github.io/react-toastify/define-callback */
-    toast[type](msg);
+    toast[type](msg, {
+      onClose: () => navigate(route),
+    });
   };
 
   return (
