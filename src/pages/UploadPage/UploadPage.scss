@@ -10,43 +10,4 @@
       @include spacing-between-components(topbottom);
     }
   }
-  &__container {
-    @include tablet {
-      @include line-divider;
-      @include spacing-between-components(topbottom);
-    }
-    @include desktop {
-      display: flex;
-      gap: $padding-between-components-tablet;
-    }
-  }
-  &__subtitle {
-    padding-bottom: 0;
-  }
-  &__img {
-    width: 100%;
-    @include tablet {
-      width: 50%;
-    }
-    @include desktop {
-      width: 27.5rem;
-    }
-  }
-  &__cta-btn-nav {
-    @include tablet {
-      display: flex;
-      justify-content: flex-end;
-      gap: $padding-between-components-tablet;
-    }
-  }
-
-  &__cta-btn-container {
-    @include spacing-between-components(topbottom);
-  }
-  //reorder publish button to appear after cancel on tablet
-  &__cta-btn-container:nth-of-type(1) {
-    @include tablet {
-      order: 1;
-    }
-  }
 }
