@@ -1,6 +1,6 @@
 import "./Btn.scss";
 
-function Btn({ label, onClick, type }) {
+function Btn({ label, onClick, type, disabled }) {
   // Ensure label is provided
   if (!label) {
     throw new Error('Button component requires a "label" prop.');
@@ -14,6 +14,7 @@ function Btn({ label, onClick, type }) {
       type={type === "submit" ? "submit" : null}
       className={className}
       onClick={onClick} // if prop not provided, no onclick behavior
+      disabled={disabled}
     >
       {label}
     </button>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Btn from "../Btn/Btn";
 import "./Form.scss";
@@ -33,12 +33,12 @@ function Form({ cta }) {
     let route = "/"; // by default navigate to Home/video page
     switch (label) {
       case "publish":
-        msg = "Upload complete";
+        msg = "Video published, navigating to home page";
         type = "success";
 
         break;
       case "cancel":
-        msg = "Cancelling, going back to homepage";
+        msg = "Video upload cancelled, navigating back to homepage";
         type = "info";
         break;
       case "comment":
@@ -52,22 +52,22 @@ function Form({ cta }) {
     or auto close after default 8 sec timer, per https://fkhadra.github.io/react-toastify/define-callback */
     toast[type](msg, {
       onClose: () => navigate(route),
+      position: "bottom-right",
     });
   };
 
-  const isFormValid = () => {
-    // TO DO: Check if the fields are all filled
-    if (!title || !description) return false;
-    return true;
+  /* Check if the fields are all filled using default browser validation */
+  const isFormValid = (event) => {
+    const form = event.target;
+    if (!form) return false;
+    else return form.checkValidity();
   };
 
   /* Navigate to Home/video page on form submit */
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (isFormValid()) {
-      // This is where we would make an axios request
-      // to our backend to add the user to our database.
+    if (isFormValid(event)) {
       notifyNav("publish");
     }
   };
