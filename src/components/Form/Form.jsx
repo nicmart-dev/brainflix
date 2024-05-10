@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form"; // we are using https://react-hook-form.com/
 
 import Btn from "../Btn/Btn";
 import FormField from "./FormField/FormField";
@@ -59,6 +59,68 @@ function Form({ cta }) {
     notifyNav(label);
   };
 
+  // Shared fields for upload page or comments component
+  const FieldContainer = (
+    <div className="form__field-container">
+      <FormField
+        name="description"
+        label="Title your video"
+        control={control}
+        required
+        type="input"
+        placeholder="Add a title to your video"
+      />
+      <FormField
+        name="description"
+        label="Add a video description"
+        control={control}
+        required
+        type="textarea"
+        placeholder="Add a description to your video"
+      />
+    </div>
+  );
+
+  // Image thumbnail and fields for upload page
+  const FormThumbnail = (
+    <div className="form__img-input-fields-container">
+      <div>
+        <h2 className="form__subtitle">Video Thumbnail</h2>
+        <img
+          src={uploadVideoPreview}
+          alt="video preview"
+          className="form__img"
+        />
+      </div>
+      {FieldContainer}
+    </div>
+  );
+
+  //submit button, all forms should have one of these
+  const SubmitBtn = (
+    <div className="form__cta-btn-container">
+      <Btn label="publish" type="submit" />
+    </div>
+  );
+  // optional cancel button if form requires it
+  const CancelBtn = (
+    <div className="form__cta-btn-container">
+      <Btn
+        label="cancel"
+        onClick={(event) => handleButtonClick("cancel", event)}
+      />
+    </div>
+  );
+
+  // only show cancel button on publish page
+  const BtnContainer = (
+    <div className="form__cta-btn-nav">
+      {SubmitBtn}
+      {cta === "publish" && CancelBtn}
+    </div>
+  );
+
+  /* Return different form if video upload page, or in comments component  */
   return (
     <>
       <form
@@ -66,42 +128,9 @@ function Form({ cta }) {
         id={`${cta}`}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="form__img-input-fields-container">
-          <div>
-            <h2 className="form__subtitle">Video Thumbnail</h2>
-            <img src={uploadVideoPreview} alt="" className="form__img" />
-          </div>
-          <div className="form__field-container">
-            <FormField
-              name="description"
-              label="Title your video"
-              control={control}
-              required
-              type="input"
-              placeholder="Add a title to your video" // Placeholder text provided here
-            />
-            <FormField
-              name="description"
-              label="Add a video description"
-              control={control}
-              required
-              type="textarea"
-              placeholder="Add a description to your video" // Placeholder text provided here
-            />
-          </div>
-        </div>
-
-        <div className="form__cta-btn-nav">
-          <div className="form__cta-btn-container">
-            <Btn label="publish" type="submit" />
-          </div>
-          <div className="form__cta-btn-container">
-            <Btn
-              label="cancel"
-              onClick={(event) => handleButtonClick("cancel", event)}
-            />
-          </div>
-        </div>
+        {cta === "publish" && FormThumbnail}
+        {cta === "comment" && FieldContainer}
+        {BtnContainer}
         <ToastContainer />
       </form>
     </>
