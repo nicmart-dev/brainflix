@@ -1,0 +1,20 @@
+@use "../../../styles/partials/variables" as *;
+@use "../../../styles/partials/mixins" as *;
+
+.form-field {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    @include spacing-between-components(topbottom);
+
+    @include tablet {
+      width: 100%;
+    }
+  }
+
+  &__container--comment {
+    @include desktop {
+      margin-right: $padding-between-components-tablet;
+    }
+  }
+}
