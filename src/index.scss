@@ -29,17 +29,23 @@ input,
 textarea,
 button,
 label {
-  font-family: inherit; // overwrite default browser font
-  font-size: inherit;
-  font-weight: inherit;
+  font-family: $font; // overwrite default browser font
+  font-weight: $body-copy-font-weight;
+  font-size: $body-copy-font-size;
 }
 
 input,
 textarea {
+  display: block;
   background-color: $color-secondary-alabaster;
   border-radius: $form-field-border-radius;
   border-color: transparent;
   outline: $form-field-default-filled-border; // using outline instead of border to not alter height
+
+  margin-top: $form-space-between-label-and-field;
+  @include tablet {
+    margin-top: 0.3125rem;
+  }
 
   @include spacing-inside-fields;
   &:active,
@@ -92,13 +98,9 @@ button {
 }
 
 label {
-  padding-bottom: $form-space-between-label-and-field;
   text-transform: uppercase;
   color: $color-primary-silver;
   font-weight: $semi-bold;
-  @include tablet {
-    padding-bottom: 0.3125rem;
-  }
 }
 
 textarea {

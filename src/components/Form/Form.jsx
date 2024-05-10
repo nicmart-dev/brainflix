@@ -91,28 +91,24 @@ function Form({ cta }) {
             <img src={uploadVideoPreview} alt="" className="form__img" />
           </div>
           <div className="form__container">
-            <div className="form__label-field-container">
-              <label htmlFor={`${cta}-input`}>Title your video</label>
+            <label className="form__label-field-container">
+              Title your video
               <input
-                id={`${cta}-input`}
-                name="video"
                 required
                 placeholder="Add a title to your video"
                 onChange={handleChangeTitle}
                 value={title}
               ></input>
-            </div>
-            <div className="form__label-field-container">
-              <label htmlFor={`${cta}-textarea`}>Add a video description</label>
+            </label>
+            <label className="form__label-field-container">
+              Add a video description
               <textarea
-                id={`${cta}-textarea`}
-                name="description"
                 required
                 placeholder="Add a description to your video"
                 onChange={handleChangeDesc}
                 value={description}
               ></textarea>
-            </div>
+            </label>
           </div>
         </div>
 

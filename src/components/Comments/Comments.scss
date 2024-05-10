@@ -37,19 +37,6 @@
       align-items: flex-end;
     }
   }
-  &__new-comment-txt_container {
-    display: flex;
-    flex-direction: column;
-    @include mobile {
-      @include spacing-between-components;
-    }
-    @include tablet {
-      width: 100%;
-    }
-    @include tablet {
-      margin-right: $padding-between-components-tablet;
-    }
-  }
 
   &__new-comment-txt {
     @include tablet {
@@ -58,11 +45,19 @@
     }
   }
 
-  &__new-comment-label {
+  &__label-field-container {
+    display: flex;
+    flex-direction: column;
+    @include mobile {
+      @include spacing-between-components;
+    }
+
     text-transform: uppercase;
     color: $color-primary-silver;
     font-weight: $semi-bold;
     @include tablet {
+      width: 100%;
+      margin-right: $padding-between-components-tablet;
       padding-bottom: 0.3125rem;
     }
   }

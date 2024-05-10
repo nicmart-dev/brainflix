@@ -17,13 +17,11 @@ function Comments({ selectedVideo }) {
         <div className="comments__new-comment-container">
           <Avatar isLoggedIn={true} />
           <form className="comments__form" id="new-comment-form">
-            <div className="comments__new-comment-txt_container">
-              <label
-                htmlFor="new-comment-txt"
-                className="comments__new-comment-label"
-              >
-                Join the conversation
-              </label>
+            <label
+              htmlFor="new-comment-txt"
+              className="comments__label-field-container"
+            >
+              Join the conversation{" "}
               <textarea
                 id="new-comment-txt"
                 name="comment"
@@ -31,7 +29,7 @@ function Comments({ selectedVideo }) {
                 required
                 placeholder="Add a new comment"
               ></textarea>
-            </div>
+            </label>
             <div className="comments__new-btn-container">
               <Btn label="comment" />
             </div>
