@@ -49,6 +49,8 @@
 }
 
 .form--comment {
+  /* use entire width */
+  flex: 1;
   @include tablet {
     display: flex;
     flex-wrap: nowrap;

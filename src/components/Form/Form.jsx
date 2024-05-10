@@ -59,25 +59,47 @@ function Form({ cta }) {
     notifyNav(label);
   };
 
+  //input title field only for upload page
+  const VideoTitleField = (
+    <FormField
+      name="title"
+      label="Title your video"
+      control={control}
+      required
+      type="input"
+      placeholder="Add a title to your video"
+    />
+  );
+
+  //textarea field only for upload page
+  const VideoDescField = (
+    <FormField
+      name="description"
+      label="Add a video description"
+      control={control}
+      required
+      type="textarea"
+      placeholder="Add a description to your video"
+    />
+  );
+
+  const CommentTextField = (
+    <FormField
+      name="comment"
+      label="Join the conversation"
+      control={control}
+      required
+      type="textarea"
+      placeholder="Add a new comment"
+    />
+  );
+
   // Shared fields for upload page or comments component
   const FieldContainer = (
     <div className="form__field-container">
-      <FormField
-        name="description"
-        label="Title your video"
-        control={control}
-        required
-        type="input"
-        placeholder="Add a title to your video"
-      />
-      <FormField
-        name="description"
-        label="Add a video description"
-        control={control}
-        required
-        type="textarea"
-        placeholder="Add a description to your video"
-      />
+      {cta === "publish" && VideoTitleField}
+      {cta === "publish" && VideoDescField}
+      {cta === "comment" && CommentTextField}
     </div>
   );
 
@@ -97,9 +119,9 @@ function Form({ cta }) {
   );
 
   //submit button, all forms should have one of these
-  const SubmitBtn = (
+  const SubmitBtn = (label) => (
     <div className="form__cta-btn-container">
-      <Btn label="publish" type="submit" />
+      <Btn label={label} type="submit" />
     </div>
   );
   // optional cancel button if form requires it
@@ -115,7 +137,7 @@ function Form({ cta }) {
   // only show cancel button on publish page
   const BtnContainer = (
     <div className="form__cta-btn-nav">
-      {SubmitBtn}
+      {SubmitBtn(cta)}
       {cta === "publish" && CancelBtn}
     </div>
   );

@@ -12,7 +12,7 @@ function FormField({ name, label, placeholder, control, required, type }) {
   const InputComponent = type === "textarea" ? "textarea" : "input";
 
   return (
-    <label className="form-field__container">
+    <label className={`form-field__container form-field__container--${name}`}>
       {label}
       <InputComponent
         {...field}
@@ -23,6 +23,7 @@ function FormField({ name, label, placeholder, control, required, type }) {
           setValue(e.target.value);
         }}
         required={required}
+        className={`form-field--${name}`}
       />
     </label>
   );

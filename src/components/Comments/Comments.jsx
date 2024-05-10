@@ -1,6 +1,7 @@
 import formatDate from "../../utils/helperFunctions";
 import Avatar from "../Avatar/Avatar";
 import Btn from "../Btn/Btn";
+import Form from "../Form/Form";
 import "./Comments.scss";
 
 function Comments({ selectedVideo }) {
@@ -16,7 +17,8 @@ function Comments({ selectedVideo }) {
       <div className="comments__comment-list-form-container">
         <div className="comments__new-comment-container">
           <Avatar isLoggedIn={true} />
-          <form className="comments__form" id="new-comment-form">
+          <Form cta="comment" />
+          {/* <form className="comments__form" id="new-comment-form">
             <label
               htmlFor="new-comment-txt"
               className="comments__label-field-container"
@@ -33,7 +35,7 @@ function Comments({ selectedVideo }) {
             <div className="comments__new-btn-container">
               <Btn label="comment" />
             </div>
-          </form>
+          </form> */}
         </div>
         <article className="comments__list-container">
           {/* We will insert each comment inside using JavaScript. */}

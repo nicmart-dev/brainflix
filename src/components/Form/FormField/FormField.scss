@@ -12,9 +12,32 @@
     }
   }
 
-  &__container--comment {
-    @include desktop {
-      margin-right: $padding-between-components-tablet;
+  &__label-field-container--comment {
+    display: flex;
+    flex-direction: column;
+    @include mobile {
+      @include spacing-between-components;
     }
+
+    text-transform: uppercase;
+    color: $color-primary-silver;
+    font-weight: $semi-bold;
+    @include tablet {
+      width: 100%;
+      margin-right: $padding-between-components-tablet;
+      padding-bottom: 0.3125rem;
+    }
+  }
+}
+
+// set large height for video description textarea field in video upload page
+.form-field--description {
+  height: calc($form-field-height * 3);
+}
+
+// set single line height through for comment field in video page
+.form-field--comment {
+  @include tablet {
+    height: $form-field-height-tablet;
   }
 }
