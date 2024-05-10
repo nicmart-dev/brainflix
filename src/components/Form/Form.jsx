@@ -99,6 +99,7 @@ function Form({ cta }) {
                 required
                 placeholder="Add a title to your video"
                 onChange={handleChangeTitle}
+                value={title}
               ></input>
             </div>
             <div className="form__label-field-container">
@@ -109,6 +110,7 @@ function Form({ cta }) {
                 required
                 placeholder="Add a description to your video"
                 onChange={handleChangeDesc}
+                value={description}
               ></textarea>
             </div>
           </div>
