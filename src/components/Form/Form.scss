@@ -12,26 +12,8 @@
       gap: $padding-between-components-tablet;
     }
   }
-  &__label-field-container {
-    display: flex;
-    flex-direction: column;
-    @include spacing-between-components(topbottom);
 
-    @include tablet {
-      width: 100%;
-    }
-  }
-
-  &__label-field-container--comment {
-    @include desktop {
-      margin-right: $padding-between-components-tablet;
-    }
-  }
-
-  &__textarea--comment {
-  }
-
-  &__container {
+  &__field-container {
     /* use entire width */
     flex: 1;
   }

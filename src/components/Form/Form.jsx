@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 import Btn from "../Btn/Btn";
+import FormField from "./FormField/FormField";
 import "./Form.scss";
 
 import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
@@ -13,17 +14,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 function Form({ cta }) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const { control, handleSubmit } = useForm();
   const navigate = useNavigate();
-
-  // change handler for all inputs
-  const handleChangeTitle = (event) => {
-    setTitle(event.target.value);
-  };
-  const handleChangeDesc = (event) => {
-    setDescription(event.target.value);
-  };
 
   /* Notify using toast package and then navigate to relevant page */
   const notifyNav = (label) => {
@@ -56,20 +48,9 @@ function Form({ cta }) {
     });
   };
 
-  /* Check if the fields are all filled using default browser validation */
-  const isFormValid = (event) => {
-    const form = event.target;
-    if (!form) return false;
-    else return form.checkValidity();
-  };
-
   /* Navigate to Home/video page on form submit */
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (isFormValid(event)) {
-      notifyNav("publish");
-    }
+  const onSubmit = () => {
+    notifyNav("publish");
   };
 
   /* Display notification and navigate on non submit button click */
@@ -83,32 +64,30 @@ function Form({ cta }) {
       <form
         className={`form form--${cta}`}
         id={`${cta}`}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="form__img-input-fields-container">
           <div>
             <h2 className="form__subtitle">Video Thumbnail</h2>
             <img src={uploadVideoPreview} alt="" className="form__img" />
           </div>
-          <div className="form__container">
-            <label className="form__label-field-container">
-              Title your video
-              <input
-                required
-                placeholder="Add a title to your video"
-                onChange={handleChangeTitle}
-                value={title}
-              ></input>
-            </label>
-            <label className="form__label-field-container">
-              Add a video description
-              <textarea
-                required
-                placeholder="Add a description to your video"
-                onChange={handleChangeDesc}
-                value={description}
-              ></textarea>
-            </label>
+          <div className="form__field-container">
+            <FormField
+              name="description"
+              label="Title your video"
+              control={control}
+              required
+              type="input"
+              placeholder="Add a title to your video" // Placeholder text provided here
+            />
+            <FormField
+              name="description"
+              label="Add a video description"
+              control={control}
+              required
+              type="textarea"
+              placeholder="Add a description to your video" // Placeholder text provided here
+            />
           </div>
         </div>
 
