@@ -20,9 +20,11 @@ function Comments({ selectedVideo, setIsCommentPosted }) {
           <Form cta="comment" setIsCommentPosted={setIsCommentPosted} />
         </div>
         <article className="comments__list-container">
-          {selectedVideo.comments?.map((comment) => (
-            <Comment comment={comment} />
-          ))}
+          {selectedVideo.comments
+            .sort((a, b) => b.timestamp - a.timestamp)
+            ?.map((comment) => (
+              <Comment comment={comment} key={comment.id} />
+            ))}
         </article>
       </div>
     </section>

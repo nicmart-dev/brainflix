@@ -58,8 +58,6 @@ function Form({ cta, setIsCommentPosted }) {
   const onSubmit = async (formData) => {
     try {
       if (cta === "comment") {
-        console.log("submit object", formData.comment);
-
         // Constructs a new comment object to pass to api as body
         const commentBody = {
           name: "Anonymous fan",
