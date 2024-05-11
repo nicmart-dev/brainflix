@@ -49,8 +49,8 @@ function Form({ cta }) {
   };
 
   /* Navigate to Home/video page on form submit */
-  const onSubmit = () => {
-    notifyNav("publish");
+  const onSubmit = (cta) => {
+    notifyNav(cta);
   };
 
   /* Display notification and navigate on non submit button click */
@@ -148,7 +148,7 @@ function Form({ cta }) {
       <form
         className={`form form--${cta}`}
         id={`${cta}`}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(() => onSubmit(cta))}
       >
         {cta === "publish" && FormThumbnail}
         {cta === "comment" && FieldContainer}
