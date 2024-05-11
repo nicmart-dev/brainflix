@@ -96,7 +96,7 @@ function Form({ cta }) {
 
   // Shared fields for upload page or comments component
   const FieldContainer = (
-    <div className="form__field-container">
+    <div className={`form__field-container form__field-container--${cta}`}>
       {cta === "publish" && VideoTitleField}
       {cta === "publish" && VideoDescField}
       {cta === "comment" && CommentTextField}
@@ -120,13 +120,15 @@ function Form({ cta }) {
 
   //submit button, all forms should have one of these
   const SubmitBtn = (label) => (
-    <div className="form__cta-btn-container">
+    <div
+      className={`form__cta-btn-container form__cta-btn-container--${label}`}
+    >
       <Btn label={label} type="submit" />
     </div>
   );
   // optional cancel button if form requires it
   const CancelBtn = (
-    <div className="form__cta-btn-container">
+    <div className="form__cta-btn-container form__cta-btn-container--cancel">
       <Btn
         label="cancel"
         onClick={(event) => handleButtonClick("cancel", event)}

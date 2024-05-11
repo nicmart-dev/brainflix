@@ -17,6 +17,20 @@
     /* use entire width */
     flex: 1;
   }
+
+  &__field-container--comment {
+    display: flex;
+    flex-direction: column;
+    @include mobile {
+      @include spacing-between-components;
+    }
+    @include tablet {
+      width: 100%;
+      margin-right: $padding-between-components-tablet;
+      padding-bottom: 0.3125rem;
+    }
+  }
+
   &__subtitle {
     padding-bottom: 0;
   }
@@ -37,9 +51,12 @@
     }
   }
 
-  &__cta-btn-container {
+  // add space between only if form with two or more buttons (ie. video upload page, not comments page)
+  &__cta-btn-container--cancel,
+  &__cta-btn-container--publish {
     @include spacing-between-components(topbottom);
   }
+
   //reorder publish button to appear after cancel on tablet
   &__cta-btn-container:nth-of-type(1) {
     @include tablet {

@@ -12,59 +12,12 @@
       padding-right: $padding-between-components-tablet;
     }
   }
-  &__new-comment-container div div:first-child {
-    @include mobile {
-      margin-top: 1.4375rem;
-    }
-  }
 
   &__title {
     text-transform: capitalize;
     color: $color-primary-brainflix-black;
     @include tablet {
       padding-bottom: $padding-after-headlines;
-    }
-  }
-
-  &__form {
-    /* use entire width */
-    flex: 1;
-
-    @include tablet {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-  }
-
-  &__new-comment-txt {
-    @include tablet {
-      height: $form-field-height-tablet;
-      overflow: hidden; //hide scroll bar
-    }
-  }
-
-  &__label-field-container {
-    display: flex;
-    flex-direction: column;
-    @include mobile {
-      @include spacing-between-components;
-    }
-
-    text-transform: uppercase;
-    color: $color-primary-silver;
-    font-weight: $semi-bold;
-    @include tablet {
-      width: 100%;
-      margin-right: $padding-between-components-tablet;
-      padding-bottom: 0.3125rem;
-    }
-  }
-
-  &__new-btn-container {
-    @include tablet {
-      height: 3.125rem;
     }
   }
 

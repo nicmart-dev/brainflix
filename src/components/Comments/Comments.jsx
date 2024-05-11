@@ -18,24 +18,6 @@ function Comments({ selectedVideo }) {
         <div className="comments__new-comment-container">
           <Avatar isLoggedIn={true} />
           <Form cta="comment" />
-          {/* <form className="comments__form" id="new-comment-form">
-            <label
-              htmlFor="new-comment-txt"
-              className="comments__label-field-container"
-            >
-              Join the conversation{" "}
-              <textarea
-                id="new-comment-txt"
-                name="comment"
-                className="comments__new-comment-txt"
-                required
-                placeholder="Add a new comment"
-              ></textarea>
-            </label>
-            <div className="comments__new-btn-container">
-              <Btn label="comment" />
-            </div>
-          </form> */}
         </div>
         <article className="comments__list-container">
           {/* We will insert each comment inside using JavaScript. */}
