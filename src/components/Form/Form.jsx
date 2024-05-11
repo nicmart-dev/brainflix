@@ -177,23 +177,23 @@ function Form({ cta, setIsCommentPosted }) {
     </div>
   );
 
-  /* Return different form if video upload page, or in comments component  */
+  /* Return different form if video upload page, or in comments component.
+  Disable buttons if form submitted, 
+  and show message instead of form fields after posting new comment  */
 
-  if (!isSubmitted) {
-    return (
-      <form
-        className={`form form--${cta}`}
-        id={`${cta}`}
-        onSubmit={handleSubmit(onSubmit)}
-        disabled={isSubmitted}
-      >
-        {cta === "publish" && FormThumbnail}
-        {cta === "comment" && FieldContainer}
-        {BtnContainer}
-        <ToastContainer />
-      </form>
-    );
-  } else return "Thanks for posting a comment!";
+  return (
+    <form
+      className={`form form--${cta}`}
+      id={`${cta}`}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      {cta === "publish" && FormThumbnail}
+      {cta === "comment" && !isSubmitted && FieldContainer}
+      {cta === "comment" && isSubmitted && "Thanks for posting a comment!"}
+      {!isSubmitted && BtnContainer}
+      <ToastContainer />
+    </form>
+  );
 }
 
 export default Form;
