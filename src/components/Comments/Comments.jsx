@@ -4,7 +4,7 @@ import Comment from "./Comment/Comment";
 import "./Comments.scss";
 
 /* Insert a comment component for each comment for selected video */
-function Comments({ selectedVideo }) {
+function Comments({ selectedVideo, setIsCommentPosted }) {
   const commentCount = selectedVideo.comments.length;
 
   return (
@@ -17,7 +17,7 @@ function Comments({ selectedVideo }) {
       <div className="comments__comment-list-form-container">
         <div className="comments__new-comment-container">
           <Avatar isLoggedIn={true} />
-          <Form cta="comment" />
+          <Form cta="comment" setIsCommentPosted={setIsCommentPosted} />
         </div>
         <article className="comments__list-container">
           {selectedVideo.comments?.map((comment) => (

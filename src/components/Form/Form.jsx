@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
 
-function Form({ cta }) {
+function Form({ cta, setIsCommentPosted }) {
   const { control, handleSubmit } = useForm();
   const navigate = useNavigate();
 
@@ -66,7 +66,11 @@ function Form({ cta }) {
 
         // handle form action differently if using api or not
         if (useAPI) {
-          postComment("84e96018-4022-434e-80bf-000ce4cd12b8", commentBody);
+          await postComment(
+            "84e96018-4022-434e-80bf-000ce4cd12b8",
+            commentBody
+          );
+          setIsCommentPosted(true); // trigger refresh of comments
         }
 
         /* TODO need to handle case when useAPI= false */
