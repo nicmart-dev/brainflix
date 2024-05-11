@@ -8,7 +8,7 @@ const base_url = "https://unit-3-project-api-0a5620414506.herokuapp.com";
 If failure getting video list from api, this flag is also programmatically set to false 
 Besides used for testing api, it is used to disable api-only features 
 (eg. posting/deleting comments) */
-let useAPI = true;
+export let useAPI = true;
 
 /* get videos from api and fallback to using static data 
 if api error or if useAPI flag set to false */
@@ -63,5 +63,27 @@ async function getStaticDetailsData(id) {
     const videoDetails = videoDetailsData.default.find((video) => video.id === id);
     return videoDetails;
 }
+
+/* post comment using api and fallback to just add comments manually to state
+if api error or if useAPI flag set to false */
+export async function postComment(videoId, comment) {
+
+    if (useAPI) {
+        try {
+            const response = await axios.post(
+                `${base_url}/videos/${videoId}/comments?api_key=${api_key}`, comment
+            );
+            // return posted comment
+            return response.data;
+        } catch (error) {
+            console.log("Could not submit comments to API");
+
+            useAPI = false;
+        }
+    } else return; // do nothing if can't use api
+}
+
+
+
 
 export default getVideos;

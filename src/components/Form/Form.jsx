@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"; // we are using https://react-hook-fo
 
 import Btn from "../Btn/Btn";
 import FormField from "./FormField/FormField";
+import { postComment, useAPI } from "../../utils/brainflix-api";
 import "./Form.scss";
 
 import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
@@ -25,7 +26,7 @@ function Form({ cta }) {
     let route = "/"; // by default navigate to Home/video page
     switch (label) {
       case "publish":
-        msg = "Video published, navigating to home page";
+        msg = "Video published, navigating to homepage";
         type = "success";
 
         break;
@@ -48,9 +49,33 @@ function Form({ cta }) {
     });
   };
 
-  /* Navigate to Home/video page on form submit */
-  const onSubmit = (cta) => {
-    notifyNav(cta);
+  /* Form submit action. Post comments (only if comment form), 
+  and navigate to relevant route. */
+  const onSubmit = async (formData) => {
+    try {
+      if (cta === "comment") {
+        console.log("submit object", formData.comment);
+
+        // Constructs a new comment object to pass to api as body
+        const commentBody = {
+          name: "Anonymous fan",
+          comment: formData.comment,
+        };
+
+        // TODO get video ID and replace hardcoded one
+
+        // handle form action differently if using api or not
+        if (useAPI) {
+          postComment("84e96018-4022-434e-80bf-000ce4cd12b8", commentBody);
+        }
+
+        /* TODO need to handle case when useAPI= false */
+      }
+
+      notifyNav(cta);
+    } catch (error) {
+      console.log("error submitting form", error);
+    }
   };
 
   /* Display notification and navigate on non submit button click */
@@ -150,7 +175,7 @@ function Form({ cta }) {
       <form
         className={`form form--${cta}`}
         id={`${cta}`}
-        onSubmit={handleSubmit(() => onSubmit(cta))}
+        onSubmit={handleSubmit(onSubmit)}
       >
         {cta === "publish" && FormThumbnail}
         {cta === "comment" && FieldContainer}
