@@ -22,8 +22,8 @@ const VideoPage = () => {
   /* using state to navigate to notfound page with useEffect hook */
   const [notFound, setNotFound] = useState(false);
 
-  /* Track if comment is posted to trigger main video details refresh */
-  const [isCommentPosted, setIsCommentPosted] = useState(false);
+  // Initialize the list of video IDs for which a comment was posted
+  const [commentPostedVideoIds, setCommentPostedVideoIds] = useState([]);
 
   /*  show video list on initial page load */
   useEffect(() => {
@@ -57,7 +57,7 @@ const VideoPage = () => {
       }
     }
     fetchVideoDetails();
-  }, [videoId, videos, isCommentPosted]);
+  }, [videoId, videos, commentPostedVideoIds]);
 
   // Render the main video or redirect to NotFound page if not found
   if (notFound) {
@@ -75,7 +75,8 @@ const VideoPage = () => {
               <VideoDetails selectedVideo={mainVideo} />
               <Comments
                 selectedVideo={mainVideo}
-                setIsCommentPosted={setIsCommentPosted}
+                commentPostedVideoIds={commentPostedVideoIds}
+                setCommentPostedVideoIds={setCommentPostedVideoIds}
               />
             </div>
             <aside className="video-page__next-videos-container">

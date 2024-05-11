@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form"; // we are using https://react-hook-form.com/
+import { useEffect } from "react";
 
 import Btn from "../Btn/Btn";
 import FormField from "./FormField/FormField";
@@ -14,11 +15,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
 
-function Form({ cta, setIsCommentPosted }) {
+function Form({
+  cta,
+  commentPostedVideoIds,
+  setCommentPostedVideoIds,
+  selectedVideo,
+}) {
   const {
     control,
     handleSubmit,
-    formState: { isSubmitted },
+    reset,
+    formState: { isSubmitted, isSubmitSuccessful },
   } = useForm();
   const navigate = useNavigate();
 
@@ -41,6 +48,7 @@ function Form({ cta, setIsCommentPosted }) {
       case "comment":
         msg = "Comment posted!";
         type = "success";
+        route = ""; // don't navigate
         break;
       default:
       //otherwise use values already set during variables init
@@ -64,15 +72,15 @@ function Form({ cta, setIsCommentPosted }) {
           comment: formData.comment,
         };
 
-        // TODO get video ID and replace hardcoded one
-
         // handle form action differently if using api or not
         if (useAPI) {
-          await postComment(
-            "84e96018-4022-434e-80bf-000ce4cd12b8",
-            commentBody
-          );
-          setIsCommentPosted(true); // trigger refresh of comments
+          await postComment(selectedVideo.id, commentBody);
+
+          // track a comment was posted for this video through grandparent component state, which triggers refresh to show newly added comment
+          setCommentPostedVideoIds((prev) => [
+            ...prev,
+            { videoId: selectedVideo.id },
+          ]);
         }
 
         /* TODO need to handle case when useAPI= false */
@@ -88,6 +96,17 @@ function Form({ cta, setIsCommentPosted }) {
   const handleButtonClick = (label, event) => {
     event.preventDefault(); // Stop the default form submission behavior
     notifyNav(label);
+  };
+
+  useEffect(() => {
+    reset(undefined, { keepIsSubmitted: true }); // reset other form state but keep defaultValues and form values
+  }, [isSubmitSuccessful, reset]);
+
+  //used to conditionally display form if user did not post comment already
+  const isCommentPosted = () => {
+    return commentPostedVideoIds.some(
+      (item) => item.videoId === selectedVideo.id
+    );
   };
 
   //input title field only for upload page
@@ -186,9 +205,12 @@ function Form({ cta, setIsCommentPosted }) {
       onSubmit={handleSubmit(onSubmit)}
     >
       {cta === "publish" && FormThumbnail}
-      {cta === "comment" && !isSubmitted && FieldContainer}
-      {cta === "comment" && isSubmitted && "Thanks for posting a comment!"}
-      {!isSubmitted && BtnContainer}
+      {cta === "comment" && !isCommentPosted() && FieldContainer}
+      {cta === "comment" &&
+        isCommentPosted() &&
+        "Thanks for posting a comment!"}
+      {cta === "publish" && !isSubmitted && BtnContainer}
+      {cta === "comment" && !isCommentPosted() && BtnContainer}
       <ToastContainer />
     </form>
   );
