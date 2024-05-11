@@ -15,7 +15,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 function Form({ cta, setIsCommentPosted }) {
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitted },
+  } = useForm();
   const navigate = useNavigate();
 
   /* Notify using toast package and then navigate to relevant page */
@@ -174,20 +178,22 @@ function Form({ cta, setIsCommentPosted }) {
   );
 
   /* Return different form if video upload page, or in comments component  */
-  return (
-    <>
+
+  if (!isSubmitted) {
+    return (
       <form
         className={`form form--${cta}`}
         id={`${cta}`}
         onSubmit={handleSubmit(onSubmit)}
+        disabled={isSubmitted}
       >
         {cta === "publish" && FormThumbnail}
         {cta === "comment" && FieldContainer}
         {BtnContainer}
         <ToastContainer />
       </form>
-    </>
-  );
+    );
+  } else return "Thanks for posting a comment!";
 }
 
 export default Form;
