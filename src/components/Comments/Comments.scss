@@ -28,48 +28,4 @@
     /* add bottom margin to display last divider */
     @include spacing-between-components();
   }
-  &__comment-container {
-    display: flex;
-
-    /* add padding to top */
-    @include spacing-between-components(top);
-
-    /* add divider after each comment */
-    @include line-divider;
-
-    /* also add line divider in first comment */
-    &:first-child {
-      @include line-divider(topbottom);
-    }
-    /* Remove bottom line divider for last comment on desktop */
-    &:last-child {
-      @include desktop {
-        border-bottom: 0;
-      }
-    }
-    @include desktop {
-      padding-right: $padding-between-components-tablet;
-    }
-  }
-  &__comment-txt-container {
-    display: flex;
-    flex-direction: column;
-
-    /* use entire width */
-    flex: 1;
-    flex-grow: 1;
-    flex-basis: 0;
-  }
-  &__user-name-date-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  &__user-name {
-    text-wrap: nowrap;
-    font-weight: $bold;
-  }
-  &__date {
-    color: $color-primary-silver;
-  }
 }

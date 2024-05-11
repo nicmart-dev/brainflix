@@ -1,9 +1,9 @@
-import formatDate from "../../utils/helperFunctions";
 import Avatar from "../Avatar/Avatar";
-import Btn from "../Btn/Btn";
 import Form from "../Form/Form";
+import Comment from "./Comment/Comment";
 import "./Comments.scss";
 
+/* Insert a comment component for each comment for selected video */
 function Comments({ selectedVideo }) {
   const commentCount = selectedVideo.comments.length;
 
@@ -20,21 +20,8 @@ function Comments({ selectedVideo }) {
           <Form cta="comment" />
         </div>
         <article className="comments__list-container">
-          {/* We will insert each comment inside using JavaScript. */}
-
           {selectedVideo.comments?.map((comment) => (
-            <article key={comment.id} className="comments__comment-container">
-              <Avatar />
-              <div className="comments__comment-txt-container">
-                <div className="comments__user-name-date-container">
-                  <span className="comments__user-name">{comment.name}</span>
-                  <span className="comments__date">
-                    {formatDate(comment.timestamp)}
-                  </span>
-                </div>
-                <p className="comments__comment-txt">{comment.comment}</p>
-              </div>
-            </article>
+            <Comment comment={comment} />
           ))}
         </article>
       </div>
