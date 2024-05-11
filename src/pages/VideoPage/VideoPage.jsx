@@ -11,7 +11,7 @@ import { useParams, Navigate } from "react-router-dom";
 
 import { getVideos, getVideoDetails } from "../../utils/brainflix-api";
 
-const VideoPage = () => {
+const VideoPage = ({ commentPostedVideoIds, setCommentPostedVideoIds }) => {
   const { videoId } = useParams();
 
   /* initialize the main video and list of video states unconditionally, and then update it as needed 
@@ -21,9 +21,6 @@ const VideoPage = () => {
 
   /* using state to navigate to notfound page with useEffect hook */
   const [notFound, setNotFound] = useState(false);
-
-  // Initialize the list of video IDs for which a comment was posted
-  const [commentPostedVideoIds, setCommentPostedVideoIds] = useState([]);
 
   /*  show video list on initial page load */
   useEffect(() => {

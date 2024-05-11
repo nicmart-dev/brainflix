@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form"; // we are using https://react-hook-form.com/
-import { useEffect } from "react";
 
 import Btn from "../Btn/Btn";
 import FormField from "./FormField/FormField";
@@ -24,8 +23,7 @@ function Form({
   const {
     control,
     handleSubmit,
-    reset,
-    formState: { isSubmitted, isSubmitSuccessful },
+    formState: { isSubmitted },
   } = useForm();
   const navigate = useNavigate();
 
@@ -97,10 +95,6 @@ function Form({
     event.preventDefault(); // Stop the default form submission behavior
     notifyNav(label);
   };
-
-  useEffect(() => {
-    reset(undefined, { keepIsSubmitted: true }); // reset other form state but keep defaultValues and form values
-  }, [isSubmitSuccessful, reset]);
 
   //used to conditionally display form if user did not post comment already
   const isCommentPosted = () => {
@@ -210,6 +204,7 @@ function Form({
         isCommentPosted() &&
         "Thanks for posting a comment!"}
       {cta === "publish" && !isSubmitted && BtnContainer}
+      {cta === "publish" && isSubmitted && "Thanks for posting a video!"}
       {cta === "comment" && !isCommentPosted() && BtnContainer}
       <ToastContainer />
     </form>
