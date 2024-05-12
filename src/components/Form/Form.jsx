@@ -2,14 +2,14 @@ import { useForm } from "react-hook-form"; // we are using https://react-hook-fo
 
 import Btn from "../Btn/Btn";
 import FormField from "./FormField/FormField";
-import { postComment } from "../../utils/brainflix-api";
+import { postComment, deleteComment } from "../../utils/brainflix-api";
 import "./Form.scss";
 
 import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
 
 /* Required dependencies to use Toast package for notification 
 https://www.npmjs.com/package/react-toastify */
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
@@ -20,7 +20,9 @@ function Form({
   cta,
   commentPostedVideoIds,
   setCommentPostedVideoIds,
-  selectedVideo,
+  setCommentIdDeleted,
+  selectedVideoId,
+  commentId,
 }) {
   const {
     register,
@@ -45,6 +47,11 @@ function Form({
       case "cancel":
         msg = "Video upload cancelled, navigating back to homepage";
         type = "info";
+        break;
+      case "delete":
+        msg = "Comment deleted";
+        type = "success";
+        route = ""; // don't navigate
         break;
       case "comment":
         msg = "Comment posted!";
@@ -75,7 +82,7 @@ function Form({
 
         // handle form action differently if using api or not
         if (useAPI) {
-          await postComment(selectedVideo.id, commentBody);
+          await postComment(selectedVideoId, commentBody);
           try {
           } catch (error) {
             console.log("Could not submit comments to API");
@@ -85,11 +92,23 @@ function Form({
           // track a comment was posted for this video through grandparent component state, which triggers refresh to show newly added comment
           setCommentPostedVideoIds((prev) => [
             ...prev,
-            { videoId: selectedVideo.id },
+            { videoId: selectedVideoId },
           ]);
         }
 
         /* TODO need to handle case when useAPI= false */
+      }
+      if (cta === "delete") {
+        if (useAPI) {
+          await deleteComment(selectedVideoId, commentId);
+          try {
+          } catch (error) {
+            console.log("Could not delete comments using API");
+            setUseAPI(false);
+          }
+          // track a comment was deleted for this video through grandparent component state, which triggers refresh upon removing comment
+          setCommentIdDeleted((prev) => [...prev, { commentId: commentId }]);
+        }
       }
 
       notifyNav(cta);
@@ -107,7 +126,7 @@ function Form({
   //used to conditionally display form if user did not post comment already
   const isCommentPosted = () => {
     return commentPostedVideoIds.some(
-      (item) => item.videoId === selectedVideo.id
+      (item) => item.videoId === selectedVideoId
     );
   };
 
@@ -188,7 +207,8 @@ function Form({
     </div>
   );
 
-  // only show cancel button on publish page
+  /* only show cancel button on publish page
+  show delete button on comment component */
   const BtnContainer = (
     <div className="form__cta-btn-nav">
       {SubmitBtn(cta)}
@@ -214,7 +234,7 @@ function Form({
       {cta === "publish" && !isSubmitted && BtnContainer}
       {cta === "publish" && isSubmitted && "Thanks for posting a video!"}
       {cta === "comment" && !isCommentPosted() && BtnContainer}
-      <ToastContainer />
+      {cta === "delete" && BtnContainer}
     </form>
   );
 }

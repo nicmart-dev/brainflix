@@ -9,6 +9,8 @@ import { useState } from "react"; // Import to then store video in state
 
 import { APIProvider } from "./context/apiContext"; // set as context to access globally
 
+import { ToastContainer } from "react-toastify"; // import at top level of component tree to avoid duplicate rendering issues for https://www.npmjs.com/package/react-toastify */
+
 function App() {
   /* Initialize the list of video IDs for which a comment was posted
   at parent level so it persists when navigating between video page and upload page */
@@ -46,6 +48,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </APIProvider>
   );
 }

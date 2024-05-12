@@ -27,6 +27,9 @@ const VideoPage = ({ commentPostedVideoIds, setCommentPostedVideoIds }) => {
   const [videos, setVideos] = useState([]);
   const [mainVideo, setMainVideo] = useState(null);
 
+  /* Initialize the list of deleted commentIDs */
+  const [commentIdDeleted, setCommentIdDeleted] = useState([]);
+
   /* using state to navigate to notfound page with useEffect hook */
   const [notFound, setNotFound] = useState(false);
 
@@ -89,7 +92,14 @@ const VideoPage = ({ commentPostedVideoIds, setCommentPostedVideoIds }) => {
       }
     }
     fetchVideoDetails();
-  }, [videoId, videos, commentPostedVideoIds, useAPI, setUseAPI]);
+  }, [
+    videoId,
+    videos,
+    commentPostedVideoIds,
+    useAPI,
+    setUseAPI,
+    commentIdDeleted,
+  ]);
 
   // Render the main video or redirect to NotFound page if not found
   if (notFound) {
@@ -109,6 +119,7 @@ const VideoPage = ({ commentPostedVideoIds, setCommentPostedVideoIds }) => {
                 selectedVideo={mainVideo}
                 commentPostedVideoIds={commentPostedVideoIds}
                 setCommentPostedVideoIds={setCommentPostedVideoIds}
+                setCommentIdDeleted={setCommentIdDeleted}
               />
             </div>
             <aside className="video-page__next-videos-container">

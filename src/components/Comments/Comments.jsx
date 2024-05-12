@@ -8,6 +8,7 @@ function Comments({
   selectedVideo,
   commentPostedVideoIds,
   setCommentPostedVideoIds,
+  setCommentIdDeleted,
 }) {
   const commentCount = selectedVideo.comments.length;
 
@@ -25,15 +26,19 @@ function Comments({
             cta="comment"
             commentPostedVideoIds={commentPostedVideoIds}
             setCommentPostedVideoIds={setCommentPostedVideoIds}
-            selectedVideo={selectedVideo}
-            key={selectedVideo.id}
+            selectedVideoId={selectedVideo.id}
           />
         </div>
         <article className="comments__list-container">
           {selectedVideo.comments
             .sort((a, b) => b.timestamp - a.timestamp)
             ?.map((comment) => (
-              <Comment comment={comment} key={comment.id} />
+              <Comment
+                comment={comment}
+                key={comment.id}
+                selectedVideoId={selectedVideo.id}
+                setCommentIdDeleted={setCommentIdDeleted}
+              />
             ))}
         </article>
       </div>

@@ -45,8 +45,7 @@ export async function getStaticDetailsData(id) {
     return videoDetails;
 }
 
-/* post comment using api and fallback to just add comments manually to state
-if api error or if useAPI flag set to false */
+/* post comment using api */
 export async function postComment(videoId, comment) {
     try {
         const response = await axios.post(
@@ -58,6 +57,20 @@ export async function postComment(videoId, comment) {
         console.log(error);
     }
 }
+
+/* delete comment using api */
+export async function deleteComment(videoId, commentId) {
+    try {
+        const response = await axios.delete(
+            `${base_url}/videos/${videoId}/comments/${commentId}?api_key=${api_key}`
+        );
+        // return posted comment
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 
 
