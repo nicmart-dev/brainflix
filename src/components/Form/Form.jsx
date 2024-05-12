@@ -23,7 +23,7 @@ function Form({
   selectedVideo,
 }) {
   const {
-    control,
+    register,
     handleSubmit,
     formState: { isSubmitted },
   } = useForm();
@@ -116,7 +116,7 @@ function Form({
     <FormField
       name="title"
       label="Title your video"
-      control={control}
+      register={register}
       required
       type="input"
       placeholder="Add a title to your video"
@@ -128,7 +128,7 @@ function Form({
     <FormField
       name="description"
       label="Add a video description"
-      control={control}
+      register={register}
       required
       type="textarea"
       placeholder="Add a description to your video"
@@ -139,7 +139,7 @@ function Form({
     <FormField
       name="comment"
       label="Join the conversation"
-      control={control}
+      register={register}
       required
       type="textarea"
       placeholder="Add a new comment"
@@ -198,8 +198,8 @@ function Form({
 
   /* Return different form if video upload page, or in comments component.
   Disable buttons if form submitted, 
-  and show message instead of form fields after posting new comment  */
-
+  and show message instead of form fields after posting new comment 
+ "handleSubmit" will validate inputs before invoking "onSubmit" */
   return (
     <form
       className={`form form--${cta}`}

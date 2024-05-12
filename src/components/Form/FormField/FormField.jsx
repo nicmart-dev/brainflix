@@ -1,28 +1,27 @@
-import { useController } from "react-hook-form";
-import { useState } from "react";
 import "./FormField.scss";
+import { useState } from "react";
 
 /* Create a single field of type input of textarea to be used by parent form component,
 and stores this as controlled component using https://react-hook-form.com/docs/usecontroller/controller
 */
-function FormField({ name, label, placeholder, control, required, type }) {
-  const { field } = useController({ name, control, rules: { required } });
-  const [value, setValue] = useState(field.value); // storing field value in state
+function FormField({ name, label, placeholder, register, required, type }) {
+  const [value, setValue] = useState(""); // storing field value in state
 
   const InputComponent = type === "textarea" ? "textarea" : "input";
 
+  /* register input into the hook by invoking the "register" function
+ include validation with required standard HTML validation rules */
   return (
     <label className={`form-field__container form-field__container--${name}`}>
       {label}
       <InputComponent
-        {...field}
-        value={value}
+        {...register(name, { required: required })}
         placeholder={placeholder}
+        required={required}
         onChange={(e) => {
-          field.onChange(e.target.value); // send data to hook form
           setValue(e.target.value);
         }}
-        required={required}
+        value={value}
         className={`form-field--${name}`}
       />
     </label>
