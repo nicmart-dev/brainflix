@@ -41,6 +41,7 @@
     color: $color-primary-blue;
   }
   &--delete {
+    background-color: $color-primary-silver;
     background-image: url(../../assets/icons/comment-delete.svg);
     background-size: 24px;
     @include mobile {
