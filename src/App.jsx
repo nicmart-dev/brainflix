@@ -7,13 +7,17 @@ import UploadPage from "./pages/UploadPage/UploadPage";
 
 import { useState } from "react"; // Import to then store video in state
 
+import { APIProvider } from "./context/apiContext"; // set as context to access globally
+
 function App() {
   /* Initialize the list of video IDs for which a comment was posted
   at parent level so it persists when navigating between video page and upload page */
   const [commentPostedVideoIds, setCommentPostedVideoIds] = useState([]);
 
+  /* Initialize use API feature flag at parent level, to  */
+
   return (
-    <>
+    <APIProvider>
       <BrowserRouter>
         <SiteHeader />
         <Routes>
@@ -42,7 +46,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </APIProvider>
   );
 }
 

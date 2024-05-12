@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"; // we are using https://react-hook-fo
 
 import Btn from "../Btn/Btn";
 import FormField from "./FormField/FormField";
-import { postComment, useAPI } from "../../utils/brainflix-api";
+import { postComment } from "../../utils/brainflix-api";
 import "./Form.scss";
 
 import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
@@ -13,6 +13,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
+
+import { useAPIContext } from "../../context/apiContext";
 
 function Form({
   cta,
@@ -26,6 +28,7 @@ function Form({
     formState: { isSubmitted },
   } = useForm();
   const navigate = useNavigate();
+  const { useAPI, setUseAPI } = useAPIContext();
 
   /* Notify using toast package and then navigate to relevant page */
   const notifyNav = (label) => {
@@ -73,6 +76,11 @@ function Form({
         // handle form action differently if using api or not
         if (useAPI) {
           await postComment(selectedVideo.id, commentBody);
+          try {
+          } catch (error) {
+            console.log("Could not submit comments to API");
+            setUseAPI(false);
+          }
 
           // track a comment was posted for this video through grandparent component state, which triggers refresh to show newly added comment
           setCommentPostedVideoIds((prev) => [
