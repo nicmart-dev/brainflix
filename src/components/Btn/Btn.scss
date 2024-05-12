@@ -40,4 +40,11 @@
     background-color: $color-secondary-alabaster;
     color: $color-primary-blue;
   }
+  &--delete {
+    background-image: url(../../assets/icons/comment-delete.svg);
+    background-size: 24px;
+    @include mobile {
+      width: 9.375rem;
+    }
+  }
 }
