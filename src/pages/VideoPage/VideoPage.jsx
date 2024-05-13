@@ -17,18 +17,17 @@ import {
 } from "../../utils/brainflix-api";
 
 import { useAPIContext } from "../../context/apiContext";
+import { useCommentContext } from "../../context/commentContext"; // set as context to access globally
 
-const VideoPage = ({ commentPostedVideoIds, setCommentPostedVideoIds }) => {
+const VideoPage = () => {
   const { videoId } = useParams();
   const { useAPI, setUseAPI } = useAPIContext();
+  const { commentIdDeleted, commentPostedVideoIds } = useCommentContext();
 
   /* initialize the main video and list of video states unconditionally, and then update it as needed 
   based on the condition, using useEffect hook */
   const [videos, setVideos] = useState([]);
   const [mainVideo, setMainVideo] = useState(null);
-
-  /* Initialize the list of deleted commentIDs */
-  const [commentIdDeleted, setCommentIdDeleted] = useState([]);
 
   /* using state to navigate to notfound page with useEffect hook */
   const [notFound, setNotFound] = useState(false);
@@ -115,12 +114,7 @@ const VideoPage = ({ commentPostedVideoIds, setCommentPostedVideoIds }) => {
           <section className="video-page__post-video-container">
             <div className="video-page__video-comments-container">
               <VideoDetails selectedVideo={mainVideo} />
-              <Comments
-                selectedVideo={mainVideo}
-                commentPostedVideoIds={commentPostedVideoIds}
-                setCommentPostedVideoIds={setCommentPostedVideoIds}
-                setCommentIdDeleted={setCommentIdDeleted}
-              />
+              <Comments selectedVideo={mainVideo} />
             </div>
             <aside className="video-page__next-videos-container">
               <NextVideos videoList={videos} selectedVideoId={mainVideo.id} />

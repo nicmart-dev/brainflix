@@ -7,12 +7,7 @@ import likesIcon from "../../../assets/icons/likes.svg";
 
 import { useAPIContext } from "../../../context/apiContext";
 
-function Comment({
-  comment,
-  selectedVideoId,
-  setCommentIdDeleted,
-  setCommentPostedVideoIds,
-}) {
+function Comment({ comment, selectedVideoId }) {
   const { useAPI } = useAPIContext();
 
   const commentBtnContainer = (
@@ -25,8 +20,6 @@ function Comment({
         cta="delete"
         selectedVideoId={selectedVideoId}
         commentId={comment.id}
-        setCommentIdDeleted={setCommentIdDeleted}
-        setCommentPostedVideoIds={setCommentPostedVideoIds}
       />
     </div>
   );

@@ -15,15 +15,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 import { useAPIContext } from "../../context/apiContext";
+import { useCommentContext } from "../../context/commentContext";
 
-function Form({
-  cta,
-  commentPostedVideoIds,
-  setCommentPostedVideoIds,
-  setCommentIdDeleted,
-  selectedVideoId,
-  commentId,
-}) {
+function Form({ cta, selectedVideoId, commentId }) {
   const {
     register,
     handleSubmit,
@@ -31,6 +25,11 @@ function Form({
   } = useForm();
   const navigate = useNavigate();
   const { useAPI, setUseAPI } = useAPIContext();
+  const {
+    setCommentPostedVideoIds,
+    commentPostedVideoIds,
+    setCommentIdDeleted,
+  } = useCommentContext();
 
   /* Notify using toast package and then navigate to relevant page */
   const notifyNav = (label) => {
