@@ -10,17 +10,21 @@ import { useAPIContext } from "../../../context/apiContext";
 function Comment({ comment, selectedVideoId }) {
   const { useAPI } = useAPIContext();
 
+  const deleteBtn = (
+    <Form
+      cta="delete"
+      selectedVideoId={selectedVideoId}
+      commentId={comment.id}
+    />
+  );
+
   const commentBtnContainer = (
     <div className="comment__button-container" id={comment.id}>
       <div className="comment__likes-container">
         <img src={likesIcon} alt="likes icon" className="comment__likes-img" />
         <span className="comment__likes">{comment.likes}</span>
       </div>
-      <Form
-        cta="delete"
-        selectedVideoId={selectedVideoId}
-        commentId={comment.id}
-      />
+      {useAPI && deleteBtn}
     </div>
   );
 
@@ -33,7 +37,7 @@ function Comment({ comment, selectedVideoId }) {
           <span className="comment__date">{formatDate(comment.timestamp)}</span>
         </div>
         <p>{comment.comment}</p>
-        {useAPI && commentBtnContainer}
+        {commentBtnContainer}
       </div>
     </article>
   );
