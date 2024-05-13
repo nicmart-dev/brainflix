@@ -6,7 +6,7 @@ import NextVideos from "../../components/NextVideos/NextVideos";
 import VideoDetails from "../../components/VideoDetails/VideoDetails";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
-import { useState, useEffect } from "react"; // Import to then store video in state
+import { useState, useEffect, useCallback } from "react"; // Import to then store video in state
 import { useParams, Navigate } from "react-router-dom";
 
 import {
@@ -32,7 +32,34 @@ const VideoPage = () => {
   /* using state to navigate to notfound page with useEffect hook */
   const [notFound, setNotFound] = useState(false);
 
-  /*  show video list on initial page load */
+  /* used to set main video at page load or when changing video */
+  const fetchVideoDetails = useCallback(
+    async (id) => {
+      let videoDetails;
+
+      //get video details from API or use static json file data if error or if api feature switch toggled off
+      if (useAPI) {
+        try {
+          videoDetails = await getVideoDetails(id);
+        } catch (error) {
+          console.log(
+            "Could not get video details from BrainFlix API, importing static data instead."
+          );
+          videoDetails = await getStaticDetailsData(id);
+          setUseAPI(false);
+        }
+      } else videoDetails = await getStaticDetailsData(id);
+      //now that we should have video details, set it as main video otherwise display page not found
+      if (videoDetails) {
+        setMainVideo(videoDetails);
+      } else {
+        setNotFound(true);
+      }
+    },
+    [useAPI, setUseAPI]
+  );
+
+  /*  show video list on initial page load or when navigating from upload video page */
   useEffect(() => {
     async function fetchVideos() {
       // get videos from api and fallback to using static data if api error or if useAPI flag set to false */
@@ -56,48 +83,28 @@ const VideoPage = () => {
     }
 
     fetchVideos();
-  }, [setUseAPI, useAPI]);
+  }, [fetchVideoDetails, setUseAPI, useAPI, videos]);
 
   /*  update main video and its details each time:
   1. videoId changes,  
   2. set to first video as soon as video list is loaded or when clicking on header logo 
   3. a new comment is posted */
   useEffect(() => {
-    async function fetchVideoDetails() {
-      // Set main video if videoId is set
-      if (videoId) {
-        // get details of a specific video from api and fallback to using static data if api error or if useAPI flag set to false
-        if (useAPI) {
-          try {
-          } catch (error) {
-            console.log(
-              "Could not get video details from BrainFlix API, importing static data instead."
-            );
-            getStaticDetailsData(videoId);
-            setUseAPI(false);
-          }
-          const videoDetails = await getVideoDetails(videoId);
-
-          if (videoDetails) {
-            setMainVideo(videoDetails);
-          } else {
-            setNotFound(true); // If video not found, set notFound state to true
-          }
-        } else getStaticDetailsData(videoId); // else try to get static data without using api
-      } else if (videos && videos.length > 0) {
-        // set main video to first video, but only when videos have been loaded
-        const firstVideoDetails = await getVideoDetails(videos[0].id);
-        setMainVideo(firstVideoDetails); // reset video when clicking on logo while on video page
-      }
+    let id;
+    // Set main video if videoId is set, otherwise set to first video
+    if (videoId) {
+      id = videoId;
+    } else if (videos && videos.length > 0) {
+      // set main video to first video, but only when videos have been loaded
+      id = videos[0].id;
     }
-    fetchVideoDetails();
+    if (id) fetchVideoDetails(id);
   }, [
     videoId,
     videos,
     commentPostedVideoIds,
-    useAPI,
-    setUseAPI,
     commentIdDeleted,
+    fetchVideoDetails,
   ]);
 
   // Render the main video or redirect to NotFound page if not found
