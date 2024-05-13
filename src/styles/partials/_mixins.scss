@@ -17,7 +17,7 @@
 }
 
 @mixin mobile {
-  @media screen and (max-width: $tablet-breakpoint) {
+  @media screen and (max-width: #{$tablet-breakpoint - 1}) {
     @content;
   }
 }
