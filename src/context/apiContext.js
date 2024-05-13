@@ -3,8 +3,10 @@ import React, { createContext, useState, useContext } from "react";
 
 const APIContext = createContext();
 
+const isAPIused = true; // API feature toggle initially enabled
+
 export const APIProvider = ({ children }) => {
-    const [useAPI, setUseAPI] = useState(true);
+    const [useAPI, setUseAPI] = useState(isAPIused);
 
     return (
         <APIContext.Provider value={{ useAPI, setUseAPI }}>
