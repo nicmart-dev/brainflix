@@ -69,8 +69,11 @@ function Form({
     });
   };
 
-  /* Form submit action. Post comments (only if comment form), 
-  and navigate to relevant route. */
+  /* Form submit action. Handle forms to:
+  1. Post comments (only if comment form)
+  2. Delete comment on click Delete button form in video comments
+  Then optionally navigate to relevant route.
+ */
   const onSubmit = async (formData) => {
     try {
       if (cta === "comment") {
@@ -82,22 +85,26 @@ function Form({
 
         // handle form action differently if using api or not
         if (useAPI) {
-          await postComment(selectedVideoId, commentBody);
           try {
+            const postedComment = await postComment(
+              selectedVideoId,
+              commentBody
+            );
+
+            // track a comment was posted for this video through grandparent component state, which triggers refresh to show newly added comment
+            setCommentPostedVideoIds((prev) => [
+              ...prev,
+              { videoId: selectedVideoId, commentId: postedComment.id },
+            ]);
           } catch (error) {
             console.log("Could not submit comments to API");
             setUseAPI(false);
           }
-
-          // track a comment was posted for this video through grandparent component state, which triggers refresh to show newly added comment
-          setCommentPostedVideoIds((prev) => [
-            ...prev,
-            { videoId: selectedVideoId },
-          ]);
         }
 
         /* TODO need to handle case when useAPI= false */
       }
+
       if (cta === "delete") {
         if (useAPI) {
           await deleteComment(selectedVideoId, commentId);
@@ -108,6 +115,15 @@ function Form({
           }
           // track a comment was deleted for this video through grandparent component state, which triggers refresh upon removing comment
           setCommentIdDeleted((prev) => [...prev, { commentId: commentId }]);
+
+          // Check if the deleted comment was part of commentPostedVideoIds array
+          setCommentPostedVideoIds((prev) => {
+            // Filter out the deleted comment from the array
+            const updatedArray = prev.filter(
+              (item) => item.commentId !== commentId
+            );
+            return updatedArray;
+          });
         }
       }
 

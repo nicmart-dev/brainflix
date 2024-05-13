@@ -38,6 +38,7 @@ function Comments({
                 key={comment.id}
                 selectedVideoId={selectedVideo.id}
                 setCommentIdDeleted={setCommentIdDeleted}
+                setCommentPostedVideoIds={setCommentPostedVideoIds}
               />
             ))}
         </article>
