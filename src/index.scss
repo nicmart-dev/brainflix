@@ -8,6 +8,7 @@
 }
 
 body {
+  overflow-y: scroll; // Always show vertical scrollbar, toprevent layout shifts when content dynamically changes.
   margin: 0;
   padding: 0;
 
