@@ -100,8 +100,6 @@ function Form({ cta, selectedVideoId, commentId }) {
             setUseAPI(false);
           }
         }
-
-        /* TODO need to handle case when useAPI= false */
       }
 
       if (cta === "delete") {
@@ -234,6 +232,7 @@ function Form({ cta, selectedVideoId, commentId }) {
   /* Return different form if video upload page, or in comments component.
   Disable buttons if form submitted, 
   and show message instead of form fields after posting new comment 
+  If use API disabled in state, don't show comments form or submit button
  "handleSubmit" will validate inputs before invoking "onSubmit" */
   return (
     <form
@@ -242,13 +241,13 @@ function Form({ cta, selectedVideoId, commentId }) {
       onSubmit={handleSubmit(onSubmit)}
     >
       {cta === "publish" && FormThumbnail}
-      {cta === "comment" && !isCommentPosted() && FieldContainer}
+      {cta === "comment" && useAPI && !isCommentPosted() && FieldContainer}
       {cta === "comment" &&
         isCommentPosted() &&
         "Thanks for posting a comment!"}
       {cta === "publish" && !isSubmitted && BtnContainer}
       {cta === "publish" && isSubmitted && "Thanks for posting a video!"}
-      {cta === "comment" && !isCommentPosted() && BtnContainer}
+      {cta === "comment" && useAPI && !isCommentPosted() && BtnContainer}
       {cta === "delete" && BtnContainer}
     </form>
   );
