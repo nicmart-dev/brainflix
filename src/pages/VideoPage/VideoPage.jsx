@@ -82,7 +82,10 @@ const VideoPage = () => {
       setVideos(videosData); //display in side videos
     }
 
-    fetchVideos();
+    // Fetch videos only when the component mounts
+    if (videos.length === 0) {
+      fetchVideos();
+    }
   }, [fetchVideoDetails, setUseAPI, useAPI, videos]);
 
   /*  update main video and its details each time:
