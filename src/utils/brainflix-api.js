@@ -2,6 +2,8 @@ import axios from "axios";
 
 /* used to connect to BrainFlix api */
 const api_key = "08e96fed-b453-49f7-b10e-6342cdd61c6a";
+
+// remove when comments APIs refactor completed
 const base_url = "https://unit-3-project-api-0a5620414506.herokuapp.com";
 
 
@@ -9,7 +11,7 @@ const base_url = "https://unit-3-project-api-0a5620414506.herokuapp.com";
 export async function getVideos() {
     try {
         const response = await axios.get(
-            `${base_url}/videos?api_key=${api_key}`
+            `${process.env.REACT_APP_API_URL}/videos?api_key=${api_key}`
         );
         // return video list
         return response.data;
@@ -29,7 +31,7 @@ export async function getStaticData() {
 export async function getVideoDetails(id) {
     try {
         const response = await axios.get(
-            `${base_url}/videos/${id}?api_key=${api_key}`
+            `${process.env.REACT_APP_API_URL}/videos/${id}?api_key=${api_key}`
         );
         // return details for specified video
         return response.data;
