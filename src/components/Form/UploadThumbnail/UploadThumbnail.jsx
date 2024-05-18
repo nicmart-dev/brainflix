@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-// set initial poster
+import "./UploadThumbnail.scss";
 
+// set initial poster
 import uploadVideoPreview from "../../../assets/images/Upload-video-preview.jpg";
 
 const UploadThumbnail = ({ FieldContainer }) => {
@@ -18,10 +19,14 @@ const UploadThumbnail = ({ FieldContainer }) => {
   };
 
   return (
-    <div className="form__img-input-fields-container">
+    <div className="upload-thumb__container">
       <div>
-        <h2 className="form__subtitle">Video Thumbnail</h2>
-        <img src={uploadedImage} alt="video preview" className="form__img" />
+        <h2 className="upload-thumb__subtitle">Video Thumbnail</h2>
+        <img
+          src={uploadedImage}
+          alt="video preview"
+          className="upload-thumb__img"
+        />
       </div>
       <input type="file" accept="image/*" onChange={handleImageUpload} />
       {FieldContainer}
