@@ -9,8 +9,6 @@ import {
 } from "../../utils/brainflix-api";
 import "./Form.scss";
 
-import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
-
 /* Required dependencies to use Toast package for notification 
 https://www.npmjs.com/package/react-toastify */
 import { toast } from "react-toastify";
@@ -18,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
 import { useCommentContext } from "../../context/commentContext";
+import UploadThumbnail from "./UploadThumbnail/UploadThumbnail"; // Image thumbnail and fields for upload page
 
 function Form({ cta, selectedVideoId, commentId }) {
   const {
@@ -201,21 +200,6 @@ function Form({ cta, selectedVideoId, commentId }) {
     </div>
   );
 
-  // Image thumbnail and fields for upload page
-  const FormThumbnail = (
-    <div className="form__img-input-fields-container">
-      <div>
-        <h2 className="form__subtitle">Video Thumbnail</h2>
-        <img
-          src={uploadVideoPreview}
-          alt="video preview"
-          className="form__img"
-        />
-      </div>
-      {FieldContainer}
-    </div>
-  );
-
   //submit button, all forms should have one of these
   const SubmitBtn = (label) => (
     <div
@@ -254,7 +238,7 @@ function Form({ cta, selectedVideoId, commentId }) {
       id={`${cta}`}
       onSubmit={handleSubmit(onSubmit)}
     >
-      {cta === "publish" && FormThumbnail}
+      {cta === "publish" && <UploadThumbnail FieldContainer={FieldContainer} />}
       {cta === "comment" && !isCommentPosted() && FieldContainer}
       {cta === "comment" &&
         isCommentPosted() &&
