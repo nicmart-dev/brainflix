@@ -33,7 +33,7 @@ function Form({ cta, selectedVideoId, commentId }) {
   } = useCommentContext();
 
   /* Notify using toast package and then navigate to relevant page */
-  const notifyNav = (label) => {
+  const notifyNav = (label, nav) => {
     // display alert message depending on button clicked using toast package.
     let msg = "";
     let type = "info";
@@ -42,7 +42,7 @@ function Form({ cta, selectedVideoId, commentId }) {
       case "publish":
         msg = "Video published, navigating to homepage";
         type = "success";
-
+        route = nav;
         break;
       case "cancel":
         msg = "Video upload cancelled, navigating back to homepage";
@@ -76,6 +76,8 @@ function Form({ cta, selectedVideoId, commentId }) {
   Then optionally navigate to relevant route.
  */
   const onSubmit = async (formData) => {
+    let nav; // initialize variable that will set nav location based on cta
+
     try {
       if (cta === "publish") {
         // Constructs a new video object to pass to api as body
@@ -87,7 +89,10 @@ function Form({ cta, selectedVideoId, commentId }) {
 
         // handle form action differently if using api or not
         try {
-          await postVideo(videoBody);
+          const postedVideo = await postVideo(videoBody);
+          if (postedVideo.status === 200) {
+            nav = `/videos/${postedVideo.data.video.id}`; // set route to navigate to after toast notification
+          }
         } catch (error) {
           console.log("Could not upload video to API", error);
         }
@@ -133,7 +138,7 @@ function Form({ cta, selectedVideoId, commentId }) {
         });
       }
 
-      notifyNav(cta);
+      notifyNav(cta, nav);
     } catch (error) {
       console.log("error submitting form", error);
     }

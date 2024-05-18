@@ -36,7 +36,7 @@ export async function postVideo(video) {
             `${process.env.REACT_APP_API_URL}/videos?api_key=${api_key}`, video
         );
         // return posted comment
-        return response.data;
+        return response;
     } catch (error) {
         console.log(error);
     }
