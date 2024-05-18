@@ -13,8 +13,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
-
-import { useAPIContext } from "../../context/apiContext";
 import { useCommentContext } from "../../context/commentContext";
 
 function Form({ cta, selectedVideoId, commentId }) {
@@ -24,7 +22,6 @@ function Form({ cta, selectedVideoId, commentId }) {
     formState: { isSubmitted },
   } = useForm();
   const navigate = useNavigate();
-  const { useAPI, setUseAPI } = useAPIContext();
   const {
     setCommentPostedVideoIds,
     commentPostedVideoIds,
@@ -83,45 +80,36 @@ function Form({ cta, selectedVideoId, commentId }) {
         };
 
         // handle form action differently if using api or not
-        if (useAPI) {
-          try {
-            const postedComment = await postComment(
-              selectedVideoId,
-              commentBody
-            );
+        try {
+          const postedComment = await postComment(selectedVideoId, commentBody);
 
-            // track a comment was posted for this video through grandparent component state, which triggers refresh to show newly added comment
-            setCommentPostedVideoIds((prev) => [
-              ...prev,
-              { videoId: selectedVideoId, commentId: postedComment.id },
-            ]);
-          } catch (error) {
-            console.log("Could not submit comments to API");
-            setUseAPI(false);
-          }
+          // track a comment was posted for this video through grandparent component state, which triggers refresh to show newly added comment
+          setCommentPostedVideoIds((prev) => [
+            ...prev,
+            { videoId: selectedVideoId, commentId: postedComment.id },
+          ]);
+        } catch (error) {
+          console.log("Could not submit comments to API");
         }
       }
 
       if (cta === "delete") {
-        if (useAPI) {
-          await deleteComment(selectedVideoId, commentId);
-          try {
-          } catch (error) {
-            console.log("Could not delete comments using API");
-            setUseAPI(false);
-          }
-          // track a comment was deleted for this video through grandparent component state, which triggers refresh upon removing comment
-          setCommentIdDeleted((prev) => [...prev, { commentId: commentId }]);
-
-          // Check if the deleted comment was part of commentPostedVideoIds array
-          setCommentPostedVideoIds((prev) => {
-            // Filter out the deleted comment from the array
-            const updatedArray = prev.filter(
-              (item) => item.commentId !== commentId
-            );
-            return updatedArray;
-          });
+        await deleteComment(selectedVideoId, commentId);
+        try {
+        } catch (error) {
+          console.log("Could not delete comments using API");
         }
+        // track a comment was deleted for this video through grandparent component state, which triggers refresh upon removing comment
+        setCommentIdDeleted((prev) => [...prev, { commentId: commentId }]);
+
+        // Check if the deleted comment was part of commentPostedVideoIds array
+        setCommentPostedVideoIds((prev) => {
+          // Filter out the deleted comment from the array
+          const updatedArray = prev.filter(
+            (item) => item.commentId !== commentId
+          );
+          return updatedArray;
+        });
       }
 
       notifyNav(cta);
@@ -241,13 +229,13 @@ function Form({ cta, selectedVideoId, commentId }) {
       onSubmit={handleSubmit(onSubmit)}
     >
       {cta === "publish" && FormThumbnail}
-      {cta === "comment" && useAPI && !isCommentPosted() && FieldContainer}
+      {cta === "comment" && !isCommentPosted() && FieldContainer}
       {cta === "comment" &&
         isCommentPosted() &&
         "Thanks for posting a comment!"}
       {cta === "publish" && !isSubmitted && BtnContainer}
       {cta === "publish" && isSubmitted && "Thanks for posting a video!"}
-      {cta === "comment" && useAPI && !isCommentPosted() && BtnContainer}
+      {cta === "comment" && !isCommentPosted() && BtnContainer}
       {cta === "delete" && BtnContainer}
     </form>
   );

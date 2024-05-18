@@ -9,19 +9,11 @@ import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import { useState, useEffect } from "react"; // Import to then store video in state
 import { useParams, Navigate } from "react-router-dom";
 
-import {
-  getVideos,
-  getVideoDetails,
-  getStaticData,
-  getStaticDetailsData,
-} from "../../utils/brainflix-api";
-
-import { useAPIContext } from "../../context/apiContext";
+import { getVideos, getVideoDetails } from "../../utils/brainflix-api";
 import { useCommentContext } from "../../context/commentContext"; // set as context to access globally
 
 const VideoPage = () => {
   const { videoId } = useParams();
-  const { useAPI, setUseAPI } = useAPIContext();
   const { commentIdDeleted, commentPostedVideoIds } = useCommentContext();
 
   /* initialize the main video and list of video states unconditionally, and then update it as needed 
@@ -35,22 +27,15 @@ const VideoPage = () => {
   /*  show video list on initial page load or when navigating from upload video page */
   useEffect(() => {
     async function fetchVideos() {
-      // get videos from api and fallback to using static data if api error or if useAPI flag set to false */
+      // get videos from api  */
 
       let videosData;
 
-      if (useAPI) {
-        try {
-          videosData = await getVideos(); // try to get videos by api
-        } catch (error) {
-          console.log(
-            "Could not get video list from BrainFlix API, importing static data instead."
-          );
-          // If api failure, fallback to importing from json files.
-          videosData = await getStaticData();
-          setUseAPI(false);
-        }
-      } else videosData = await getStaticData();
+      try {
+        videosData = await getVideos(); // try to get videos by api
+      } catch (error) {
+        console.log("Could not get video list from BrainFlix API.");
+      }
 
       setVideos(videosData); //display in side videos
     }
@@ -59,7 +44,7 @@ const VideoPage = () => {
     if (videos.length === 0) {
       fetchVideos();
     }
-  }, [setUseAPI, useAPI, videos]);
+  }, [videos]);
 
   /*  update main video and its details each time:
   1. videoId changes,  
@@ -78,33 +63,21 @@ const VideoPage = () => {
     async function fetchVideoDetails(id) {
       let videoDetails;
 
-      //get video details from API or use static json file data if error or if api feature switch toggled off
-      if (useAPI) {
-        try {
-          videoDetails = await getVideoDetails(id);
-        } catch (error) {
-          console.log(
-            "Could not get video details from BrainFlix API, importing static data instead."
-          );
-          videoDetails = await getStaticDetailsData(id);
-          setUseAPI(false);
-        }
-      } else videoDetails = await getStaticDetailsData(id);
+      //get video details from API
+
+      try {
+        videoDetails = await getVideoDetails(id);
+      } catch (error) {
+        console.log(
+          "Could not get video details from BrainFlix API, importing static data instead."
+        );
+      }
       //now that we should have video details, set it as main video otherwise display page not found
       if (videoDetails) {
         setMainVideo(videoDetails);
-      } else {
-        setNotFound(true);
       }
     }
-  }, [
-    videoId,
-    videos,
-    commentPostedVideoIds,
-    commentIdDeleted,
-    useAPI,
-    setUseAPI,
-  ]);
+  }, [videoId, videos, commentPostedVideoIds, commentIdDeleted]);
 
   // Render the main video or redirect to NotFound page if not found
   if (notFound) {

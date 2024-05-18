@@ -19,13 +19,6 @@ export async function getVideos() {
         console.log(error);
     }
 }
-/* import video data from json file.
-Note: You can now call the import to load a module at runtime. 
-It returns a Promise that resolves to an object with the module exports. */
-export async function getStaticData() {
-    const videoData = await import("../data/videos.json");
-    return videoData.default;
-}
 
 /* get details of a specific video from api */
 export async function getVideoDetails(id) {
@@ -40,12 +33,6 @@ export async function getVideoDetails(id) {
     }
 }
 
-/* import detailed video data from json file. */
-export async function getStaticDetailsData(id) {
-    const videoDetailsData = await import("../data/video-details.json"); // import small amount of data to display next videos
-    const videoDetails = videoDetailsData.default.find((video) => video.id === id);
-    return videoDetails;
-}
 
 /* post comment using api */
 export async function postComment(videoId, comment) {

@@ -5,11 +5,7 @@ import "./Comment.scss";
 
 import likesIcon from "../../../assets/icons/likes.svg";
 
-import { useAPIContext } from "../../../context/apiContext";
-
 function Comment({ comment, selectedVideoId }) {
-  const { useAPI } = useAPIContext();
-
   const deleteBtn = (
     <Form
       cta="delete"
@@ -24,7 +20,7 @@ function Comment({ comment, selectedVideoId }) {
         <img src={likesIcon} alt="likes icon" className="comment__likes-img" />
         <span className="comment__likes">{comment.likes}</span>
       </div>
-      {useAPI && deleteBtn}
+      {deleteBtn}
     </div>
   );
 
