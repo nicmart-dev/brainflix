@@ -29,6 +29,19 @@ export async function getVideoDetails(id) {
     }
 }
 
+/* post video using api */
+export async function postVideo(video) {
+    try {
+        const response = await axios.post(
+            `${process.env.REACT_APP_API_URL}/videos?api_key=${api_key}`, video
+        );
+        // return posted comment
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 /* post comment using api */
 export async function postComment(videoId, comment) {

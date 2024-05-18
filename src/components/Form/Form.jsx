@@ -2,7 +2,11 @@ import { useForm } from "react-hook-form"; // we are using https://react-hook-fo
 
 import Btn from "../Btn/Btn";
 import FormField from "./FormField/FormField";
-import { postComment, deleteComment } from "../../utils/brainflix-api";
+import {
+  postVideo,
+  postComment,
+  deleteComment,
+} from "../../utils/brainflix-api";
 import "./Form.scss";
 
 import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
@@ -66,12 +70,29 @@ function Form({ cta, selectedVideoId, commentId }) {
   };
 
   /* Form submit action. Handle forms to:
-  1. Post comments (only if comment form)
-  2. Delete comment on click Delete button form in video comments
+  1. Upload videos
+  2. Post comments (only if comment form)
+  3. Delete comment on click Delete button form in video comments
   Then optionally navigate to relevant route.
  */
   const onSubmit = async (formData) => {
     try {
+      if (cta === "publish") {
+        // Constructs a new video object to pass to api as body
+        const videoBody = {
+          title: formData.title,
+          description: formData.description,
+          image: "image1.jpg", // hardcoding image
+        };
+
+        // handle form action differently if using api or not
+        try {
+          await postVideo(videoBody);
+        } catch (error) {
+          console.log("Could not upload video to API", error);
+        }
+      }
+
       if (cta === "comment") {
         // Constructs a new comment object to pass to api as body
         const commentBody = {
