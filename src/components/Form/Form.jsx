@@ -66,7 +66,11 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
     /* display toast but navigate to route only if closing toast manually,
     or auto close after default 8 sec timer, per https://fkhadra.github.io/react-toastify/define-callback */
     toast[type](msg, {
-      onClose: () => navigate(route),
+      onClose: () => {
+        if (route) {
+          navigate(route);
+        }
+      },
       position: "bottom-right",
     });
   };
