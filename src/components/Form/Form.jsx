@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useForm } from "react-hook-form"; // we are using https://react-hook-form.com/
 
 import Btn from "../Btn/Btn";
@@ -30,6 +31,8 @@ function Form({ cta, selectedVideoId, commentId }) {
     commentPostedVideoIds,
     setCommentIdDeleted,
   } = useCommentContext();
+
+  const [posterImageFileName, setPosterImageFileName] = useState(null); // state to store the uploaded poster image file
 
   /* Notify using toast package and then navigate to relevant page */
   const notifyNav = (label, nav) => {
@@ -83,7 +86,7 @@ function Form({ cta, selectedVideoId, commentId }) {
         const videoBody = {
           title: formData.title,
           description: formData.description,
-          image: "image1.jpg", // hardcoding image
+          image: posterImageFileName ? posterImageFileName : "image0.jpg", // set the actual uploaded filename otherwise set placeholder img
         };
 
         // handle form action differently if using api or not
@@ -238,7 +241,12 @@ function Form({ cta, selectedVideoId, commentId }) {
       id={`${cta}`}
       onSubmit={handleSubmit(onSubmit)}
     >
-      {cta === "publish" && <UploadThumbnail FieldContainer={FieldContainer} />}
+      {cta === "publish" && (
+        <UploadThumbnail
+          FieldContainer={FieldContainer}
+          onImageUploadFilename={setPosterImageFileName}
+        />
+      )}
       {cta === "comment" && !isCommentPosted() && FieldContainer}
       {cta === "comment" &&
         isCommentPosted() &&

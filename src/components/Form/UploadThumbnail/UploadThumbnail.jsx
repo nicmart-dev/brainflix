@@ -7,7 +7,7 @@ import uploadVideoPreview from "../../../assets/images/Upload-video-preview.jpg"
 // server api to upload image
 import { uploadImage } from "../../../utils/brainflix-api";
 
-const UploadThumbnail = ({ FieldContainer }) => {
+const UploadThumbnail = ({ FieldContainer, onImageUploadFilename }) => {
   const [uploadedImage, setUploadedImage] = useState(uploadVideoPreview); // state to display image in img tag
   const [imageFile, setImageFile] = useState(null); // state to store the actual uploaded file for api upload
 
@@ -23,11 +23,17 @@ const UploadThumbnail = ({ FieldContainer }) => {
     }
   };
 
+  /* upload to api selected image and pass its filename to parent form component,
+  to include it during video upload */
   useEffect(() => {
-    if (imageFile) {
-      uploadImage(imageFile);
-    }
-  }, [imageFile]);
+    const apiImageUpload = async () => {
+      if (imageFile) {
+        const fileName = await uploadImage(imageFile); // upload image set in state using api server
+        onImageUploadFilename(fileName); // pass the image filename to parent
+      }
+    };
+    apiImageUpload();
+  }, [imageFile, onImageUploadFilename]);
 
   return (
     <div className="upload-thumb__container">

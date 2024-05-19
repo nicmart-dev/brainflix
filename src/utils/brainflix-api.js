@@ -51,6 +51,8 @@ export async function uploadImage(imageData) {
 
         if (response.status === 200) {
             console.log("Image uploaded successfully");
+            // return posted image filename
+            return response.data.fileName;
         }
     } catch (error) {
         console.error("Error uploading image", error);
