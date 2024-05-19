@@ -6,12 +6,18 @@ import "./UploadThumbnail.scss";
 import uploadVideoPreview from "../../../assets/images/Upload-video-preview.jpg";
 
 const UploadThumbnail = ({ FieldContainer }) => {
-  const [uploadedImage, setUploadedImage] = useState(uploadVideoPreview);
+  const [uploadedImage, setUploadedImage] = useState(uploadVideoPreview); // state to display image in img tag
+  const [imageFile, setImageFile] = useState(null); // state to store the actual uploaded file for api upload
 
   const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setUploadedImage(file);
+    const imageFile = event.target.files[0];
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setUploadedImage(e.target.result); // set image preview
+      };
+      reader.readAsDataURL(imageFile);
+      setImageFile(imageFile); // set actual file to state
     }
   };
 
@@ -39,11 +45,10 @@ const UploadThumbnail = ({ FieldContainer }) => {
       }
     };
 
-    if (uploadedImage !== uploadVideoPreview) {
-      // Check if the uploaded image is different from the default preview
-      uploadImage(uploadedImage);
+    if (imageFile) {
+      uploadImage(imageFile);
     }
-  }, [uploadedImage]);
+  }, [imageFile]);
 
   return (
     <div className="upload-thumb__container">
