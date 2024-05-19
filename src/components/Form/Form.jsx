@@ -170,13 +170,6 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
     notifyNav(label);
   };
 
-  //used to conditionally display form if user did not post comment already
-  const isCommentPosted = () => {
-    return commentPostedVideoIds.some(
-      (item) => item.videoId === selectedVideoId
-    );
-  };
-
   //input title field only for upload page
   const VideoTitleField = (
     <FormField
