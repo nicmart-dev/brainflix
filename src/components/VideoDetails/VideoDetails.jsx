@@ -12,12 +12,11 @@ function VideoDetails({ selectedVideo, videosLiked, setVideoLiked }) {
   /* Handle  like button click */
   const handleLike = () => {
     //check if video has already been liked and if not, call like api
-    console.log("videosLiked", videosLiked);
     if (!videosLiked.some((video) => video.videoId === selectedVideo.id)) {
       likeVideo(selectedVideo.id);
       // track this video id has been liked which also triggers component refresh
       setVideoLiked((prev) => [...prev, { videoId: selectedVideo.id }]);
-    } else console.log("Video has already been liked.");
+    }
   };
 
   return (
