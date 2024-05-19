@@ -64,7 +64,6 @@ export async function likeVideo(id) {
             `${process.env.REACT_APP_API_URL}/videos/${id}/likes?api_key=${api_key}`);
 
         if (response.status === 200) {
-            // return posted image filename
             return response.data.video;
         }
     } catch (error) {
@@ -98,6 +97,21 @@ export async function postComment(videoId, comment) {
         console.log(error);
     }
 }
+
+/* like comments api  */
+export async function likeComment(videoId, commentId) {
+    try {
+        const response = await axios.put(
+            `${process.env.REACT_APP_API_URL}/videos/${videoId}/comments/${commentId}/likes?api_key=${api_key}`);
+
+        if (response.status === 200) {
+
+            return response.data.video.comment;
+        }
+    } catch (error) {
+        console.error("Error liking comment", error);
+    }
+};
 
 /* delete comment using api */
 export async function deleteComment(videoId, commentId) {
