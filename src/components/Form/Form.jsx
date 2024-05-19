@@ -170,48 +170,43 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
     notifyNav(label);
   };
 
-  //input title field only for upload page
-  const VideoTitleField = (
+  /* insert form field component */
+  const getFormField = (name, label, placeholder, type) => (
     <FormField
-      name="title"
-      label="Title your video"
+      name={name}
+      label={label}
+      placeholder={placeholder}
       register={register}
       required
-      type="input"
-      placeholder="Add a title to your video"
+      type={type}
       resetValue={resetFlag}
       setResetFlag={setResetFlag}
-      errors={errors} // Pass down the errors object
+      errors={errors}
     />
+  );
+
+  //input title field only for upload page
+  const VideoTitleField = getFormField(
+    "title",
+    "Title your video",
+    "Add a title to your video",
+    "input"
   );
 
   //textarea field only for upload page
-  const VideoDescField = (
-    <FormField
-      name="description"
-      label="Add a video description"
-      register={register}
-      required
-      type="textarea"
-      placeholder="Add a description to your video"
-      resetValue={resetFlag}
-      setResetFlag={setResetFlag}
-      errors={errors} // Pass down the errors object
-    />
+  const VideoDescField = getFormField(
+    "description",
+    "Add a video description",
+    "Add a description to your video",
+    "textarea"
   );
 
-  const CommentTextField = (
-    <FormField
-      name="comment"
-      label="Join the conversation"
-      register={register}
-      required
-      type="textarea"
-      placeholder="Add a new comment"
-      resetValue={resetFlag}
-      setResetFlag={setResetFlag}
-      errors={errors} // Pass down the errors object
-    />
+  //textarea field to enter new comment
+  const CommentTextField = getFormField(
+    "comment",
+    "Join the conversation",
+    "Add a new comment",
+    "textarea"
   );
 
   // Shared fields for upload page or comments component
