@@ -50,6 +50,7 @@ const UploadThumbnail = ({ FieldContainer, onImageUploadFilename }) => {
         type="file"
         accept="image/*"
         onChange={handleImageUpload}
+        required
       />
       {FieldContainer}
     </div>
