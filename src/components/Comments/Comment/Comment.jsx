@@ -29,6 +29,7 @@ function Comment({ comment, selectedVideoId, commentsLiked, setCommentLiked }) {
       cta="delete"
       selectedVideoId={selectedVideoId}
       commentId={comment.id}
+      setCommentLiked={setCommentLiked}
     />
   );
 

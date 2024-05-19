@@ -17,7 +17,11 @@ function Comments({ selectedVideo, commentsLiked, setCommentLiked }) {
       <div className="comments__comment-list-form-container">
         <div className="comments__new-comment-container">
           <Avatar isLoggedIn={true} />
-          <Form cta="comment" selectedVideoId={selectedVideo.id} />
+          <Form
+            cta="comment"
+            selectedVideoId={selectedVideo.id}
+            setCommentLiked={setCommentLiked}
+          />
         </div>
         <article className="comments__list-container">
           {selectedVideo.comments

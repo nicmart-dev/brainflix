@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { useCommentContext } from "../../context/commentContext";
 import UploadThumbnail from "./UploadThumbnail/UploadThumbnail"; // Image thumbnail and fields for upload page
 
-function Form({ cta, selectedVideoId, commentId }) {
+function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
   const {
     register,
     handleSubmit,
@@ -114,7 +114,7 @@ function Form({ cta, selectedVideoId, commentId }) {
           // track a comment was posted for this video through grandparent component state, which triggers refresh to show newly added comment
           setCommentPostedVideoIds((prev) => [
             ...prev,
-            { videoId: selectedVideoId, commentId: postedComment.id },
+            { videoId: selectedVideoId, commentId: postedComment.comment.id },
           ]);
         } catch (error) {
           console.log("Could not submit comments to API");
@@ -132,6 +132,15 @@ function Form({ cta, selectedVideoId, commentId }) {
 
         // Check if the deleted comment was part of commentPostedVideoIds array
         setCommentPostedVideoIds((prev) => {
+          // Filter out the deleted comment from the array
+          const updatedArray = prev.filter(
+            (item) => item.commentId !== commentId
+          );
+          return updatedArray;
+        });
+
+        // Check if the deleted comment was part of commentsLiked state
+        setCommentLiked((prev) => {
           // Filter out the deleted comment from the array
           const updatedArray = prev.filter(
             (item) => item.commentId !== commentId
