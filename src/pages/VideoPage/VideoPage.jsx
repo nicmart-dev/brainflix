@@ -27,6 +27,9 @@ const VideoPage = () => {
   /* state variable to track whether a given video has been liked */
   const [videosLiked, setVideoLiked] = useState([]);
 
+  /* state variable to track whether a given video comment has been liked */
+  const [commentsLiked, setCommentLiked] = useState([]);
+
   /*  show video list on initial page load or when navigating from upload video page */
   useEffect(() => {
     async function fetchVideos() {
@@ -79,7 +82,14 @@ const VideoPage = () => {
         setNotFound(true); // set notFound state
       }
     }
-  }, [videoId, videos, commentPostedVideoIds, commentIdDeleted, videosLiked]);
+  }, [
+    videoId,
+    videos,
+    commentPostedVideoIds,
+    commentIdDeleted,
+    videosLiked,
+    commentsLiked,
+  ]);
 
   // Render the main video or redirect to NotFound page if not found
   if (notFound) {
@@ -99,7 +109,11 @@ const VideoPage = () => {
                 videosLiked={videosLiked}
                 setVideoLiked={setVideoLiked}
               />
-              <Comments selectedVideo={mainVideo} />
+              <Comments
+                selectedVideo={mainVideo}
+                commentsLiked={commentsLiked}
+                setCommentLiked={setCommentLiked}
+              />
             </div>
             <aside className="video-page__next-videos-container">
               <NextVideos videoList={videos} selectedVideoId={mainVideo.id} />

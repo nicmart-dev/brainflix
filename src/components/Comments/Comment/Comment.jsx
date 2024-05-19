@@ -4,8 +4,26 @@ import Form from "../../Form/Form";
 import "./Comment.scss";
 
 import likesIcon from "../../../assets/icons/likes.svg";
+import { likeComment } from "../../../utils/brainflix-api";
 
-function Comment({ comment, selectedVideoId }) {
+function Comment({ comment, selectedVideoId, commentsLiked, setCommentLiked }) {
+  /* Handle  like button click */
+  const handleLike = (commentId) => {
+    //check if video has already been liked and if not, call like api
+    if (
+      !commentsLiked.some(
+        (comment) =>
+          comment.videoId === selectedVideoId && comment.commentId === commentId
+      )
+    ) {
+      likeComment(selectedVideoId, comment.id);
+      // track this video id has been liked which also triggers grandparent component refresh
+      setCommentLiked((prev) => [
+        ...prev,
+        { videoId: selectedVideoId, commentId: comment.id },
+      ]);
+    }
+  };
   const deleteBtn = (
     <Form
       cta="delete"
@@ -17,7 +35,12 @@ function Comment({ comment, selectedVideoId }) {
   const commentBtnContainer = (
     <div className="comment__button-container" id={comment.id}>
       <div className="comment__likes-container">
-        <img src={likesIcon} alt="likes icon" className="comment__likes-img" />
+        <img
+          src={likesIcon}
+          alt="likes icon"
+          className="comment__likes-img"
+          onClick={() => handleLike(comment.id)}
+        />
         <span className="comment__likes">{comment.likes}</span>
       </div>
       {deleteBtn}

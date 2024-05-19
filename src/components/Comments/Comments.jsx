@@ -4,7 +4,7 @@ import Comment from "./Comment/Comment";
 import "./Comments.scss";
 
 /* Insert a comment component for each comment for selected video */
-function Comments({ selectedVideo }) {
+function Comments({ selectedVideo, commentsLiked, setCommentLiked }) {
   const commentCount = selectedVideo.comments.length;
 
   return (
@@ -27,6 +27,8 @@ function Comments({ selectedVideo }) {
                 comment={comment}
                 key={comment.id}
                 selectedVideoId={selectedVideo.id}
+                commentsLiked={commentsLiked}
+                setCommentLiked={setCommentLiked}
               />
             ))}
         </article>
