@@ -24,6 +24,9 @@ const VideoPage = () => {
   /* using state to navigate to notfound page with useEffect hook */
   const [notFound, setNotFound] = useState(false);
 
+  /* state variable to track whether a given video has been liked */
+  const [videosLiked, setVideoLiked] = useState([]);
+
   /*  show video list on initial page load or when navigating from upload video page */
   useEffect(() => {
     async function fetchVideos() {
@@ -49,7 +52,8 @@ const VideoPage = () => {
   /*  update main video and its details each time:
   1. videoId changes,  
   2. set to first video as soon as video list is loaded or when clicking on header logo 
-  3. a new comment is posted */
+  3. a new comment is posted 
+  4. a video has been liked */
   useEffect(() => {
     let id;
     // Set main video if videoId is set, otherwise set to first video
@@ -75,7 +79,7 @@ const VideoPage = () => {
         setNotFound(true); // set notFound state
       }
     }
-  }, [videoId, videos, commentPostedVideoIds, commentIdDeleted]);
+  }, [videoId, videos, commentPostedVideoIds, commentIdDeleted, videosLiked]);
 
   // Render the main video or redirect to NotFound page if not found
   if (notFound) {
@@ -90,7 +94,11 @@ const VideoPage = () => {
           <VideoPlayer selectedVideo={mainVideo} />
           <section className="video-page__post-video-container">
             <div className="video-page__video-comments-container">
-              <VideoDetails selectedVideo={mainVideo} />
+              <VideoDetails
+                selectedVideo={mainVideo}
+                videosLiked={videosLiked}
+                setVideoLiked={setVideoLiked}
+              />
               <Comments selectedVideo={mainVideo} />
             </div>
             <aside className="video-page__next-videos-container">

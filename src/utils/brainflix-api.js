@@ -32,8 +32,6 @@ export async function getVideoDetails(id) {
 
 
 /* upload image poster api */
-
-
 export async function uploadImage(imageData) {
     try {
         const formData = new FormData();
@@ -56,6 +54,22 @@ export async function uploadImage(imageData) {
         }
     } catch (error) {
         console.error("Error uploading image", error);
+    }
+};
+
+/* like video api  */
+export async function likeVideo(id) {
+    try {
+        const response = await axios.put(
+            `${process.env.REACT_APP_API_URL}/videos/${id}/likes?api_key=${api_key}`);
+
+        if (response.status === 200) {
+            console.log(response.data.message);
+            // return posted image filename
+            return response.data.video;
+        }
+    } catch (error) {
+        console.error("Error liking video", error);
     }
 };
 
