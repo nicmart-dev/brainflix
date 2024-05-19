@@ -102,3 +102,23 @@ Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
     ); //keep mobile left padding but reduce top/bottom
   }
 }
+
+// use to show field validation outline and animation
+@mixin field-error {
+  outline: $form-field-error-border;
+  animation: shakeItUp 0.25s;
+
+  @keyframes shakeItUp {
+    0% {
+      transform: translateX(-10px);
+    }
+
+    50% {
+      transform: translateX(10px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+}

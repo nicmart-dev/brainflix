@@ -65,21 +65,7 @@ textarea {
   /*   only show required field error state if empty on submit,
   and not browser load */
   &:user-invalid {
-    outline: $form-field-error-border;
-    animation: shakeItUp 0.25s;
-  }
-  @keyframes shakeItUp {
-    0% {
-      transform: translateX(-10px);
-    }
-
-    50% {
-      transform: translateX(10px);
-    }
-
-    100% {
-      transform: translateX(0);
-    }
+    @include field-error;
   }
 }
 

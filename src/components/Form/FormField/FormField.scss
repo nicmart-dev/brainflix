@@ -16,6 +16,10 @@
   &__container--title {
     @include spacing-between-components(topbottom);
   }
+
+  &__alert {
+    color: $color-error;
+  }
 }
 
 .form-field--comment {
@@ -23,4 +27,13 @@
   @include tablet {
     height: $form-field-height-tablet;
   }
+}
+
+/* field outline and animation.
+Note: Increase specificity of .form-field--error 
+so it overrides pseudo-classes at input/textarea in index.sass
+*/
+input.form-field--error,
+textarea.form-field--error {
+  @include field-error;
 }

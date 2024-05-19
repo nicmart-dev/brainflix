@@ -13,6 +13,7 @@ function FormField({
   type,
   resetValue,
   setResetFlag,
+  errors,
 }) {
   const [value, setValue] = useState(""); // storing field value in state
 
@@ -25,22 +26,36 @@ function FormField({
 
   const InputComponent = type === "textarea" ? "textarea" : "input";
 
+  // Determine if there's an error for the current field
+  const hasError = errors && errors[name];
+
   /* register input into the hook by invoking the "register" function
  include validation with required standard HTML validation rules */
   return (
     <label className={`form-field__container form-field__container--${name}`}>
       {label}
       <InputComponent
-        {...register(name, { required: required })}
+        {...register(name, { required: required, pattern: /\S+/ })} //can't be empty and at least 1 non space char
         placeholder={placeholder}
-        required={required}
         onChange={(e) => {
           setValue(e.target.value); //set field value from state as user types
           setResetFlag(false); // allow to reset again to submit multiple comments
         }}
         value={value}
-        className={`form-field--${name}`}
+        className={`form-field--${name} ${hasError ? "form-field--error" : ""}`}
       />
+      {hasError &&
+        errors[name].type === "required" && ( // Check for errors and display error message
+          <span role="alert" className="form-field__alert">
+            This is required
+          </span>
+        )}
+      {hasError &&
+        errors[name].type === "pattern" && ( // Check for errors and display error message
+          <span role="alert" className="form-field__alert">
+            Please enter at least one character
+          </span>
+        )}
     </label>
   );
 }

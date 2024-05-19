@@ -20,7 +20,12 @@ import { useCommentContext } from "../../context/commentContext";
 import UploadThumbnail from "./UploadThumbnail/UploadThumbnail"; // Image thumbnail and fields for upload page
 
 function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
   const {
     setCommentPostedVideoIds,
@@ -183,6 +188,7 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
       placeholder="Add a title to your video"
       resetValue={resetFlag}
       setResetFlag={setResetFlag}
+      errors={errors} // Pass down the errors object
     />
   );
 
@@ -197,6 +203,7 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
       placeholder="Add a description to your video"
       resetValue={resetFlag}
       setResetFlag={setResetFlag}
+      errors={errors} // Pass down the errors object
     />
   );
 
@@ -210,14 +217,19 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
       placeholder="Add a new comment"
       resetValue={resetFlag}
       setResetFlag={setResetFlag}
+      errors={errors} // Pass down the errors object
     />
   );
 
   // Shared fields for upload page or comments component
   const FieldContainer = (
     <div className={`form__field-container form__field-container--${cta}`}>
-      {cta === "publish" && VideoTitleField}
-      {cta === "publish" && VideoDescField}
+      {cta === "publish" && (
+        <>
+          {VideoTitleField}
+          {VideoDescField}
+        </>
+      )}
       {cta === "comment" && CommentTextField}
     </div>
   );
