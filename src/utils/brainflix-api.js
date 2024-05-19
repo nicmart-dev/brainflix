@@ -64,7 +64,6 @@ export async function likeVideo(id) {
             `${process.env.REACT_APP_API_URL}/videos/${id}/likes?api_key=${api_key}`);
 
         if (response.status === 200) {
-            console.log(response.data.message);
             // return posted image filename
             return response.data.video;
         }
