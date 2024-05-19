@@ -26,8 +26,36 @@ export async function getVideoDetails(id) {
         return response.data;
     } catch (error) {
         console.log(error);
+        throw new Error("Failed to fetch video details");
     }
 }
+
+
+/* upload image poster api */
+
+
+export async function uploadImage(imageData) {
+    try {
+        const formData = new FormData();
+        formData.append("poster", imageData);
+
+        const response = await axios.post(
+            `${process.env.REACT_APP_API_URL}/videos/image?api_key=${api_key}`,
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            }
+        );
+
+        if (response.status === 200) {
+            console.log("Image uploaded successfully");
+        }
+    } catch (error) {
+        console.error("Error uploading image", error);
+    }
+};
 
 /* post video using api */
 export async function postVideo(video) {
@@ -68,9 +96,5 @@ export async function deleteComment(videoId, commentId) {
         console.log(error);
     }
 }
-
-
-
-
 
 export default getVideos;

@@ -67,14 +67,12 @@ const VideoPage = () => {
 
       try {
         videoDetails = await getVideoDetails(id);
-      } catch (error) {
-        console.log(
-          "Could not get video details from BrainFlix API, importing static data instead."
-        );
-      }
-      //now that we should have video details, set it as main video otherwise display page not found
-      if (videoDetails) {
+        //now that we  have video details, set it as main video otherwise display page not found
         setMainVideo(videoDetails);
+        setNotFound(false); // reset notFound state
+      } catch (error) {
+        console.log("Could not get video details from BrainFlix API.");
+        setNotFound(true); // set notFound state
       }
     }
   }, [videoId, videos, commentPostedVideoIds, commentIdDeleted]);
