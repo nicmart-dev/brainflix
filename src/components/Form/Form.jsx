@@ -251,18 +251,20 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
       onSubmit={handleSubmit(onSubmit)}
     >
       {cta === "publish" && (
-        <UploadThumbnail
-          FieldContainer={FieldContainer}
-          onImageUploadFilename={setPosterImageFileName}
-        />
+        <>
+          <UploadThumbnail
+            FieldContainer={FieldContainer}
+            onImageUploadFilename={setPosterImageFileName}
+          />
+          {BtnContainer}
+        </>
       )}
-      {cta === "comment" && !isCommentPosted() && FieldContainer}
-      {cta === "comment" &&
-        isCommentPosted() &&
-        "Thanks for posting a comment!"}
-      {cta === "publish" && !isSubmitted && BtnContainer}
-      {cta === "publish" && isSubmitted && "Thanks for posting a video!"}
-      {cta === "comment" && !isCommentPosted() && BtnContainer}
+      {cta === "comment" && (
+        <>
+          {FieldContainer}
+          {BtnContainer}
+        </>
+      )}
       {cta === "delete" && BtnContainer}
     </form>
   );
