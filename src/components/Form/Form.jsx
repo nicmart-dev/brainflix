@@ -20,11 +20,7 @@ import { useCommentContext } from "../../context/commentContext";
 import UploadThumbnail from "./UploadThumbnail/UploadThumbnail"; // Image thumbnail and fields for upload page
 
 function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { isSubmitted },
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const {
     setCommentPostedVideoIds,
@@ -33,6 +29,7 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
   } = useCommentContext();
 
   const [posterImageFileName, setPosterImageFileName] = useState(null); // state to store the uploaded poster image file
+  const [resetFlag, setResetFlag] = useState(false); // use to propagate reset to field components
 
   /* Notify using toast package and then navigate to relevant page */
   const notifyNav = (label, nav) => {
@@ -152,6 +149,9 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
           return updatedArray;
         });
       }
+      // Reset form fields after successful submission
+      reset();
+      setResetFlag(true); // propagate reset to child field components
 
       notifyNav(cta, nav);
     } catch (error) {
@@ -181,6 +181,8 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
       required
       type="input"
       placeholder="Add a title to your video"
+      resetValue={resetFlag}
+      setResetFlag={setResetFlag}
     />
   );
 
@@ -193,6 +195,8 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
       required
       type="textarea"
       placeholder="Add a description to your video"
+      resetValue={resetFlag}
+      setResetFlag={setResetFlag}
     />
   );
 
@@ -204,6 +208,8 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
       required
       type="textarea"
       placeholder="Add a new comment"
+      resetValue={resetFlag}
+      setResetFlag={setResetFlag}
     />
   );
 
