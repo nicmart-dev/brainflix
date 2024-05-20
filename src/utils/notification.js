@@ -11,7 +11,7 @@ export const notifyNav = (label, nav, navigate) => {
 
     switch (label) {
         case "publish":
-            msg = "Video published, navigating to homepage";
+            msg = "Video published, navigating to it";
             type = "success";
             route = nav;
             break;
