@@ -44,7 +44,7 @@ function VideoDetails({ selectedVideo, videosLiked, setVideoLiked }) {
             <img
               src={likesIcon}
               alt="likes icon"
-              className="video-details__likes-img"
+              className="video-page__likes-img"
               onClick={handleLike}
             />
             <span className="video-details__likes">{selectedVideo.likes}</span>

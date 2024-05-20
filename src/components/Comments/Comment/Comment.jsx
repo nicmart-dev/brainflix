@@ -46,7 +46,7 @@ function Comment({
         <img
           src={likesIcon}
           alt="likes icon"
-          className="comment__likes-img"
+          className="video-page__likes-img"
           onClick={() => handleLike(comment.id)}
         />
         <span className="comment__likes">{comment.likes}</span>
