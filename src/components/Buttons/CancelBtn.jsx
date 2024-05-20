@@ -1,10 +1,10 @@
 import React from "react";
-import Btn from "../Button/Button";
+import Button from "../Button/Button";
 
 /* optional cancel button if form requires it */
 const CancelBtn = ({ handleButtonClick }) => (
   <div className="form__cta-btn-container form__cta-btn-container--cancel">
-    <Btn
+    <Button
       label="cancel"
       onClick={(event) => handleButtonClick("cancel", event)}
     />
