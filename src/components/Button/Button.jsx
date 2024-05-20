@@ -1,6 +1,6 @@
-import "./Btn.scss";
+import "./Button.scss";
 
-function Btn({ label, onClick, type, disabled }) {
+function Button({ label, onClick, type, disabled }) {
   // Ensure label is provided
   if (!label) {
     throw new Error('Button component requires a "label" prop.');
@@ -21,4 +21,4 @@ function Btn({ label, onClick, type, disabled }) {
   );
 }
 
-export default Btn;
+export default Button;

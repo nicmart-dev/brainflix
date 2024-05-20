@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./UploadThumbnail.scss";
 
 // set initial poster image
-import uploadVideoPreview from "../../../assets/images/Upload-video-preview.jpg";
+import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
 
 // server api to upload image
-import { uploadImage } from "../../../utils/brainflix-api";
+import { uploadImage } from "../../utils/brainflix-api";
 
 const UploadThumbnail = ({ FieldContainer, onImageUploadFilename }) => {
   const [uploadedImage, setUploadedImage] = useState(uploadVideoPreview); // state to display image in img tag

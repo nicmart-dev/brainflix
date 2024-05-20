@@ -2,7 +2,7 @@ import "./SiteHeader.scss";
 
 // Import avatar and cta button components
 import Avatar from "../Avatar/Avatar";
-import Btn from "../Btn/Btn";
+import Button from "../Button/Button";
 
 // import logo image to display
 import logo from "../../assets/logo/BrainFlix-logo.svg";
@@ -39,7 +39,7 @@ function SiteHeader() {
         </div>
         <div className="site-header__upload-container">
           <Link to="/upload">
-            <Btn label="upload" />
+            <Button label="upload" />
           </Link>
         </div>
       </nav>
