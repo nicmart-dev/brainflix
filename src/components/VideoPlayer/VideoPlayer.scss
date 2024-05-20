@@ -1,10 +1,28 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
+/* Styling video player following tutorial
+https://blog.shahednasser.com/how-to-style-a-video-player-and-create-a-custom-player/#create-custom-player 
+*/
+
 .video-player {
   background-color: $video-player-background;
   width: 100%;
   @include spacing-app(
     video-player
   ); //add left and right spacing on tablet/desktop only
+
+  // Volume slider
+  &::-webkit-media-controls-volume-slider {
+    background-color: $video-control-icon-fill;
+    padding-top: 0;
+    margin-top: 20px;
+    padding-bottom: 0;
+  }
+
+  &::-webkit-media-controls-timeline {
+    background-color: $played-bar-color;
+    padding-bottom: 0;
+    margin-bottom: 20px;
+  }
 }

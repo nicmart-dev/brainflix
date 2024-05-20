@@ -10,6 +10,9 @@ function VideoPlayer({ selectedVideo }) {
       src={selectedVideo.video}
       poster={selectedVideo.image}
       controls
+      controlsList="nodownload noplaybackrate noremoteplayback"
+      disablePictureInPicture
+      type="video/mp4"
     >
       Your browser does not support the video tag.
     </video>
