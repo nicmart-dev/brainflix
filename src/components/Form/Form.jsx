@@ -16,10 +16,15 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
-import { useCommentContext } from "../../context/commentContext";
 import UploadThumbnail from "./UploadThumbnail/UploadThumbnail"; // Image thumbnail and fields for upload page
 
-function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
+function Form({
+  cta,
+  selectedVideoId,
+  commentId,
+  setCommentLiked,
+  toggleCommentChange,
+}) {
   const {
     register,
     handleSubmit,
@@ -27,11 +32,6 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const {
-    setCommentPostedVideoIds,
-    commentPostedVideoIds,
-    setCommentIdDeleted,
-  } = useCommentContext();
 
   const [posterImageFileName, setPosterImageFileName] = useState(null); // state to store the uploaded poster image file
   const [resetFlag, setResetFlag] = useState(false); // use to propagate reset to field components
@@ -113,15 +113,10 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
           comment: formData.comment,
         };
 
-        // handle form action differently if using api or not
+        // post comment using api
         try {
-          const postedComment = await postComment(selectedVideoId, commentBody);
-
-          // track a comment was posted for this video through grandparent component state, which triggers refresh to show newly added comment
-          setCommentPostedVideoIds((prev) => [
-            ...prev,
-            { videoId: selectedVideoId, commentId: postedComment.comment.id },
-          ]);
+          await postComment(selectedVideoId, commentBody);
+          toggleCommentChange(); //trigger comment list refresh
         } catch (error) {
           console.log("Could not submit comments to API");
         }
@@ -133,17 +128,7 @@ function Form({ cta, selectedVideoId, commentId, setCommentLiked }) {
         } catch (error) {
           console.log("Could not delete comments using API");
         }
-        // track a comment was deleted for this video through grandparent component state, which triggers refresh upon removing comment
-        setCommentIdDeleted((prev) => [...prev, { commentId: commentId }]);
-
-        // Check if the deleted comment was part of commentPostedVideoIds array
-        setCommentPostedVideoIds((prev) => {
-          // Filter out the deleted comment from the array
-          const updatedArray = prev.filter(
-            (item) => item.commentId !== commentId
-          );
-          return updatedArray;
-        });
+        toggleCommentChange(); //trigger comment list refresh
 
         // Check if the deleted comment was part of commentsLiked state
         setCommentLiked((prev) => {

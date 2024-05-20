@@ -10,11 +10,15 @@ import { useState, useEffect } from "react"; // Import to then store video in st
 import { useParams, Navigate } from "react-router-dom";
 
 import { getVideos, getVideoDetails } from "../../utils/brainflix-api";
-import { useCommentContext } from "../../context/commentContext"; // set as context to access globally
 
 const VideoPage = () => {
   const { videoId } = useParams();
-  const { commentIdDeleted, commentPostedVideoIds } = useCommentContext();
+
+  // used to track if a comment was added or deleted, to refresh page
+  const [commentChange, setCommentChange] = useState(false);
+  const toggleCommentChange = () => {
+    setCommentChange((prevState) => !prevState);
+  };
 
   /* initialize the main video and list of video states unconditionally, and then update it as needed 
   based on the condition, using useEffect hook */
@@ -82,14 +86,7 @@ const VideoPage = () => {
         setNotFound(true); // set notFound state
       }
     }
-  }, [
-    videoId,
-    videos,
-    commentPostedVideoIds,
-    commentIdDeleted,
-    videosLiked,
-    commentsLiked,
-  ]);
+  }, [videoId, videos, videosLiked, commentsLiked, commentChange]);
 
   // Render the main video or redirect to NotFound page if not found
   if (notFound) {
@@ -113,6 +110,7 @@ const VideoPage = () => {
                 selectedVideo={mainVideo}
                 commentsLiked={commentsLiked}
                 setCommentLiked={setCommentLiked}
+                toggleCommentChange={toggleCommentChange}
               />
             </div>
             <aside className="video-page__next-videos-container">

@@ -6,7 +6,13 @@ import "./Comment.scss";
 import likesIcon from "../../../assets/icons/likes.svg";
 import { likeComment } from "../../../utils/brainflix-api";
 
-function Comment({ comment, selectedVideoId, commentsLiked, setCommentLiked }) {
+function Comment({
+  comment,
+  selectedVideoId,
+  commentsLiked,
+  setCommentLiked,
+  toggleCommentChange,
+}) {
   /* Handle  like button click */
   const handleLike = (commentId) => {
     //check if video has already been liked and if not, call like api
@@ -30,6 +36,7 @@ function Comment({ comment, selectedVideoId, commentsLiked, setCommentLiked }) {
       selectedVideoId={selectedVideoId}
       commentId={comment.id}
       setCommentLiked={setCommentLiked}
+      toggleCommentChange={toggleCommentChange}
     />
   );
 
