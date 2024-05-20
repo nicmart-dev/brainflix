@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form"; // we are using https://react-hook-form.com/
 
 import Btn from "../Btn/Btn";
@@ -10,13 +10,10 @@ import {
 } from "../../utils/brainflix-api";
 import "./Form.scss";
 
-/* Required dependencies to use Toast package for notification 
-https://www.npmjs.com/package/react-toastify */
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import { useNavigate } from "react-router-dom";
 import UploadThumbnail from "./UploadThumbnail/UploadThumbnail"; // Image thumbnail and fields for upload page
+
+import { notifyNav } from "../../utils/notification"; // Import the notifyNav function
+import { useNavigate } from "react-router-dom"; // for the notifyNav function
 
 function Form({
   cta,
@@ -31,51 +28,11 @@ function Form({
     reset,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
+
+  const navigate = useNavigate(); // Use navigate for route changes within notification function
 
   const [posterImageFileName, setPosterImageFileName] = useState(null); // state to store the uploaded poster image file
   const [resetFlag, setResetFlag] = useState(false); // use to propagate reset to field components
-
-  /* Notify using toast package and then navigate to relevant page */
-  const notifyNav = (label, nav) => {
-    // display alert message depending on button clicked using toast package.
-    let msg = "";
-    let type = "info";
-    let route = "/"; // by default navigate to Home/video page
-    switch (label) {
-      case "publish":
-        msg = "Video published, navigating to homepage";
-        type = "success";
-        route = nav;
-        break;
-      case "cancel":
-        msg = "Video upload cancelled, navigating back to homepage";
-        type = "info";
-        break;
-      case "delete":
-        msg = "Comment deleted";
-        type = "success";
-        route = ""; // don't navigate
-        break;
-      case "comment":
-        msg = "Comment posted!";
-        type = "success";
-        route = ""; // don't navigate
-        break;
-      default:
-      //otherwise use values already set during variables init
-    }
-    /* display toast but navigate to route only if closing toast manually,
-    or auto close after default 8 sec timer, per https://fkhadra.github.io/react-toastify/define-callback */
-    toast[type](msg, {
-      onClose: () => {
-        if (route) {
-          navigate(route);
-        }
-      },
-      position: "bottom-right",
-    });
-  };
 
   /* Form submit action. Handle forms to:
   1. Upload videos
@@ -84,7 +41,7 @@ function Form({
   Then optionally navigate to relevant route.
  */
   const onSubmit = async (formData) => {
-    let nav; // initialize variable that will set nav location based on cta
+    let route; // initialize variable that will set nav location based on cta
 
     try {
       if (cta === "publish") {
@@ -99,7 +56,7 @@ function Form({
         try {
           const postedVideo = await postVideo(videoBody);
           if (postedVideo.status === 200) {
-            nav = `/videos/${postedVideo.data.video.id}`; // set route to navigate to after toast notification
+            route = `/videos/${postedVideo.data.video.id}`; // set route to navigate to after toast notification
           }
         } catch (error) {
           console.log("Could not upload video to API", error);
@@ -143,7 +100,7 @@ function Form({
       reset();
       setResetFlag(true); // propagate reset to child field components
 
-      notifyNav(cta, nav);
+      notifyNav(cta, route, navigate); // show toast notification with optional route navigation
     } catch (error) {
       console.log("error submitting form", error);
     }
