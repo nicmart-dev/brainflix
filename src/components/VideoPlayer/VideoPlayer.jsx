@@ -66,20 +66,20 @@ function VideoPlayer({ selectedVideo }) {
   };
 
   const handleFullscreenClick = () => {
-    const videoContainer = document.querySelector(".video-player");
+    const video = document.getElementById("video");
     if (!isFullScreen) {
-      if (videoContainer.requestFullscreen) {
-        videoContainer.requestFullscreen().catch((error) => {
+      if (video.requestFullscreen) {
+        video.requestFullscreen().catch((error) => {
           console.error("Error attempting to enter fullscreen:", error);
         });
-      } else if (videoContainer.webkitRequestFullscreen) {
+      } else if (video.webkitRequestFullscreen) {
         /* Safari */
-        videoContainer.webkitRequestFullscreen().catch((error) => {
+        video.webkitRequestFullscreen().catch((error) => {
           console.error("Error attempting to enter fullscreen:", error);
         });
-      } else if (videoContainer.msRequestFullscreen) {
+      } else if (video.msRequestFullscreen) {
         /* IE11 */
-        videoContainer.msRequestFullscreen().catch((error) => {
+        video.msRequestFullscreen().catch((error) => {
           console.error("Error attempting to enter fullscreen:", error);
         });
       }
