@@ -120,7 +120,7 @@ function Form({
   /* Display notification and navigate on non submit button click */
   const handleButtonClick = (label, event) => {
     event.preventDefault(); // Stop the default form submission behavior
-    notifyNav(label);
+    notifyNav(label, "", navigate);
   };
 
   /* Return different form if video upload page, or in comments component.
