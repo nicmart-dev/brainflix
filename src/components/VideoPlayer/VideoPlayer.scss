@@ -79,6 +79,7 @@ https://blog.shahednasser.com/how-to-style-a-video-player-and-create-a-custom-pl
     color: $video-control-icon-fill;
     font-size: small;
     text-wrap: nowrap;
+    @include spacing-between-components(right, margin);
   }
 
   // add styling to the timeline range element as a whole
