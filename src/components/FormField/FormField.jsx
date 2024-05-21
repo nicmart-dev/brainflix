@@ -28,6 +28,20 @@ function FormField({
 
   // Determine if there's an error for the current field
   const hasError = errors && errors[name];
+  const errorMessage =
+    (hasError &&
+      errors[name].type === "required" &&
+      "This field is required") ||
+    (hasError &&
+      errors[name].type === "pattern" &&
+      "Please enter at least one character");
+
+  // Clear field value if there's an error
+  useEffect(() => {
+    if (hasError) {
+      setValue("");
+    }
+  }, [hasError]);
 
   /* register input into the hook by invoking the "register" function
  include validation with required standard HTML validation rules */
@@ -36,7 +50,7 @@ function FormField({
       {label}
       <InputComponent
         {...register(name, { required: required, pattern: /\S+/ })} //can't be empty and at least 1 non space char
-        placeholder={placeholder}
+        placeholder={errorMessage ? errorMessage : placeholder}
         onChange={(e) => {
           setValue(e.target.value); //set field value from state as user types
           setResetFlag(false); // allow to reset again to submit multiple comments
@@ -46,18 +60,6 @@ function FormField({
           hasError ? "form-field--error" : ""
         }`}
       />
-      {hasError &&
-        errors[name].type === "required" && ( // Check for errors and display error message
-          <span role="alert" className="form-field__alert">
-            This is required
-          </span>
-        )}
-      {hasError &&
-        errors[name].type === "pattern" && ( // Check for errors and display error message
-          <span role="alert" className="form-field__alert">
-            Please enter at least one character
-          </span>
-        )}
     </label>
   );
 }
