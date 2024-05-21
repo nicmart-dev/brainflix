@@ -55,12 +55,18 @@ function Form({
         // Do nothing, search functionality not implemented
         formData.preventDefault();
       }
+      if (cta === "publish" && !posterImageFileName) {
+        // If publishing and no image is selected, prevent form submission
+        alert("Please select an image.");
+        return;
+      }
+
       if (cta === "publish") {
         // Constructs a new video object to pass to api as body
         const videoBody = {
           title: formData.title,
           description: formData.description,
-          image: posterImageFileName ? posterImageFileName : "image0.jpg", // set the actual uploaded filename otherwise set placeholder img
+          image: posterImageFileName, // set the actual uploaded filename otherwise set placeholder img
         };
 
         // handle form action differently if using api or not

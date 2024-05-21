@@ -4,6 +4,8 @@ import "./UploadThumbnail.scss";
 // set initial poster image
 import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
 
+import ChooseThumbnail from "../Buttons/ChooseThumbnail";
+
 // server api to upload image
 import { uploadImage } from "../../utils/brainflix-api";
 
@@ -71,9 +73,7 @@ const UploadThumbnail = ({ FieldContainer, onImageUploadFilename }) => {
           className="upload-thumb__img"
         />
       </div>
-      <button name="poster" type="button" onClick={handleImageUpload} required>
-        Choose Thumbnail
-      </button>
+      <ChooseThumbnail handleButtonClick={handleImageUpload} />
       {FieldContainer}
     </div>
   );
