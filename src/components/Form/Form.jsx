@@ -53,7 +53,8 @@ function Form({
     try {
       if (cta === "query") {
         // Do nothing, search functionality not implemented
-        formData.preventDefault();
+
+        return;
       }
       if (cta === "publish" && !posterImageFileName) {
         // If publishing and no image is selected, prevent form submission
