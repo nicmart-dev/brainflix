@@ -4,7 +4,12 @@ import Comment from "./Comment/Comment";
 import "./Comments.scss";
 
 /* Insert a comment component for each comment for selected video */
-function Comments({ selectedVideo }) {
+function Comments({
+  selectedVideo,
+  commentsLiked,
+  setCommentLiked,
+  toggleCommentChange,
+}) {
   const commentCount = selectedVideo.comments.length;
 
   return (
@@ -17,7 +22,13 @@ function Comments({ selectedVideo }) {
       <div className="comments__comment-list-form-container">
         <div className="comments__new-comment-container">
           <Avatar isLoggedIn={true} />
-          <Form cta="comment" selectedVideoId={selectedVideo.id} />
+          <Form
+            key={selectedVideo.id}
+            cta="comment"
+            selectedVideoId={selectedVideo.id}
+            setCommentLiked={setCommentLiked}
+            toggleCommentChange={toggleCommentChange}
+          />
         </div>
         <article className="comments__list-container">
           {selectedVideo.comments
@@ -27,6 +38,9 @@ function Comments({ selectedVideo }) {
                 comment={comment}
                 key={comment.id}
                 selectedVideoId={selectedVideo.id}
+                commentsLiked={commentsLiked}
+                setCommentLiked={setCommentLiked}
+                toggleCommentChange={toggleCommentChange}
               />
             ))}
         </article>

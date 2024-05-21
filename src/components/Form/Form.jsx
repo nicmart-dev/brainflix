@@ -1,80 +1,86 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form"; // we are using https://react-hook-form.com/
 
-import Btn from "../Btn/Btn";
-import FormField from "./FormField/FormField";
-import { postComment, deleteComment } from "../../utils/brainflix-api";
+import {
+  postVideo,
+  postComment,
+  deleteComment,
+} from "../../utils/brainflix-api";
 import "./Form.scss";
 
-import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
+import UploadThumbnail from "../UploadThumbnail/UploadThumbnail"; // Image thumbnail and fields for upload page
 
-/* Required dependencies to use Toast package for notification 
-https://www.npmjs.com/package/react-toastify */
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { notifyNav } from "../../utils/notification"; // Import the notifyNav function
+import { useNavigate } from "react-router-dom"; // for the notifyNav function
 
-import { useNavigate } from "react-router-dom";
+/* Import all button and form fields component */
+import VideoTitleField from "../FormFields/VideoTitleField";
+import VideoDescField from "../FormFields/VideoDescField";
+import CommentTextField from "../FormFields/CommentTextField";
+import SiteHeaderSearchField from "../FormFields/SiteHeaderSearchField";
 
-import { useAPIContext } from "../../context/apiContext";
-import { useCommentContext } from "../../context/commentContext";
+import SubmitBtn from "../Buttons/SubmitBtn";
+import CancelBtn from "../Buttons/CancelBtn";
 
-function Form({ cta, selectedVideoId, commentId }) {
+function Form({
+  cta,
+  selectedVideoId,
+  commentId,
+  setCommentLiked,
+  toggleCommentChange,
+}) {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitted },
+    reset,
+    formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
-  const { useAPI, setUseAPI } = useAPIContext();
-  const {
-    setCommentPostedVideoIds,
-    commentPostedVideoIds,
-    setCommentIdDeleted,
-  } = useCommentContext();
 
-  /* Notify using toast package and then navigate to relevant page */
-  const notifyNav = (label) => {
-    // display alert message depending on button clicked using toast package.
-    let msg = "";
-    let type = "info";
-    let route = "/"; // by default navigate to Home/video page
-    switch (label) {
-      case "publish":
-        msg = "Video published, navigating to homepage";
-        type = "success";
+  const navigate = useNavigate(); // Use navigate for route changes within notification function
 
-        break;
-      case "cancel":
-        msg = "Video upload cancelled, navigating back to homepage";
-        type = "info";
-        break;
-      case "delete":
-        msg = "Comment deleted";
-        type = "success";
-        route = ""; // don't navigate
-        break;
-      case "comment":
-        msg = "Comment posted!";
-        type = "success";
-        route = ""; // don't navigate
-        break;
-      default:
-      //otherwise use values already set during variables init
-    }
-    /* display toast but navigate to route only if closing toast manually,
-    or auto close after default 8 sec timer, per https://fkhadra.github.io/react-toastify/define-callback */
-    toast[type](msg, {
-      onClose: () => navigate(route),
-      position: "bottom-right",
-    });
-  };
+  const [posterImageFileName, setPosterImageFileName] = useState(null); // state to store the uploaded poster image file
+  const [resetFlag, setResetFlag] = useState(false); // use to propagate reset to field components
 
   /* Form submit action. Handle forms to:
-  1. Post comments (only if comment form)
-  2. Delete comment on click Delete button form in video comments
+  1. Upload videos
+  2. Post comments (only if comment form)
+  3. Delete comment on click Delete button form in video comments
   Then optionally navigate to relevant route.
  */
   const onSubmit = async (formData) => {
+    let route; // initialize variable that will set nav location based on cta
+
     try {
+      if (cta === "query") {
+        // Do nothing, search functionality not implemented
+
+        return;
+      }
+      if (cta === "publish" && !posterImageFileName) {
+        // If publishing and no image is selected, prevent form submission
+        alert("Please select an image.");
+        return;
+      }
+
+      if (cta === "publish") {
+        // Constructs a new video object to pass to api as body
+        const videoBody = {
+          title: formData.title,
+          description: formData.description,
+          image: posterImageFileName, // set the actual uploaded filename otherwise set placeholder img
+        };
+
+        // handle form action differently if using api or not
+        try {
+          const postedVideo = await postVideo(videoBody);
+          if (postedVideo.status === 200) {
+            route = `/videos/${postedVideo.data.video.id}`; // set route to navigate to after toast notification
+          }
+        } catch (error) {
+          console.log("Could not upload video to API", error);
+        }
+      }
+
       if (cta === "comment") {
         // Constructs a new comment object to pass to api as body
         const commentBody = {
@@ -82,49 +88,37 @@ function Form({ cta, selectedVideoId, commentId }) {
           comment: formData.comment,
         };
 
-        // handle form action differently if using api or not
-        if (useAPI) {
-          try {
-            const postedComment = await postComment(
-              selectedVideoId,
-              commentBody
-            );
-
-            // track a comment was posted for this video through grandparent component state, which triggers refresh to show newly added comment
-            setCommentPostedVideoIds((prev) => [
-              ...prev,
-              { videoId: selectedVideoId, commentId: postedComment.id },
-            ]);
-          } catch (error) {
-            console.log("Could not submit comments to API");
-            setUseAPI(false);
-          }
+        // post comment using api
+        try {
+          await postComment(selectedVideoId, commentBody);
+          toggleCommentChange(); //trigger comment list refresh
+        } catch (error) {
+          console.log("Could not submit comments to API");
         }
       }
 
       if (cta === "delete") {
-        if (useAPI) {
-          await deleteComment(selectedVideoId, commentId);
-          try {
-          } catch (error) {
-            console.log("Could not delete comments using API");
-            setUseAPI(false);
-          }
-          // track a comment was deleted for this video through grandparent component state, which triggers refresh upon removing comment
-          setCommentIdDeleted((prev) => [...prev, { commentId: commentId }]);
-
-          // Check if the deleted comment was part of commentPostedVideoIds array
-          setCommentPostedVideoIds((prev) => {
-            // Filter out the deleted comment from the array
-            const updatedArray = prev.filter(
-              (item) => item.commentId !== commentId
-            );
-            return updatedArray;
-          });
+        await deleteComment(selectedVideoId, commentId);
+        try {
+        } catch (error) {
+          console.log("Could not delete comments using API");
         }
-      }
+        toggleCommentChange(); //trigger comment list refresh
 
-      notifyNav(cta);
+        // Check if the deleted comment was part of commentsLiked state
+        setCommentLiked((prev) => {
+          // Filter out the deleted comment from the array
+          const updatedArray = prev.filter(
+            (item) => item.commentId !== commentId
+          );
+          return updatedArray;
+        });
+      }
+      // Reset form fields after successful submission
+      reset();
+      setResetFlag(true); // propagate reset to child field components
+
+      notifyNav(cta, route, navigate); // show toast notification with optional route navigation
     } catch (error) {
       console.log("error submitting form", error);
     }
@@ -133,106 +127,10 @@ function Form({ cta, selectedVideoId, commentId }) {
   /* Display notification and navigate on non submit button click */
   const handleButtonClick = (label, event) => {
     event.preventDefault(); // Stop the default form submission behavior
-    notifyNav(label);
+    notifyNav(label, "", navigate);
   };
-
-  //used to conditionally display form if user did not post comment already
-  const isCommentPosted = () => {
-    return commentPostedVideoIds.some(
-      (item) => item.videoId === selectedVideoId
-    );
-  };
-
-  //input title field only for upload page
-  const VideoTitleField = (
-    <FormField
-      name="title"
-      label="Title your video"
-      register={register}
-      required
-      type="input"
-      placeholder="Add a title to your video"
-    />
-  );
-
-  //textarea field only for upload page
-  const VideoDescField = (
-    <FormField
-      name="description"
-      label="Add a video description"
-      register={register}
-      required
-      type="textarea"
-      placeholder="Add a description to your video"
-    />
-  );
-
-  const CommentTextField = (
-    <FormField
-      name="comment"
-      label="Join the conversation"
-      register={register}
-      required
-      type="textarea"
-      placeholder="Add a new comment"
-    />
-  );
-
-  // Shared fields for upload page or comments component
-  const FieldContainer = (
-    <div className={`form__field-container form__field-container--${cta}`}>
-      {cta === "publish" && VideoTitleField}
-      {cta === "publish" && VideoDescField}
-      {cta === "comment" && CommentTextField}
-    </div>
-  );
-
-  // Image thumbnail and fields for upload page
-  const FormThumbnail = (
-    <div className="form__img-input-fields-container">
-      <div>
-        <h2 className="form__subtitle">Video Thumbnail</h2>
-        <img
-          src={uploadVideoPreview}
-          alt="video preview"
-          className="form__img"
-        />
-      </div>
-      {FieldContainer}
-    </div>
-  );
-
-  //submit button, all forms should have one of these
-  const SubmitBtn = (label) => (
-    <div
-      className={`form__cta-btn-container form__cta-btn-container--${label}`}
-    >
-      <Btn label={label} type="submit" />
-    </div>
-  );
-  // optional cancel button if form requires it
-  const CancelBtn = (
-    <div className="form__cta-btn-container form__cta-btn-container--cancel">
-      <Btn
-        label="cancel"
-        onClick={(event) => handleButtonClick("cancel", event)}
-      />
-    </div>
-  );
-
-  /* only show cancel button on publish page
-  show delete button on comment component */
-  const BtnContainer = (
-    <div className="form__cta-btn-nav">
-      {SubmitBtn(cta)}
-      {cta === "publish" && CancelBtn}
-    </div>
-  );
 
   /* Return different form if video upload page, or in comments component.
-  Disable buttons if form submitted, 
-  and show message instead of form fields after posting new comment 
-  If use API disabled in state, don't show comments form or submit button
  "handleSubmit" will validate inputs before invoking "onSubmit" */
   return (
     <form
@@ -240,15 +138,67 @@ function Form({ cta, selectedVideoId, commentId }) {
       id={`${cta}`}
       onSubmit={handleSubmit(onSubmit)}
     >
-      {cta === "publish" && FormThumbnail}
-      {cta === "comment" && useAPI && !isCommentPosted() && FieldContainer}
-      {cta === "comment" &&
-        isCommentPosted() &&
-        "Thanks for posting a comment!"}
-      {cta === "publish" && !isSubmitted && BtnContainer}
-      {cta === "publish" && isSubmitted && "Thanks for posting a video!"}
-      {cta === "comment" && useAPI && !isCommentPosted() && BtnContainer}
-      {cta === "delete" && BtnContainer}
+      {cta === "publish" && (
+        <>
+          <UploadThumbnail
+            FieldContainer={
+              <div
+                className={`form__field-container form__field-container--${cta}`}
+              >
+                <VideoTitleField
+                  register={register}
+                  resetFlag={resetFlag}
+                  setResetFlag={setResetFlag}
+                  errors={errors}
+                />
+                <VideoDescField
+                  register={register}
+                  resetFlag={resetFlag}
+                  setResetFlag={setResetFlag}
+                  errors={errors}
+                />
+              </div>
+            }
+            onImageUploadFilename={setPosterImageFileName}
+          />
+          <div className="form__cta-btn-nav">
+            <SubmitBtn label={cta} />
+            <CancelBtn handleButtonClick={handleButtonClick} />
+          </div>
+        </>
+      )}
+      {cta === "comment" && (
+        <>
+          <div
+            className={`form__field-container form__field-container--${cta}`}
+          >
+            <CommentTextField
+              register={register}
+              resetFlag={resetFlag}
+              setResetFlag={setResetFlag}
+              errors={errors}
+            />
+          </div>
+          <div className="form__cta-btn-nav">
+            <SubmitBtn label={cta} />
+          </div>
+        </>
+      )}
+      {cta === "delete" && (
+        <div className="form__cta-btn-nav">
+          <SubmitBtn label={cta} />
+        </div>
+      )}
+      {cta === "query" && (
+        <>
+          <SiteHeaderSearchField
+            register={register}
+            resetFlag={resetFlag}
+            setResetFlag={setResetFlag}
+            errors={errors}
+          />
+        </>
+      )}
     </form>
   );
 }

@@ -98,6 +98,11 @@ $padding-before-headlines-tablet: $padding-lg;
 $padding-after-headlines-tablet: $padding-xs;
 $padding-between-components-tablet: $padding-md;
 
+// left/right component spacing
+$page-padding: $padding-sm;
+$page-padding-tablet: $padding-2xl;
+$page-padding-desktop: $padding-5xl;
+
 /* -------------------------------------------------------------------------- */
 /*                        Iconography & Call To Actions                       */
 /* -------------------------------------------------------------------------- */
@@ -156,6 +161,12 @@ $scrubbing-icon-color: $color-primary-white;
 $scrubber-bar-icon-color: $color-secondary-brainflix-darkblack;
 $buffer-bar-color: $color-primary-silver;
 $played-bar-color: $color-primary-blue;
+
+/* Padding used to align player control bar */
+
+$video-player-padding: $page-padding;
+$video-player-padding-tablet: $page-padding-tablet;
+$video-player-padding-desktop: $padding-8xl;
 
 /* -------------------------------------------------------------------------- */
 /*                                 Form fields                                */

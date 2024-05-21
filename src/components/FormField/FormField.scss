@@ -1,0 +1,91 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.form-field {
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+      width: 100%;
+    }
+  }
+
+  // add space between only if form with two or more fields (ie. video upload page, not comments page)
+  &__container--description,
+  &__container--title {
+    @include spacing-between-components(topbottom);
+  }
+
+  &__alert {
+    color: $color-error;
+  }
+
+  &__input,
+  &__textarea {
+    font-family: $font; // overwrite default browser font
+    font-weight: $body-copy-font-weight;
+    font-size: $body-copy-font-size;
+    display: block;
+    background-color: $color-secondary-alabaster;
+    border-radius: $form-field-border-radius;
+    border-color: transparent;
+    outline: $form-field-default-filled-border; // using outline instead of border to not alter height
+
+    margin-top: $form-space-between-label-and-field;
+    @include tablet {
+      margin-top: 0.3125rem;
+    }
+
+    @include spacing-inside-fields;
+    &:active,
+    &:focus {
+      outline: $form-field-active-border;
+    }
+
+    /*  style placeholder text in fields */
+    &::placeholder {
+      color: $color-primary-brainflix-black;
+      font-size: $body-copy-font-size; // match typing font
+      @include tablet {
+        font-size: $body-copy-font-size-tablet;
+      }
+    }
+  }
+
+  &__textarea {
+    height: calc($form-field-height * 3);
+    @include tablet {
+      overflow: hidden; //hide scroll bar
+    }
+  }
+
+  &--comment {
+    // override default height of 3 lines to be single line in comment component
+    @include tablet {
+      height: $form-field-height-tablet;
+    }
+  }
+  &--query {
+    width: $form-field-minwidth;
+    color: $icon-txt-search-color;
+    padding: $form-field-padding;
+    padding-left: $padding-xl;
+    background-image: url("../../assets/icons/search.svg");
+    background-repeat: no-repeat;
+    background-size: 1.5625rem;
+    background-position: 0.625rem center;
+    width: 100%;
+  }
+
+  /* field outline and animation.
+Note: Increase specificity of .form-field--error 
+so it overrides pseudo-classes at input/textarea in index.sass
+*/
+  &--error {
+    @include field-error;
+  }
+  &--error::placeholder {
+    color: $color-error;
+  }
+}

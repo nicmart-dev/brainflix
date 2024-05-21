@@ -41,13 +41,6 @@
     }
   }
 
-  &__form {
-    order: 2;
-    flex: 1; // use all available space
-    @include tablet {
-      flex: 0 40%;
-    }
-  }
   &__avatar-container {
     order: 3;
     padding-left: $padding-between-components;
@@ -71,17 +64,6 @@
       order: 3; // show flex item order differently on tablet
       padding-left: $padding-between-components;
     }
-  }
-  &__search {
-    width: $form-field-minwidth;
-    color: $icon-txt-search-color;
-    padding: $form-field-padding;
-    padding-left: $padding-xl;
-    background-image: url("../../assets/icons/search.svg");
-    background-repeat: no-repeat;
-    background-size: 1.5625rem;
-    background-position: 0.625rem center;
-    width: 100%;
   }
 }
 

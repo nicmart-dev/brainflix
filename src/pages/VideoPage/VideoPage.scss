@@ -19,4 +19,13 @@
       padding-left: $padding-between-components-tablet;
     }
   }
+
+  // styling the like icon used in video details and comment components
+  &__likes-img {
+    height: 1.5625rem;
+  }
+  &__likes-img:active,
+  &__likes-img:hover {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg);
+  }
 }

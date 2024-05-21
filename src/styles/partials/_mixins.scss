@@ -30,28 +30,42 @@
 @mixin spacing-app($component: "") {
   // don't add spacing on mobile if video player
   @if $component != video-player {
-    @include spacing(padding, sides, $padding-sm);
+    @include spacing(padding, sides, $page-padding);
   }
 
   @include tablet {
-    @include spacing(padding, sides, $padding-2xl);
+    @include spacing(padding, sides, $page-padding-tablet);
   }
   @include desktop {
-    @include spacing(padding, sides, $padding-5xl);
+    @include spacing(padding, sides, $page-padding-desktop);
 
     //add additional spacing for video player on desktop only
     @if $component == video-player {
-      @include spacing(padding, sides, $padding-8xl);
+      @include spacing(padding, sides, $video-player-padding-desktop);
     }
   }
 }
 
 //use to insert spacing between components
-@mixin spacing-between-components($direction: bottom) {
-  @include spacing(padding, $direction, $padding-between-components);
+@mixin spacing-between-components($direction: bottom, $type: padding) {
+  @include spacing($type, $direction, $padding-between-components);
 
   @include tablet {
-    @include spacing(padding, $direction, $padding-between-components-tablet);
+    @include spacing($type, $direction, $padding-between-components-tablet);
+  }
+}
+
+//use to align video player control with page spacing
+@mixin spacing-video-player-controls() {
+  @include tablet {
+    width: calc(100% - 2 * $video-player-padding-tablet);
+    left: $video-player-padding-tablet;
+    right: $video-player-padding-tablet;
+  }
+  @include desktop {
+    width: calc(100% - 2 * $video-player-padding-desktop);
+    left: $video-player-padding-desktop;
+    right: $video-player-padding-desktop;
   }
 }
 
@@ -100,5 +114,25 @@ Expanded mixin created by https://codepen.io/ezos86/pen/QwQmZb */
       topbottom,
       10px
     ); //keep mobile left padding but reduce top/bottom
+  }
+}
+
+// use to show field validation outline and animation
+@mixin field-error {
+  outline: $form-field-error-border !important;
+  animation: shakeItUp 0.25s !important;
+
+  @keyframes shakeItUp {
+    0% {
+      transform: translateX(-10px);
+    }
+
+    50% {
+      transform: translateX(10px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
   }
 }
