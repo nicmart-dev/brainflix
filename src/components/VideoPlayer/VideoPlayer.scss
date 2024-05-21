@@ -7,22 +7,182 @@ https://blog.shahednasser.com/how-to-style-a-video-player-and-create-a-custom-pl
 
 .video-player {
   background-color: $video-player-background;
-  width: 100%;
-  @include spacing-app(
-    video-player
-  ); //add left and right spacing on tablet/desktop only
+  //add left and right spacing on tablet/desktop only
+  @include spacing-app(video-player);
 
-  // Volume slider
-  &::-webkit-media-controls-volume-slider {
-    background-color: $video-control-icon-fill;
-    padding-top: 0;
-    margin-top: 20px;
-    padding-bottom: 0;
+  position: relative;
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    background: $video-player-background;
   }
 
-  &::-webkit-media-controls-timeline {
-    background-color: $played-bar-color;
-    padding-bottom: 0;
-    margin-bottom: 20px;
+  // styling for the container of the controls
+  &__controls {
+    display: flex;
+    position: absolute;
+    gap: $padding-between-components;
+    width: 100%;
+    bottom: 20px;
+
+    /* Ensure alignment within the grandparent padding */
+    @include spacing-video-player-controls;
+
+    align-items: center;
+    transition: opacity 0.2s;
+  }
+
+  // hide the controls when the video is playing
+  &.playing &__controls {
+    opacity: 0;
+  }
+
+  // only show controls on hover:
+  &:hover &__controls {
+    opacity: 1;
+  }
+
+  // add same height, and background overlay to each control component
+  &__control-container {
+    border-radius: 5px;
+    background-color: $video-control-background-color;
+    height: 25px;
+  }
+
+  // add left and right spacing to match breakpoints
+  &__play-container {
+    @include spacing-between-components(left, margin);
+  }
+  &__fullscreen-vol-container {
+    @include spacing-between-components(right, margin);
+  }
+
+  &__control-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.2s;
+  }
+
+  &__control-button:hover {
+    opacity: 1;
+  }
+
+  &__timeline-container {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+  }
+  &__time {
+    color: $video-control-icon-fill;
+    font-size: small;
+    text-wrap: nowrap;
+  }
+
+  // add styling to the timeline range element as a whole
+  &__timeline {
+    flex: 0 1 auto; //use max space
+    outline: unset; // reset default input field
+    &:focus &:active {
+      outline: unset; // reset default input field
+    }
+    margin: 0 1rem;
+    padding: 0; // reset default input field
+    -webkit-appearance: none;
+    width: 100%;
+    height: 0.2em;
+    background-color: $scrubber-bar-icon-color;
+    border-radius: 5px;
+    background-size: 0% 100%; //indicate the progress of the video
+    background-image: linear-gradient(
+      $played-bar-color,
+      $played-bar-color
+    ); // indicate the time elapsed in the video
+    background-repeat: no-repeat;
+  }
+
+  /* Style thumb scrubbing icon to mark current time in video 
+  Hidden by default except when on hover.
+  */
+
+  &__timeline::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: $scrubbing-icon-size;
+    height: $scrubbing-icon-size;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.1s;
+    background-color: rgba($scrubbing-icon-color, 0.8);
+  }
+
+  &__timeline::-moz-range-thumb {
+    -webkit-appearance: none;
+    width: $scrubbing-icon-size;
+    height: $scrubbing-icon-size;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.1s;
+    background-color: rgba($scrubbing-icon-color, 0.8);
+  }
+
+  &__timeline::-ms-thumb {
+    -webkit-appearance: none;
+    width: $scrubbing-icon-size;
+    height: $scrubbing-icon-size;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.1s;
+    background-color: rgba($scrubbing-icon-color, 0.8);
+  }
+
+  &__timeline::-webkit-slider-thumb:hover {
+    background-color: $scrubbing-icon-color;
+  }
+
+  &__timeline:hover::-webkit-slider-thumb {
+    opacity: 1;
+  }
+
+  &__timeline::-moz-range-thumb:hover {
+    background-color: $scrubbing-icon-color;
+  }
+
+  &__timeline:hover::-moz-range-thumb {
+    opacity: 1;
+  }
+
+  &__timeline::-ms-thumb:hover {
+    background-color: $scrubbing-icon-color;
+  }
+
+  &__timeline:hover::-ms-thumb {
+    opacity: 1;
+  }
+  /* style the track of the timeline */
+
+  &__timeline::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  &__timeline::-moz-range-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  &__timeline::-ms-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
   }
 }
