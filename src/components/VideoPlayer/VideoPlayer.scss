@@ -45,7 +45,7 @@ https://blog.shahednasser.com/how-to-style-a-video-player-and-create-a-custom-pl
 
   // add same height, and background overlay to each control component
   &__control-container {
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     background-color: $video-control-background-color;
     height: 25px;
   }
@@ -70,6 +70,14 @@ https://blog.shahednasser.com/how-to-style-a-video-player-and-create-a-custom-pl
     opacity: 1;
   }
 
+  &__play-button {
+    width: 2.1875rem;
+    height: 1.5rem;
+  }
+  & img {
+    object-fit: contain;
+  }
+
   &__timeline-container {
     display: flex;
     align-items: center;
@@ -89,7 +97,7 @@ https://blog.shahednasser.com/how-to-style-a-video-player-and-create-a-custom-pl
     &:focus &:active {
       outline: unset; // reset default input field
     }
-    margin: 0 1rem;
+    margin: 0 16px;
     padding: 0; // reset default input field
     -webkit-appearance: none;
     width: 100%;
