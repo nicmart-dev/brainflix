@@ -17,6 +17,8 @@ import { useNavigate } from "react-router-dom"; // for the notifyNav function
 import VideoTitleField from "../FormFields/VideoTitleField";
 import VideoDescField from "../FormFields/VideoDescField";
 import CommentTextField from "../FormFields/CommentTextField";
+import SiteHeaderSearchField from "../FormFields/SiteHeaderSearchField";
+
 import SubmitBtn from "../Buttons/SubmitBtn";
 import CancelBtn from "../Buttons/CancelBtn";
 
@@ -49,6 +51,10 @@ function Form({
     let route; // initialize variable that will set nav location based on cta
 
     try {
+      if (cta === "query") {
+        // Do nothing, search functionality not implemented
+        formData.preventDefault();
+      }
       if (cta === "publish") {
         // Constructs a new video object to pass to api as body
         const videoBody = {
@@ -175,6 +181,16 @@ function Form({
         <div className="form__cta-btn-nav">
           <SubmitBtn label={cta} />
         </div>
+      )}
+      {cta === "query" && (
+        <>
+          <SiteHeaderSearchField
+            register={register}
+            resetFlag={resetFlag}
+            setResetFlag={setResetFlag}
+            errors={errors}
+          />
+        </>
       )}
     </form>
   );

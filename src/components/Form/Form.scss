@@ -52,3 +52,11 @@
     align-items: flex-end;
   }
 }
+
+.form--query {
+  order: 2;
+  flex: 1; // use all available space
+  @include tablet {
+    flex: 0 40%;
+  }
+}

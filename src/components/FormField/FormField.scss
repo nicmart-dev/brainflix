@@ -20,13 +20,6 @@
   &__alert {
     color: $color-error;
   }
-  /* field outline and animation.
-Note: Increase specificity of .form-field--error 
-so it overrides pseudo-classes at input/textarea in index.sass
-*/
-  &--error {
-    @include field-error;
-  }
 
   &__input,
   &__textarea {
@@ -58,11 +51,6 @@ so it overrides pseudo-classes at input/textarea in index.sass
         font-size: $body-copy-font-size-tablet;
       }
     }
-    /*   only show required field error state if empty on submit,
-  and not browser load */
-    &:user-invalid {
-      @include field-error;
-    }
   }
 
   &__textarea {
@@ -77,5 +65,24 @@ so it overrides pseudo-classes at input/textarea in index.sass
     @include tablet {
       height: $form-field-height-tablet;
     }
+  }
+  &--query {
+    width: $form-field-minwidth;
+    color: $icon-txt-search-color;
+    padding: $form-field-padding;
+    padding-left: $padding-xl;
+    background-image: url("../../assets/icons/search.svg");
+    background-repeat: no-repeat;
+    background-size: 1.5625rem;
+    background-position: 0.625rem center;
+    width: 100%;
+  }
+
+  /* field outline and animation.
+Note: Increase specificity of .form-field--error 
+so it overrides pseudo-classes at input/textarea in index.sass
+*/
+  &--error {
+    @include field-error;
   }
 }
