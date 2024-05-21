@@ -23,6 +23,7 @@ function Comments({
         <div className="comments__new-comment-container">
           <Avatar isLoggedIn={true} />
           <Form
+            key={selectedVideo.id}
             cta="comment"
             selectedVideoId={selectedVideo.id}
             setCommentLiked={setCommentLiked}
