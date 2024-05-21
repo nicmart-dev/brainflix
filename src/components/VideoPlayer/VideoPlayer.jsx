@@ -20,18 +20,25 @@ function VideoPlayer({ selectedVideo }) {
   useEffect(() => {
     const video = document.getElementById("video");
 
+    // used to set video duration in video control
     const handleLoadedMetadata = () => {
       setDuration(video.duration);
     };
 
+    // set current video position in state, as well as change played video scrubber
     const handleTimeUpdate = () => {
       setCurrentTime(video.currentTime);
+      const timeline = document.querySelector(".video-player__timeline");
+      const percentagePosition = (video.currentTime / video.duration) * 100;
+      timeline.style.backgroundSize = `${percentagePosition}% 100%`;
     };
 
+    // mark video played so we can reset video
     const handleVideoEnded = () => {
       setIsPlaying(false);
     };
 
+    // gracefully handle fullscreen toggle
     const handleFullscreenChange = () => {
       setIsFullScreen(!!document.fullscreenElement);
     };
@@ -41,6 +48,7 @@ function VideoPlayer({ selectedVideo }) {
     video.addEventListener("ended", handleVideoEnded);
     document.addEventListener("fullscreenchange", handleFullscreenChange);
 
+    // cleanup the event listeners that were added when the component mounted
     return () => {
       video.removeEventListener("loadedmetadata", handleLoadedMetadata);
       video.removeEventListener("timeupdate", handleTimeUpdate);

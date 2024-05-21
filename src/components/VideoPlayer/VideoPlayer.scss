@@ -93,12 +93,7 @@ https://blog.shahednasser.com/how-to-style-a-video-player-and-create-a-custom-pl
   // add styling to the timeline range element as a whole
   &__timeline {
     flex: 0 1 auto; //use max space
-    outline: unset; // reset default input field
-    &:focus &:active {
-      outline: unset; // reset default input field
-    }
     margin: 0 16px;
-    padding: 0; // reset default input field
     -webkit-appearance: none;
     width: 100%;
     height: 0.2em;
