@@ -20,68 +20,62 @@
   &__alert {
     color: $color-error;
   }
-}
-
-.form-field--comment {
-  // override default height of 3 lines to be single line in comment component
-  @include tablet {
-    height: $form-field-height-tablet;
-  }
-}
-
-/* field outline and animation.
+  /* field outline and animation.
 Note: Increase specificity of .form-field--error 
 so it overrides pseudo-classes at input/textarea in index.sass
 */
-input.form-field--error,
-textarea.form-field--error {
-  @include field-error;
-}
-
-input,
-textarea {
-  font-family: $font; // overwrite default browser font
-  font-weight: $body-copy-font-weight;
-  font-size: $body-copy-font-size;
-}
-
-input,
-textarea {
-  display: block;
-  background-color: $color-secondary-alabaster;
-  border-radius: $form-field-border-radius;
-  border-color: transparent;
-  outline: $form-field-default-filled-border; // using outline instead of border to not alter height
-
-  margin-top: $form-space-between-label-and-field;
-  @include tablet {
-    margin-top: 0.3125rem;
-  }
-
-  @include spacing-inside-fields;
-  &:active,
-  &:focus {
-    outline: $form-field-active-border;
-  }
-
-  /*  style placeholder text in fields */
-  &::placeholder {
-    color: $color-primary-brainflix-black;
-    font-size: $body-copy-font-size; // match typing font
-    @include tablet {
-      font-size: $body-copy-font-size-tablet;
-    }
-  }
-  /*   only show required field error state if empty on submit,
-  and not browser load */
-  &:user-invalid {
+  &--error {
     @include field-error;
   }
-}
 
-textarea {
-  height: calc($form-field-height * 3);
-  @include tablet {
-    overflow: hidden; //hide scroll bar
+  &__input,
+  &__textarea {
+    font-family: $font; // overwrite default browser font
+    font-weight: $body-copy-font-weight;
+    font-size: $body-copy-font-size;
+    display: block;
+    background-color: $color-secondary-alabaster;
+    border-radius: $form-field-border-radius;
+    border-color: transparent;
+    outline: $form-field-default-filled-border; // using outline instead of border to not alter height
+
+    margin-top: $form-space-between-label-and-field;
+    @include tablet {
+      margin-top: 0.3125rem;
+    }
+
+    @include spacing-inside-fields;
+    &:active,
+    &:focus {
+      outline: $form-field-active-border;
+    }
+
+    /*  style placeholder text in fields */
+    &::placeholder {
+      color: $color-primary-brainflix-black;
+      font-size: $body-copy-font-size; // match typing font
+      @include tablet {
+        font-size: $body-copy-font-size-tablet;
+      }
+    }
+    /*   only show required field error state if empty on submit,
+  and not browser load */
+    &:user-invalid {
+      @include field-error;
+    }
+  }
+
+  &__textarea {
+    height: calc($form-field-height * 3);
+    @include tablet {
+      overflow: hidden; //hide scroll bar
+    }
+  }
+
+  &--comment {
+    // override default height of 3 lines to be single line in comment component
+    @include tablet {
+      height: $form-field-height-tablet;
+    }
   }
 }

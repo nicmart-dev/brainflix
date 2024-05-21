@@ -42,7 +42,9 @@ function FormField({
           setResetFlag(false); // allow to reset again to submit multiple comments
         }}
         value={value}
-        className={`form-field--${name} ${hasError ? "form-field--error" : ""}`}
+        className={`form-field__${type} form-field--${name} ${
+          hasError ? "form-field--error" : ""
+        }`}
       />
       {hasError &&
         errors[name].type === "required" && ( // Check for errors and display error message
