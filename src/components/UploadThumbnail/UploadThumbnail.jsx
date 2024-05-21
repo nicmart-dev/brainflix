@@ -11,15 +11,41 @@ const UploadThumbnail = ({ FieldContainer, onImageUploadFilename }) => {
   const [uploadedImage, setUploadedImage] = useState(uploadVideoPreview); // state to display image in img tag
   const [imageFile, setImageFile] = useState(null); // state to store the actual uploaded file for api upload
 
-  const handleImageUpload = (event) => {
-    const imageFile = event.target.files[0];
-    if (imageFile) {
+  const handleImageUpload = async () => {
+    try {
+      // client side strict validation to only accept image files
+      const [fileHandle] = await window.showOpenFilePicker({
+        types: [
+          {
+            description: "Images",
+            accept: {
+              "image/*": [
+                ".jpg",
+                ".jpeg",
+                ".png",
+                ".gif",
+                ".bmp",
+                ".webp",
+                ".svg",
+              ],
+            },
+          },
+        ],
+        excludeAcceptAllOption: true,
+      });
+
+      const file = await fileHandle.getFile();
+      setImageFile(file);
+
       const reader = new FileReader();
       reader.onload = (e) => {
         setUploadedImage(e.target.result); // set image preview
       };
-      reader.readAsDataURL(imageFile);
-      setImageFile(imageFile); // set actual file to state
+      reader.readAsDataURL(file); // Convert to base64 string
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.error("Error selecting file:", error);
+      }
     }
   };
 
@@ -45,13 +71,9 @@ const UploadThumbnail = ({ FieldContainer, onImageUploadFilename }) => {
           className="upload-thumb__img"
         />
       </div>
-      <input
-        name="poster"
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        required
-      />
+      <button name="poster" type="button" onClick={handleImageUpload} required>
+        Choose Thumbnail
+      </button>
       {FieldContainer}
     </div>
   );
